@@ -59,14 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
     // Contrôle du mot de passe
-    if (empty($_POST["mot_de_passe"])) {
-        $errors["mot_de_passe"] = "Champ obligatoire";
-    } elseif (strlen($_POST["mot_de_passe"]) < 8) {
-        $errors["mot_de_passe"] = "Le mot de passe doit contenir au moins 8 caractères";
+    if (empty($_POST["enterprise_password"])) {
+        $errors["enterprise_password"] = "Champ obligatoire";
+    } elseif (strlen($_POST["enterprise_password"]) < 8) {
+        $errors["enterprise_password"] = "Le mot de passe doit contenir au moins 8 caractères";
     }
 
     // Contrôle de la confirmation du mot de passe
-    if ($_POST["mot_de_passe"] !== $_POST["conf_mot_de_passe"]) {
+    if ($_POST["conf_mot_de_passe"] !== $_POST["conf_mot_de_passe"]) {
         $errors["conf_mot_de_passe"] = "Les mots de passe ne correspondent pas";
     }
 

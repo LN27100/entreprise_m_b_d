@@ -4,7 +4,7 @@
 /* font-family: 'Marhey', sans-serif; */
 
 body {
-  background-color: #7A9855;
+  background-color: #1a237e;
   overflow-y: auto;
 }
 
@@ -13,7 +13,7 @@ body {
 h1 {
   font-family: 'Marhey', sans-serif;
   text-align: center;
-  color: #B5CA69;
+  color: #9499c9;
   font-weight: bolder;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 1.5rem;

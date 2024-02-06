@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" href="../assets//css//style.css">
 
     <title>Inscription pro</title>
@@ -59,6 +60,30 @@
                     </div>
                 </div>
 
+                <div class="col-md-4">
+                    <label for="enterprise_zipcode" class="form-label2">Code postal:</label>
+                    <input type="text" name="enterprise_zipcode" value="<?= isset($_POST['enterprise_zipcode']) ? htmlspecialchars($_POST['enterprise_zipcode']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_zipcode'])) echo 'is-invalid'; ?>" required>
+                    <div class="invalid-feedback" id="dateValidationFeedback">
+                        <?php
+                        if (isset($errors['enterprise_zipcode'])) {
+                            echo $errors['enterprise_zipcode'];
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="enterprise_city" class="form-label2">Ville:</label>
+                    <input type="text" name="enterprise_city" value="<?= isset($_POST['enterprise_city']) ? htmlspecialchars($_POST['enterprise_city']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_city'])) echo 'is-invalid'; ?>" required>
+                    <div class="invalid-feedback" id="dateValidationFeedback">
+                        <?php
+                        if (isset($errors['enterprise_city'])) {
+                            echo $errors['enterprise_city'];
+                        }
+                        ?>
+                    </div>
+                </div>
+
                 <form method="post" action="../controllers/controller-signup.php">
                 <div class="form-group col-md-6">
                         <label for="email" class="form-label2">Email: </label>
@@ -73,13 +98,13 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label for="password-input" class="form-label2">Mot de passe: </label>
+                        <label for="enterprise_password" class="form-label2">Mot de passe: </label>
                         <div class="input-group d-flex">
-                            <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['mot_de_passe'])) echo 'is-invalid'; ?>" name="mot_de_passe" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="password-input">
+                            <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="password-input">
                             <div class="invalid-feedback" id="passwordValidationFeedback">
                                 <?php
-                                if (isset($errors['mot_de_passe'])) {
-                                    echo $errors['mot_de_passe'];
+                                if (isset($errors['enterprise_password'])) {
+                                    echo $errors['enterprise_password'];
                                 }
                                 ?>
                             </div>
@@ -116,7 +141,7 @@
 
                     <div class="col-12 mt-4 mt-xxl-0  h-auto">
                         <div class="input-group d-flex">
-                            <label for="confirm-password-input" class="form-label1">Confirmer Mot de passe:</label>
+                            <label for="mot_de_passe" class="form-label1">Confirmer Mot de passe:</label>
                             <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['conf_mot_de_passe'])) echo 'is-invalid'; ?>" name="conf_mot_de_passe" placeholder="Confirmez votre mot de passe" aria-label="confirm-password" aria-describedby="confirm-password" id="confirm-password-input" />
                             <div class="invalid-feedback" id="confirmPasswordValidationFeedback"></div>
                             <div class="valid-feedback"></div>

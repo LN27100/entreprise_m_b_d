@@ -30,13 +30,13 @@ class Enterprise
             $query = $db->prepare($sql);
 
             // Relier les valeurs aux marqueurs nominatifs
-            $query->bindValue(':enterprise_id', htmlspecialchars($enterprise_id), PDO::INT);
+            $query->bindValue(':enterprise_id', htmlspecialchars($enterprise_id), PDO::PARAM_INT);
             $query->bindValue(':enterprise_name', htmlspecialchars($nom), PDO::PARAM_STR);
             $query->bindValue(':enterprise_email', htmlspecialchars($email), PDO::PARAM_STR);
             $query->bindValue(':enterprise_siret', $siret, PDO::PARAM_STR);
             $query->bindValue(':enterprise_adress', $adresse, PDO::PARAM_STR);
             $query->bindValue(':enterprise_password', password_hash($mot_de_passe, PASSWORD_DEFAULT), PDO::PARAM_STR);
-            $query->bindValue(':enterprise_zipcode', $code_postal, PDO::STR);
+            $query->bindValue(':enterprise_zipcode', $code_postal, PDO::PARAM_STR);
             $query->bindValue(':enterprise_city', $ville, PDO::PARAM_STR);
 
 
