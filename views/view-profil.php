@@ -37,20 +37,14 @@
 
         <div class="profile-info">
             <p><span class="styleProfil"> Nom:</span> <?= $nom ?></p>
-            <p><span class="styleProfil">Prenom: </span> <?= $prenom ?></p>
-            <p><span class="styleProfil">Pseudo:</span> <?= $pseudo ?></p>
-
-            <div class="profile-info">
-                <p class="styleProfil">Description:</p>
-                <div id="descriptionDisplay">
-                    <?php echo isset($_SESSION['user']['user_describ']) ? html_entity_decode($_SESSION['user']['user_describ']) : "Aucune description disponible"; ?>
-                </div>
-            </div>
-
-            <p><span class="styleProfil">Date de naissance: </span> <?= empty($date_naissance) ? "Non définie" : date('d/m/Y', strtotime($date_naissance)) ?></p>
+            <p><span class="styleProfil">Siret: </span> <?= $siret ?></p>
             <p><span class="styleProfil">Email: </span> <?= $email ?></p>
-            <p><span class="styleProfil">Entreprise: </span><?= $entreprise ?></p>
+            <p><span class="styleProfil">Adresse: </span> <?= $adresse ?></p>
+            <p><span class="styleProfil">Code postal: </span> <?= $code_postal ?></p>
+            <p><span class="styleProfil">Ville: </span> <?= $ville ?></p>
+
         </div>
+
 
         <div class="contnair">
             <button id="editDescriptionBtn">Modifier le profil</button>

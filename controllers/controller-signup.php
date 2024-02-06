@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["enterprise_email"] = 'mail déjà utilisé';
     }
 
-    // Contrôle de la date de naissance
+    // Contrôle de l'adresse
     if (empty($_POST["enterprise_adress"])) {
         $errors["enterprise_adress"] = "Champ obligatoire";
     }

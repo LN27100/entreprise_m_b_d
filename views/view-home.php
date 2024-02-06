@@ -15,7 +15,7 @@
 
 
 
-    <h1 class="titreAccueil">Eco'Mouv !!</h1>
+    <h1 class="titreAccueil">Portail entreprises</h1>
 
     <div class="container4">
         <?php
@@ -26,7 +26,7 @@
     </div>
 
     <div class="container4">
-        <?php echo "<h3>Bienvenue $nom</h3>"; ?>
+        <?php echo "<h3>$nom</h3>"; ?>
         </div>
 
         <div class="global">
