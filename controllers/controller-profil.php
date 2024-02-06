@@ -3,17 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once '../config.php';
-require_once '../models/Userprofil.php';
 require_once '../models/Enterprise.php';
 
-// Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['user'])) {
-    // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
+if (!isset($_SESSION['enterprise'])) {
     header("Location: ../controllers/controller-signin.php");
     exit();
 }
 
-// Récupère le pseudo de l'utilisateur
+// Récupère le pseudo de l'entreprise
 $pseudo = isset($_SESSION['user']['user_pseudo']) ? ($_SESSION['user']['user_pseudo']) : "Pseudo non défini";
 $nom = isset($_SESSION['user']['user_name']) ? ($_SESSION['user']['user_name']) : "Nom non défini";
 $prenom = isset($_SESSION['user']['user_firstname']) ? ($_SESSION['user']['user_firstname']) : "Prénom non défini";

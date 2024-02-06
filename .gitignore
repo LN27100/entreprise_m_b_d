@@ -1,0 +1,3 @@
+# permet de ne pas alourdir le git et de ne pas inclure certaines page comme celles des mots de passe par exemple
+node_modules/
+

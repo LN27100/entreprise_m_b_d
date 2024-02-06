@@ -2,7 +2,6 @@
 
 //lier le fichier config
 require_once '../config.php';
-require_once '../models/Userprofil.php';
 require_once '../models/Enterprise.php';
 
 
@@ -14,53 +13,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = array();
 
     // Récupération des données du formulaire en le rendant "safe" (enlever les caractères spéciaux etc)
-    $nom = trim($_POST['nom']);
-    $prenom = trim($_POST['prenom']);
-    $pseudo = trim($_POST['pseudo']);
-    $date_naissance = trim($_POST['date_naissance']);
-    $email = trim($_POST['email']);
-    $mot_de_passe = trim($_POST['mot_de_passe']);
-    $enterprise_id = trim($_POST['entreprise']);
+    $nom = trim($_POST['enterprise_name']);
+    $siret = trim($_POST['enterprise_siret']);
+    $email = trim($_POST['enterprise_email']);
+    $adresse = trim($_POST['enterprise_adress']);
+    $code_postal = trim($_POST['enterprise_zipcode']);
+    $ville = trim($_POST['enterprise_city']);
+    $mot_de_passe = trim($_POST['enterprise_password']);
 
 
     // Contrôle du nom
-    if (empty($_POST["nom"])) {
-        $errors["nom"] = "Champ obligatoire";
-    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ -]*$/", $_POST["nom"])) {
-        $errors["nom"] = "Seules les lettres, les espaces et les tirets sont autorisés dans le champ Nom";
+    if (empty($_POST["enterprise_name"])) {
+        $errors["enterprise_name"] = "Champ obligatoire";
+    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ -]*$/", $_POST["enterprise_name"])) {
+        $errors["enterprise_name"] = "Seules les lettres, les espaces et les tirets sont autorisés dans le champ Nom";
     }
 
-    // Contrôle du prénom
-    if (empty($_POST["prenom"])) {
-        $errors["prenom"] = "Champ obligatoire";
-    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ -]*$/", $_POST["prenom"])) {
-        $errors["prenom"] = "Seules les lettres, les espaces et les tirets sont autorisés dans le champ Prénom";
-    }
-
-    // Contrôle du pseudo
-    if (empty($_POST["pseudo"])) {
-        $errors["pseudo"] = "Champ obligatoire";
-    } elseif (!preg_match("/^[a-zA-ZÀ-ÿ\d]+$/", $_POST["pseudo"])) {
-        $errors["pseudo"] = "Seules les lettres et les chiffres sont autorisés dans le champ Pseudo";
-    } elseif (strlen($_POST["pseudo"]) < 6) {
-        $errors["pseudo"] = "Le pseudo doit contenir au moins 6 caractères";
-    } elseif (Userprofil::checkPseudoExists($_POST["pseudo"])) {
-        $errors["pseudo"] = 'Pseudo déjà utilisé';
-    }
+    // Contrôle du siret
+    if (empty($_POST["enterprise_siret"])) {
+        $errors["enterprise_siret"] = "Champ obligatoire";
+    } 
 
     // Contrôle de l'email
-    if (empty($_POST["email"])) {
-        $errors["email"] = "Champ obligatoire";
-    } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-        $errors["email"] = "Le format de l'adresse email n'est pas valide";
-    } elseif (Userprofil::checkMailExists($_POST["email"])) {
-        $errors["email"] = 'mail déjà utilisé';
+    if (empty($_POST["enterprise_email"])) {
+        $errors["enterprise_email"] = "Champ obligatoire";
+    } elseif (!filter_var($_POST["enterprise_email"], FILTER_VALIDATE_EMAIL)) {
+        $errors["enterprise_email"] = "Le format de l'adresse email n'est pas valide";
+    } elseif (Enterprise::checkMailExists($_POST["enterprise_email"])) {
+        $errors["enterprise_email"] = 'mail déjà utilisé';
     }
 
     // Contrôle de la date de naissance
-    if (empty($_POST["date_naissance"])) {
-        $errors["date_naissance"] = "Champ obligatoire";
+    if (empty($_POST["enterprise_adress"])) {
+        $errors["enterprise_adress"] = "Champ obligatoire";
     }
+
+    // Contrôle du code postal
+    if (empty($_POST["enterprise_zipcode"])) {
+        $errors["enterprise_zipcode"] = "Champ obligatoire";
+    } 
+
+    // Contrôle de la ville
+    if (empty($_POST["enterprise_city"])) {
+        $errors["enterprise_city"] = "Champ obligatoire";
+    } 
 
     // Contrôle du mot de passe
     if (empty($_POST["mot_de_passe"])) {
@@ -84,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // On s'assure qu'il n'y a pas d'erreur dans le formuaire
     if (empty($errors)) {
 
-        Userprofil::create($nom, $prenom, $pseudo, $date_naissance, $email, $mot_de_passe, $enterprise_id, 1);
+        Enterprise::create($nom, $prenom, $pseudo, $date_naissance, $email, $mot_de_passe, $enterprise_id, 1);
         $showform = false;
 
     }
@@ -92,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Donne toutes les propriétés du serveur
     // var_dump($_SERVER)
 }
-$allEnterprises = Enterprise::getAllEnterprises();
 
 
 
