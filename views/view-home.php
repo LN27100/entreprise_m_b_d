@@ -26,7 +26,7 @@
     </div>
 
     <div class="container4">
-        <?php echo "<h3>Bienvenue $pseudo</h3>"; ?>
+        <?php echo "<h3>Bienvenue $nom</h3>"; ?>
         </div>
 
         <div class="global">
@@ -36,7 +36,7 @@
         </div>
 
     <div class="container4">
-        <a href="../controllers/controller-ride.php" class="buttonHome">Commencer un trajet</a>
+        <a href="../controllers/controller-ride.php" class="buttonHome">Créer un challenge</a>
     </div>
     </div>
 
@@ -46,7 +46,7 @@
         <a href="../controllers/controller-profil.php" class="buttonNav"><i class="bi bi-person"></i>
             Profil</a>
         <a href="../controllers/controller-history.php" class="buttonNav"><i class="bi bi-clock-history"></i>
-            Historique</a>
+            Historique Challenge</a>
     </div>
 
 

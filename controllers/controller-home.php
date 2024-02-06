@@ -6,22 +6,22 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once '../config.php';
-require_once __DIR__ . '/../models/Userprofil.php';
+require_once '../models/Enterprise.php';
 
 // Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['enterprise'])) {
     // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
     header("Location: ../controllers/controller-signin.php");
     exit();
 }
 
 // Récupère le pseudo de l'utilisateur
-$pseudo = isset($_SESSION['user']['user_pseudo']) ? ($_SESSION['user']['user_pseudo']) : "Pseudo non défini";
+$nom = isset($_SESSION['enterprise']['enterprise_name']) ? ($_SESSION['enterprise']['enterprise_name']) : "Nom d'entreprise non défini";
 
 // Vérifie si une photo d'utilisateur est définie dans la session
-if (isset($_SESSION['user']['user_photo']) && !empty($_SESSION['user']['user_photo'])) {
+if (isset($_SESSION['enterprise']['enterprise_photo']) && !empty($_SESSION['enterprise']['enterprise_photo'])) {
     // Utilise la photo de l'utilisateur s'il en existe une
-    $img = $_SESSION['user']['user_photo'];
+    $img = $_SESSION['enterprise']['enterprise_photo'];
 } else {
     // Utilise une photo par défaut si aucune photo d'utilisateur n'est définie
     $img = "../assets/img/avatarDefault.jpg";
