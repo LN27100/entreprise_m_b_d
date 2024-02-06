@@ -49,10 +49,10 @@
         <div class="contnair">
             <button id="editDescriptionBtn">Modifier le profil</button>
 
-            <!-- <form action="../controllers/controller-profil.php" method="post" class="deleteProfil">
-                <input type="hidden" name="delete_profile" value="<?= $user_id ?>">
+            <form action="../controllers/controller-profil.php" method="post" class="deleteProfil">
+                <input type="hidden" name="delete_profile" value="<?= $enterprise_id ?>">
                 <button class="delete_profile" type="submit" name="delete_profile" onclick="return confirm('Voulez-vous vraiment supprimer ce profil ?')">Supprimer le profil</button>
-            </form> -->
+            </form>
         </div>
     </div>
 

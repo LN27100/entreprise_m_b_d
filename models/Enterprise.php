@@ -193,26 +193,26 @@ class Enterprise
          }
      }
      
-    //  /**
-    //   * Méthode pour supprimer le profil entreprise
-    //   * @param int $user_id est l'id de l'entreprise
-    //   * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
-    //   */
+     /**
+      * Méthode pour supprimer le profil entreprise
+      * @param int $user_id est l'id de l'entreprise
+      * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
+      */
      
-    //  public static function deleteUser(int $user_id) {
-    //      try {
-    //          $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+     public static function deleteEnterprise(int $enterprise_id) {
+         try {
+             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
      
-    //          $sql = "DELETE FROM userprofil WHERE user_id = :user_id";
-    //          $query = $db->prepare($sql);
-    //          $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-    //          $query->execute();
+             $sql = "DELETE FROM enterprise WHERE enterprise_id = :enterprise_id";
+             $query = $db->prepare($sql);
+             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
+             $query->execute();
      
              
-    //          return true;
-    //      } catch (PDOException $e) {
-    //          // Si une erreur se produit, retourner le message d'erreur
-    //          return 'Erreur : ' . $e->getMessage();
-    //      }
-    //  }
+             return true;
+         } catch (PDOException $e) {
+             // Si une erreur se produit, retourner le message d'erreur
+             return 'Erreur : ' . $e->getMessage();
+         }
+     }
 }

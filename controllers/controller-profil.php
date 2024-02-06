@@ -47,11 +47,8 @@ if (isset($_FILES['profile_image'])) {
         // Construire un nom de fichier unique en combinant "profile_", l'ID de l'utilisateur et l'extension du fichier
         $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise_id'] . "." . $file_extension;
 
-
         // // Construire le chemin complet du fichier en concaténant le dossier de sauvegarde avec le nouveau nom de fichier
-
         $uploadFile = $uploadDir . $new_file_name;
-
 
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadFile)) {
             $_SESSION['enterprise']['enterprise_photo'] = $uploadFile;
@@ -66,7 +63,6 @@ if (isset($_FILES['profile_image'])) {
         echo "Erreur lors de la mise à jour de l'image de profil : " . $e->getMessage();
     }
 }
-
 
 
 // Gestion du formulaire
@@ -120,6 +116,7 @@ if (isset($_POST['save_modification'])) {
             $_SESSION['enterprise']['enterprise_adress'] = $new_adress;
             $_SESSION['enterprise']['enterprise_zipcode'] = $new_zipcode;
             $_SESSION['enterprise']['enterprise_city'] = $new_city;
+
         } catch (Exception $e) {
             echo "Erreur lors de la mise à jour du profil : " . $e->getMessage();
         }
@@ -129,19 +126,19 @@ if (isset($_POST['save_modification'])) {
     }
 }
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
-//     // Appelle la méthode pour supprimer le profil
-//     $delete_result = Enterprise::deleteEnterprise($enterprise_id);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
+    // Appelle la méthode pour supprimer le profil
+    $delete_result = Enterprise::deleteEnterprise($enterprise_id);
 
-//     if ($delete_result === true) {
-//         // Suppression réussie, redirigez vers la page d'accueil avec un message de succès
-//         header("Location: ../index.php?message=Redirection+reussie");
-//         exit();
-//     } else {
-//         echo "Erreur lors de la suppression du profil : " . $delete_result;
-//         exit();
-//     }
-// }
+    if ($delete_result === true) {
+        // Suppression réussie, redirigez vers la page d'accueil avec un message de succès
+        header("Location: ../index.php?message=Redirection+reussie");
+        exit();
+    } else {
+        echo "Erreur lors de la suppression du profil : " . $delete_result;
+        exit();
+    }
+}
 
 
 
