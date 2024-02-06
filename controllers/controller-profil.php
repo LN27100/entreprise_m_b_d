@@ -141,5 +141,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
 }
 
 
-
 include_once '../views/view-profil.php';
