@@ -15,7 +15,7 @@ class Enterprise
 
      */
 
-    public static function create(string $nom, string $email, string $siret, string $mot_de_passe, int $enterprise_id, string $adresse, string $code_postal, string $ville)
+    public static function create(string $nom, string $email, string $siret, string $mot_de_passe, string $adresse, string $code_postal, string $ville)
     {
         try {
             // Conexion à la base de données
@@ -23,14 +23,13 @@ class Enterprise
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Stockage de la requete dans une variable
-            $sql = "INSERT INTO enterprise (enterprise_id, enterprise_name, enterprise_email, enterprise_siret, enterprise_adress, enterprise_password, enterprise_zipcode, enterprise_city)
-             VALUES (:enterprise_id, :enterprise_name, :enterprise_email, :enterprise_siret, :enterprise_adress, :enterprise_password, :enterprise_zipcode, :enterprise_city)";
+            $sql = "INSERT INTO enterprise (enterprise_name, enterprise_email, enterprise_siret, enterprise_adress, enterprise_password, enterprise_zipcode, enterprise_city)
+             VALUES (:enterprise_name, :enterprise_email, :enterprise_siret, :enterprise_adress, :enterprise_password, :enterprise_zipcode, :enterprise_city)";
 
             // Préparation de la requête
             $query = $db->prepare($sql);
 
             // Relier les valeurs aux marqueurs nominatifs
-            $query->bindValue(':enterprise_id', htmlspecialchars($enterprise_id), PDO::PARAM_INT);
             $query->bindValue(':enterprise_name', htmlspecialchars($nom), PDO::PARAM_STR);
             $query->bindValue(':enterprise_email', htmlspecialchars($email), PDO::PARAM_STR);
             $query->bindValue(':enterprise_siret', $siret, PDO::PARAM_STR);
@@ -48,9 +47,9 @@ class Enterprise
     }
 
     /**
-     * Methode permettant de récupérer les informations d'un utilisateur avec son mail comme paramètre
+     * Methode permettant de récupérer les informations d'un Entreprise avec son mail comme paramètre
      * 
-     * @param string $email Adresse mail de l'utilisateur
+     * @param string $email Adresse mail de l'Entreprise
      * 
      * @return bool
      */
@@ -87,4 +86,43 @@ class Enterprise
             die();
         }
     }
+
+    /**
+     * Methode permettant de récupérer les infos d'un Entreprise avec son mail comme paramètre
+     * 
+     * @param string $email Adresse mail de l'Entreprise
+     * 
+     * @return array Tableau associatif contenant les infos de l'Entreprise
+     */
+    public static function getInfos(string $email): array
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "SELECT *
+                FROM `enterprise` 
+                WHERE `enterprise_email` = :enterprise_email";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':enterprise_email', $email, PDO::PARAM_STR);
+
+            // on execute la requête
+            $query->execute();
+
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            // on retourne le résultat
+            return $result ?? [];
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
+
 }

@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // On s'assure qu'il n'y a pas d'erreur dans le formuaire
     if (empty($errors)) {
 
-        Enterprise::create($nom, $prenom, $pseudo, $date_naissance, $email, $mot_de_passe, $enterprise_id, 1);
+        Enterprise::create($nom, $email, $siret, $mot_de_passe, $adresse, $code_postal, $ville);
         $showform = false;
 
     }

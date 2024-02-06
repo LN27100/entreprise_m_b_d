@@ -1,6 +1,6 @@
 <?php
 require_once '../config.php';
-require_once '../models/Userprofil.php';
+require_once '../models/Enterprise.php';
 
 
         // empêche l'accès à la page home si l'utilisateur n'est pas connecté et vérifie si la session n'est pas déjà active
@@ -16,39 +16,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
     // Vérifiez si l'email est vide
-    if (empty($_POST["email"])) {
-        $errors["email"] = "Champ obligatoire";
+    if (empty($_POST["enterprise_email"])) {
+        $errors["enterprise_email"] = "Champ obligatoire";
     } else {
         // Récupérez la valeur de l'email depuis le formulaire
-        $email = $_POST["email"];
+        $email = $_POST["enterprise_email"];
     }
 
     // Vérifiez si le mot de passe est vide
-    if (empty($_POST["mot_de_passe"])) {
-        $errors["mot_de_passe"] = "Champ obligatoire";
+    if (empty($_POST["enterprise_password"])) {
+        $errors["enterprise_password"] = "Champ obligatoire";
     }
 
     // Si aucune erreur, procédez à la vérification de l'utilisateur
     if (empty($errors)) {
         // Vérifiez si l'email existe dans la base de données
-        if (!Userprofil::checkMailExists($email)) {
-            $errors['email'] = 'Utilisateur Inconnu';
+        if (!Enterprise::checkMailExists($email)) {
+            $errors['enterprise_email'] = 'Utilisateur Inconnu';
         } else {
             // Récupérez les informations de l'utilisateur
-            $utilisateurInfos = Userprofil::getInfos($email);
+            $entrepriseInfos = Enterprise::getInfos($email);
 
             // Comparaison du mot de passe
-            if (password_verify($_POST["mot_de_passe"], $utilisateurInfos['user_password'])) {
+            if (password_verify($_POST["enterprise_password"], $entrepriseInfos['enterprise_password'])) {
                 // Mot de passe correct
 
                 // Stockez les infos dans la variable de session
-                $_SESSION['user'] = $utilisateurInfos;
+                $_SESSION['enterprise'] = $entrepriseInfos;
 
                 // Redirigez vers la page d'accueil
                 header("Location: ../controllers/controller-home.php");
                 exit();
             } else {
-                $errors['mot_de_passe'] = 'Mauvais mot de passe';
+                $errors['enterprise_password'] = 'Mauvais mot de passe';
             }
         }
     }
