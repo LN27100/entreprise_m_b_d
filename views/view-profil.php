@@ -49,10 +49,10 @@
         <div class="contnair">
             <button id="editDescriptionBtn">Modifier le profil</button>
 
-            <form action="../controllers/controller-profil.php" method="post" class="deleteProfil">
+            <!-- <form action="../controllers/controller-profil.php" method="post" class="deleteProfil">
                 <input type="hidden" name="delete_profile" value="<?= $user_id ?>">
                 <button class="delete_profile" type="submit" name="delete_profile" onclick="return confirm('Voulez-vous vraiment supprimer ce profil ?')">Supprimer le profil</button>
-            </form>
+            </form> -->
         </div>
     </div>
 
@@ -73,11 +73,11 @@
 
         <div class="profile-info">
             <p><span class="styleProfil"> Nom:</span></p>
-            <input type="text" name="user_name" placeholder="Nouveau nom" value="<?= $nom ?>">
+            <input type="text" name="enterprise_name" placeholder="Nouveau nom" value="<?= $nom ?>">
 
             <!-- Affichage des erreurs pour le nom -->
-            <?php if (isset($errors['user_name'])) { ?>
-                <span class="error-message"><?= $errors['user_name']; ?></span>
+            <?php if (isset($errors['enterprise_name'])) { ?>
+                <span class="error-message"><?= $errors['enterprise_name']; ?></span>
             <?php } ?>
 
 
@@ -113,11 +113,6 @@
                 <span class="error-message"><?= $errors['enterprise_city']; ?></span>
             <?php } ?>
 
-
-
-           
-
-        
 
 
             <div class="profile-info">

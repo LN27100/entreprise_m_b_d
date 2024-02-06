@@ -146,12 +146,12 @@ class Enterprise
              // Nouveau chemin de l'image avec le nom de fichier unique
              $new_image_path_with_enterprise_id = '../assets/uploads/' . $new_file_name;
      
-             $sql = "UPDATE userprofil SET user_photo = :new_image_path WHERE user_id = :user_id";
+             $sql = "UPDATE enterprise SET enterprise_photo = :new_image_path WHERE enterprise_id = :enterprise_id";
      
              $query = $db->prepare($sql);
      
              $query->bindValue(':new_image_path', $new_image_path_with_enterprise_id, PDO::PARAM_STR);
-             $query->bindValue(':user_id', $enterprise_id, PDO::PARAM_INT);
+             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
      
              $query->execute();
          } catch (PDOException $e) {
@@ -170,25 +170,21 @@ class Enterprise
              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
              $sql = "UPDATE userprofil 
-                     SET user_describ = :new_description, 
-                         user_name = :new_name, 
-                         user_firstname = :new_firstname, 
-                         user_pseudo = :new_pseudo, 
-                         user_email = :new_email, 
-                         user_dateofbirth = :new_dateofbirth, 
-                         enterprise_id = :new_enterprise 
-                     WHERE user_id = :user_id";
+                     SET enterprise_name = ::new_name, 
+                         enterprise_email = :new_email, 
+                         enterprise_adress = :new_adress, 
+                         enterprise_zipcode = :enterprise_zipcode,
+                         enterprise_city = :enterprise_city
+                     WHERE enterprise_id = :enterprise_id";
      
              $query = $db->prepare($sql);
      
-             $query->bindValue(':new_description', $new_description, PDO::PARAM_STR);
              $query->bindValue(':new_name', $new_name, PDO::PARAM_STR);
-             $query->bindValue(':new_firstname', $new_firstname, PDO::PARAM_STR);
-             $query->bindValue(':new_pseudo', $new_pseudo, PDO::PARAM_STR);
              $query->bindValue(':new_email', $new_email, PDO::PARAM_STR);
-             $query->bindValue(':new_dateofbirth', $new_dateofbirth, PDO::PARAM_STR);
-             $query->bindValue(':new_enterprise', $new_enterprise, PDO::PARAM_STR);
-             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+             $query->bindValue(':new_adress', $new_adress, PDO::PARAM_STR);
+             $query->bindValue(':new_zipcode', $new_zipcode, PDO::PARAM_STR);
+             $query->bindValue(':new_city', $new_city, PDO::PARAM_STR);
+             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
      
              $query->execute();
          } catch (PDOException $e) {
@@ -197,26 +193,26 @@ class Enterprise
          }
      }
      
-     /**
-      * Méthode pour supprimer le profil entreprise
-      * @param int $user_id est l'id de l'entreprise
-      * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
-      */
+    //  /**
+    //   * Méthode pour supprimer le profil entreprise
+    //   * @param int $user_id est l'id de l'entreprise
+    //   * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
+    //   */
      
-     public static function deleteUser(int $user_id) {
-         try {
-             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    //  public static function deleteUser(int $user_id) {
+    //      try {
+    //          $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
      
-             $sql = "DELETE FROM userprofil WHERE user_id = :user_id";
-             $query = $db->prepare($sql);
-             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-             $query->execute();
+    //          $sql = "DELETE FROM userprofil WHERE user_id = :user_id";
+    //          $query = $db->prepare($sql);
+    //          $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+    //          $query->execute();
      
              
-             return true;
-         } catch (PDOException $e) {
-             // Si une erreur se produit, retourner le message d'erreur
-             return 'Erreur : ' . $e->getMessage();
-         }
-     }
+    //          return true;
+    //      } catch (PDOException $e) {
+    //          // Si une erreur se produit, retourner le message d'erreur
+    //          return 'Erreur : ' . $e->getMessage();
+    //      }
+    //  }
 }

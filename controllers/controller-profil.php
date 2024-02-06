@@ -28,7 +28,7 @@ if (isset($_SESSION['enterprise']['enterprise_photo']) && !empty($_SESSION['ente
 // Gestion du formulaire
 $errors = array(); // Tableau pour stocker les erreurs
 
-$user_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : null;
+$enterprise_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : null;
 
 // Gestion de la mise à jour de l'image de profil
 if (isset($_FILES['profile_image'])) {
@@ -45,7 +45,7 @@ if (isset($_FILES['profile_image'])) {
 
         $file_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
         // Construire un nom de fichier unique en combinant "profile_", l'ID de l'utilisateur et l'extension du fichier
-        $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise_photo'] . "." . $file_extension;
+        $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise_id'] . "." . $file_extension;
 
 
         // // Construire le chemin complet du fichier en concaténant le dossier de sauvegarde avec le nouveau nom de fichier
@@ -54,7 +54,7 @@ if (isset($_FILES['profile_image'])) {
 
 
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadFile)) {
-            $_SESSION['enterprise']['enterprise'] = $uploadFile;
+            $_SESSION['enterprise']['enterprise_photo'] = $uploadFile;
             Enterprise::updateProfileImage($_SESSION['enterprise']['enterprise_id'], $uploadFile);
             header("Location: ../controllers/controller-profil.php");
         } else {
@@ -71,7 +71,7 @@ if (isset($_FILES['profile_image'])) {
 
 // Gestion du formulaire
 if (isset($_POST['save_modification'])) {
-    $user_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : 0;
+    $enterprise_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : 0;
     $new_name = isset($_POST['enterprise_name']) ? ($_POST['enterprise_name']) : "";
     $new_email = isset($_POST['enterprise_email']) ? ($_POST['enterprise_email']) : "";
     $new_adress = isset($_POST['enterprise_adress']) ? ($_POST['enterprise_adress']) : "";
@@ -111,11 +111,10 @@ if (isset($_POST['save_modification'])) {
         $errors["enterprise_city"] = "Champ obligatoire";
     }
 
-
     // Si des erreurs sont détectées, redirigez l'utilisateur vers le formulaire avec les erreurs
     if (empty($errors)) {
         try {
-            Enterprise::updateProfil($enterprise_id, $new_name, $new_firstname, $new_pseudo, $new_email, $new_dateofbirth, $new_enterprise);
+            Enterprise::updateProfil($enterprise_id, $new_name, $new_email, $new_adress, $new_zipcode, $new_city);
             $_SESSION['enterprise']['enterprise_name'] = $new_name;
             $_SESSION['enterprise']['enterprise_email'] = $new_email;
             $_SESSION['enterprise']['enterprise_adress'] = $new_adress;
