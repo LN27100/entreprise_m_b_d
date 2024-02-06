@@ -125,4 +125,98 @@ class Enterprise
         }
     }
 
+    /**
+     * Méthode permettant de télécharger une image de profil
+     * @param string $new_image_path est le nouveau nom de l'image télécharger
+     * @param int $user_id est l'id de l'entreprise
+     */
+
+     public static function updateProfileImage(int $enterprise_id, string $new_image_path)
+     {
+         try {
+             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     
+             // Obtenir l'extension du fichier à partir du chemin de l'image
+             $file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
+     
+             // Construire un nom de fichier unique avec le user_id
+             $new_file_name = "profile_" . $enterprise_id . "." . $file_extension;
+     
+             // Nouveau chemin de l'image avec le nom de fichier unique
+             $new_image_path_with_enterprise_id = '../assets/uploads/' . $new_file_name;
+     
+             $sql = "UPDATE userprofil SET user_photo = :new_image_path WHERE user_id = :user_id";
+     
+             $query = $db->prepare($sql);
+     
+             $query->bindValue(':new_image_path', $new_image_path_with_enterprise_id, PDO::PARAM_STR);
+             $query->bindValue(':user_id', $enterprise_id, PDO::PARAM_INT);
+     
+             $query->execute();
+         } catch (PDOException $e) {
+             echo 'Erreur :' . $e->getMessage();
+             die();
+         }
+     }
+     
+         /**
+          * * Méthode pour modifier le profil entreprise
+          */
+         public static function updateProfil(int $enterprise_id, string $new_name, string $new_email, string $new_adress, string $new_zipcode, string $new_city)
+     {   
+         try {
+             $db = new PDO(DBNAME, DBUSER, DBPASSWORD, array(PDO::ATTR_PERSISTENT => true));
+             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     
+             $sql = "UPDATE userprofil 
+                     SET user_describ = :new_description, 
+                         user_name = :new_name, 
+                         user_firstname = :new_firstname, 
+                         user_pseudo = :new_pseudo, 
+                         user_email = :new_email, 
+                         user_dateofbirth = :new_dateofbirth, 
+                         enterprise_id = :new_enterprise 
+                     WHERE user_id = :user_id";
+     
+             $query = $db->prepare($sql);
+     
+             $query->bindValue(':new_description', $new_description, PDO::PARAM_STR);
+             $query->bindValue(':new_name', $new_name, PDO::PARAM_STR);
+             $query->bindValue(':new_firstname', $new_firstname, PDO::PARAM_STR);
+             $query->bindValue(':new_pseudo', $new_pseudo, PDO::PARAM_STR);
+             $query->bindValue(':new_email', $new_email, PDO::PARAM_STR);
+             $query->bindValue(':new_dateofbirth', $new_dateofbirth, PDO::PARAM_STR);
+             $query->bindValue(':new_enterprise', $new_enterprise, PDO::PARAM_STR);
+             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+     
+             $query->execute();
+         } catch (PDOException $e) {
+             error_log('Erreur lors de la mise à jour du profil : ' . $e->getMessage());
+             throw new Exception('Une erreur s\'est produite lors de la mise à jour du profil.');
+         }
+     }
+     
+     /**
+      * Méthode pour supprimer le profil entreprise
+      * @param int $user_id est l'id de l'entreprise
+      * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
+      */
+     
+     public static function deleteUser(int $user_id) {
+         try {
+             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+     
+             $sql = "DELETE FROM userprofil WHERE user_id = :user_id";
+             $query = $db->prepare($sql);
+             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+             $query->execute();
+     
+             
+             return true;
+         } catch (PDOException $e) {
+             // Si une erreur se produit, retourner le message d'erreur
+             return 'Erreur : ' . $e->getMessage();
+         }
+     }
 }

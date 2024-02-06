@@ -45,7 +45,7 @@ if (isset($_FILES['profile_image'])) {
 
         $file_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
         // Construire un nom de fichier unique en combinant "profile_", l'ID de l'utilisateur et l'extension du fichier
-        $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise'] . "." . $file_extension;
+        $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise_photo'] . "." . $file_extension;
 
 
         // // Construire le chemin complet du fichier en concaténant le dossier de sauvegarde avec le nouveau nom de fichier
@@ -55,7 +55,7 @@ if (isset($_FILES['profile_image'])) {
 
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadFile)) {
             $_SESSION['enterprise']['enterprise'] = $uploadFile;
-            Enterprise::updateProfileImage($_SESSION['user']['user_id'], $uploadFile);
+            Enterprise::updateProfileImage($_SESSION['enterprise']['enterprise_id'], $uploadFile);
             header("Location: ../controllers/controller-profil.php");
         } else {
             $uploadDir = '../assets/img/avatarDefault.jpg';

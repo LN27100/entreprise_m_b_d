@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <title>Votre profil</title>
+    <title>Profil entreprise</title>
 </head>
 
 <body>
@@ -20,9 +20,9 @@
 
     </a>';
     ?>
-    <h1 class="titreAccueil">Eco'Mouv !!</h1>
+    <h1 class="titreAccueil">Portail entreprise</h1>
 
-    <h2 class="tittleProfil">Votre profil</h2>
+    <h2 class="tittleProfil">Profil entreprise</h2>
 
     <div class="container3">
         <div class="profile-image-container">
@@ -69,10 +69,7 @@
     <!-- Formulaire de modification du profil (masqué par défaut) -->
     <form method="post" action="../controllers/controller-profil.php" class="transparent-form" enctype="multipart/form-data" id="editDescriptionForm" style="display: none;">
 
-        <div class="profile-info">
-            <p class="styleProfil">Modifier votre description:</p>
-            <textarea id="user_describ" name="user_describ" rows="5" cols="33"><?= isset($_SESSION['user']['user_describ']) ? ($_SESSION['user']['user_describ']) : "" ?></textarea>
-        </div>
+    
 
         <div class="profile-info">
             <p><span class="styleProfil"> Nom:</span></p>
@@ -83,46 +80,44 @@
                 <span class="error-message"><?= $errors['user_name']; ?></span>
             <?php } ?>
 
-            <p><span class="styleProfil"> Prénom:</span></p>
-            <input type="text" name="user_firstname" placeholder="Nouveau prénom" value="<?= $prenom ?>">
-
-            <!-- Affichage des erreurs pour le prénom -->
-            <?php if (isset($errors['user_firstname'])) { ?>
-                <span class="error-message"><?= $errors['user_firstname']; ?></span>
-            <?php } ?>
-
-            <p><span class="styleProfil">Pseudo:</span></p>
-            <input type="text" name="user_pseudo" placeholder="Nouveau pseudo" value="<?= $pseudo ?>">
-
-            <!-- Affichage des erreurs pour le pseudo -->
-            <?php if (isset($errors['user_pseudo'])) { ?>
-                <span class="error-message"><?= $errors['user_pseudo']; ?></span>
-            <?php } ?>
 
             <p><span class="styleProfil">Email:</span></p>
-            <input type="text" name="user_email" placeholder="Nouveau email" value="<?= $email ?>">
+            <input type="text" name="enterprise_email" placeholder="Nouveau email" value="<?= $email ?>">
 
             <!-- Affichage des erreurs pour l'email -->
-            <?php if (isset($errors['user_email'])) { ?>
-                <span class="error-message"><?= $errors['user_email']; ?></span>
+            <?php if (isset($errors['enterprise_email'])) { ?>
+                <span class="error-message"><?= $errors['enterprise_email']; ?></span>
+            <?php } ?>
+
+            <p><span class="styleProfil"> Adresse:</span></p>
+            <input type="text" name="enterprise_adress" placeholder="Nouveau nom" value="<?= $adresse ?>">
+
+            <!-- Affichage des erreurs pour l'adresse -->
+            <?php if (isset($errors['enterprise_adress'])) { ?>
+                <span class="error-message"><?= $errors['enterprise_adress']; ?></span>
+            <?php } ?>
+
+            <p><span class="styleProfil"> Code postal:</span></p>
+            <input type="text" name="enterprise_zipcode" placeholder="Nouveau nom" value="<?= $code_postal ?>">
+
+            <!-- Affichage des erreurs pour le code postal -->
+            <?php if (isset($errors['enterprise_zipcode'])) { ?>
+                <span class="error-message"><?= $errors['enterprise_zipcode']; ?></span>
+            <?php } ?>
+
+            <p><span class="styleProfil"> Ville:</span></p>
+            <input type="text" name="enterprise_city" placeholder="Nouveau nom" value="<?= $ville ?>">
+
+            <!-- Affichage des erreurs pour le code postal -->
+            <?php if (isset($errors['enterprise_city'])) { ?>
+                <span class="error-message"><?= $errors['enterprise_city']; ?></span>
             <?php } ?>
 
 
-            <p><span class="styleProfil"> Date de naissance:</span></p>
-            <input type="date" name="user_dateofbirth" placeholder="Nouvelle date de naissance" value="<?= $date_naissance ?>">
 
-            <!-- Affichage des erreurs pour la date de naissance -->
-            <?php if (isset($errors['user_dateofbirth'])) { ?>
-                <span class="error-message"><?= $errors['user_dateofbirth']; ?></span>
-            <?php } ?>
+           
 
-            <p><span class="styleProfil">Entreprise:</span></p>
-            <select class="form-select" aria-label="Default select example" name="new_enterprise" id="new_enterprise">
-                <option value="" selected disabled>Sélectionnez une entreprise</option>
-                <?php foreach ($allEnterprises as $enterprise) { ?>
-                    <option value="<?= $enterprise['enterprise_id'] ?>" <?= $enterprise['enterprise_id'] == $_SESSION['user']['enterprise_id'] ? 'selected' : '' ?>><?= $enterprise['enterprise_name'] ?></option>
-                <?php } ?>
-            </select>
+        
 
 
             <div class="profile-info">
