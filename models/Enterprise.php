@@ -46,6 +46,7 @@ class Enterprise
         }
     }
 
+
     /**
      * Methode permettant de récupérer les informations d'un Entreprise avec son mail comme paramètre
      * 
@@ -87,6 +88,7 @@ class Enterprise
         }
     }
 
+
     /**
      * Methode permettant de récupérer les infos d'un Entreprise avec son mail comme paramètre
      * 
@@ -125,10 +127,11 @@ class Enterprise
         }
     }
 
+
     /**
      * Méthode permettant de télécharger une image de profil
      * @param string $new_image_path est le nouveau nom de l'image télécharger
-     * @param int $user_id est l'id de l'entreprise
+     * @param int $entreprise_id est l'id de l'entreprise
      */
 
      public static function updateProfileImage(int $enterprise_id, string $new_image_path)
@@ -140,7 +143,7 @@ class Enterprise
              // Obtenir l'extension du fichier à partir du chemin de l'image
              $file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
      
-             // Construire un nom de fichier unique avec le user_id
+             // Construire un nom de fichier unique avec le entreprise_id
              $new_file_name = "profile_" . $enterprise_id . "." . $file_extension;
      
              // Nouveau chemin de l'image avec le nom de fichier unique
@@ -160,6 +163,7 @@ class Enterprise
          }
      }
      
+
          /**
           * * Méthode pour modifier le profil entreprise
           */
@@ -169,7 +173,7 @@ class Enterprise
              $db = new PDO(DBNAME, DBUSER, DBPASSWORD, array(PDO::ATTR_PERSISTENT => true));
              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
-             $sql = "UPDATE userprofil 
+             $sql = "UPDATE enterprise 
                      SET enterprise_name = ::new_name, 
                          enterprise_email = :new_email, 
                          enterprise_adress = :new_adress, 
@@ -193,9 +197,10 @@ class Enterprise
          }
      }
      
+
      /**
       * Méthode pour supprimer le profil entreprise
-      * @param int $user_id est l'id de l'entreprise
+      * @param int $entreprise_id est l'id de l'entreprise
       * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
       */
      

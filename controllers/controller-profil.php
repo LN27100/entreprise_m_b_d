@@ -11,7 +11,7 @@ if (!isset($_SESSION['enterprise'])) {
 }
 
 // Récupère le pseudo de l'entreprise
-$nom = isset($_SESSION['enterprise']['enterprise_name']) ? ($_SESSION['enterprise']['enterprise_name']) : "Nom non défini";
+$nom = isset($_SESSION['enterprise']['enterprise_name']) ? ($_SESSION['enterprise']['enterprise_name']) : "Nom d'entreprise non défini";
 $siret = isset($_SESSION['enterprise']['enterprise_siret']) ? ($_SESSION['enterprise']['enterprise_siret']) : "Siret non défini";
 $email = isset($_SESSION['enterprise']['enterprise_email']) ? ($_SESSION['enterprise']['enterprise_email']) : "Email non défini";
 $adresse = isset($_SESSION['enterprise']['enterprise_adress']) ? ($_SESSION['enterprise']['enterprise_adress']) : "Adresse non définie";
@@ -36,12 +36,10 @@ if (isset($_FILES['profile_image'])) {
         // Dossier de sauvegarde des images
         $uploadDir = '../assets/uploads/';
 
-
         // Vérification du dossier de sauvegarde des images
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
-
 
         $file_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
         // Construire un nom de fichier unique en combinant "profile_", l'ID de l'utilisateur et l'extension du fichier
@@ -56,7 +54,6 @@ if (isset($_FILES['profile_image'])) {
             header("Location: ../controllers/controller-profil.php");
         } else {
             $uploadDir = '../assets/img/avatarDefault.jpg';
-
             echo "Erreur lors du téléchargement du fichier : " . $_FILES['profile_image']['error'];
         }
     } catch (Exception $e) {
@@ -74,14 +71,12 @@ if (isset($_POST['save_modification'])) {
     $new_zipcode = isset($_POST['enterprise_zipcode']) ? ($_POST['enterprise_zipcode']) : "";
     $new_city = isset($_POST['enterprise_city']) ? ($_POST['enterprise_city']) : "";
 
-
     // Contrôle du nom
     if (empty($_POST["enterprise_name"])) {
         $errors["enterprise_name"] = "Champ obligatoire";
     } elseif (!preg_match("/^[a-zA-ZÀ-ÿ -]*$/", $_POST["enterprise_name"])) {
         $errors["enterprise_name"] = "Seules les lettres, les espaces et les tirets sont autorisés dans le champ Nom";
     }
-
 
     // Contrôle de l'email 
     if (empty($_POST["enterprise_email"])) {
@@ -116,16 +111,15 @@ if (isset($_POST['save_modification'])) {
             $_SESSION['enterprise']['enterprise_adress'] = $new_adress;
             $_SESSION['enterprise']['enterprise_zipcode'] = $new_zipcode;
             $_SESSION['enterprise']['enterprise_city'] = $new_city;
-
         } catch (Exception $e) {
             echo "Erreur lors de la mise à jour du profil : " . $e->getMessage();
         }
-        // Redirigez l'utilisateur vers la page du profil après la mise à jour
         header("Location: ../controllers/controller-profil.php");
         exit();
     }
 }
 
+// Supprimer le profil entreprise
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
     // Appelle la méthode pour supprimer le profil
     $delete_result = Enterprise::deleteEnterprise($enterprise_id);
@@ -139,6 +133,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
         exit();
     }
 }
-
 
 include_once '../views/view-profil.php';

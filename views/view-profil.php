@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <title>Profil entreprise</title>
@@ -22,7 +21,9 @@
     ?>
     <h1 class="titreAccueil">Portail entreprise</h1>
 
-    <h2 class="tittleProfil">Profil entreprise</h2>
+    <div class="container4">
+        <h3>Profil <?= $nom; ?></h3>
+        </div>
 
     <div class="container3">
         <div class="profile-image-container">
@@ -63,7 +64,7 @@
         <a href="../controllers/controller-profil.php" class="buttonNav"><i class="bi bi-person"></i>
             Profil</a>
         <a href="../controllers/controller-history.php" class="buttonNav"><i class="bi bi-clock-history"></i>
-            Historique</a>
+             Challenges</a>
     </div>
 
     <!-- Formulaire de modification du profil (masqué par défaut) -->
