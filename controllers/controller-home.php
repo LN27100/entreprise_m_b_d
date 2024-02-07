@@ -154,6 +154,7 @@ $allUtilisateurs = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enter
 $actifUtilisateurs = Enterprise::getActifUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $allTrajets = Enterprise::getAllTrajets($_SESSION['enterprise']['enterprise_id']);
 $lastfiveusers = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterprise_id']);
+$lastfivejourneys = Enterprise::getlastfivejourneys($_SESSION['enterprise']['enterprise_id']);
 
 // Inclure la vue home uniquement si l'utilisateur est connecté
 include_once '../views/view-home.php';

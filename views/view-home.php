@@ -192,17 +192,23 @@
                 </div>
 
 
-
                 <div class="row">
-                    <div class="col s12">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
-                                <span class="card-title">5 derniers trajets</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                            </div>
+    <div class="col s12">
+        <div class="card #01579b light-blue darken-4">
+            <div class="card-content white-text">
+                <span class="card-title">5 derniers trajets</span>
+                <div class="card-metric">
+                    <?php foreach ($lastfivejourneys as $trajet) : ?>
+                        <div>
+                            <?= $trajet['ride_date'] ?>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
     </main>

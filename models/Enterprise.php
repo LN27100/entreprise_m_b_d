@@ -346,32 +346,24 @@ public static function getlastfiveusers(int $entreprise_id) : array
     }
 }
 
-public static function getlastfivejourneys(int $entreprise_id) : int
+public static function getlastfivejourneys(int $entreprise_id): array
 {
     try {
-        // Création d'un objet $db selon la classe PDO
         $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        // stockage de ma requete dans une variable
-        $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
-        JOIN `userprofil` ON ride.`user_id` = userprofil.`user_id`
-        WHERE `enterprise_id` = :id_entreprise;";
+        $sql = "SELECT `ride_date` FROM `ride` 
+                NATURAL JOIN `enterprise`
+                WHERE `enterprise_id` = :id_entreprise
+                ORDER BY `ride_date` DESC LIMIT 5;";
 
-        // je prepare ma requête pour éviter les injections SQL
         $query = $db->prepare($sql);
-
-        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
         $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
-
-        // on execute la requête
         $query->execute();
 
-        // on récupère le résultat de la requête dans une variable
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        // Récupérer tous les résultats
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
-        // on retourne le nom de l'entreprise
-        return $result['Total des trajets'];
+        return $result;
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage();
         die();
