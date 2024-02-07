@@ -15,8 +15,7 @@
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="has-fixed-sidenav #1a237e indigo darken-4
-">
+<body class="has-fixed-sidenav #01579b light-blue darken-4">
     <header>
         <div class="navbar-fixed">
             <nav class="navbar #e0f7fa cyan lighten-5">
@@ -45,12 +44,12 @@
                 </div>
 
                 <div class="profile-info">
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4"> Nom:</span> <?= $nom ?></p>
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Siret: </span> <?= $siret ?></p>
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Email: </span> <?= $email ?></p>
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Adresse: </span> <?= $adresse ?></p>
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Code postal: </span> <?= $code_postal ?></p>
-                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Ville: </span> <?= $ville ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4"> Nom:</span> <?= $nom ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4">Siret: </span> <?= $siret ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4">Email: </span> <?= $email ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4">Adresse: </span> <?= $adresse ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4">Code postal: </span> <?= $code_postal ?></p>
+                    <p class="cyan-text text-lighten-5"><span class="styleProfil indigo-text text-darken-4">Ville: </span> <?= $ville ?></p>
 
                 </div>
 
@@ -125,45 +124,45 @@
         <div class="container">
             <div class="masonry row">
                 <div class="col s12">
-                    <h2 class="blue-grey-text ">Dashboard <?= $nom ?></h2>
+                <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
                 </div>
 
                 <div class="row">
                     <div class="col l3 m6 s12">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">Total des utilisateurs</span>
-                                <p><?= $allUtilisateurs ?> utilisateur(s)</p>
+                                <p class="cyan-text text-lighten-5"><?= $allUtilisateurs ?> utilisateur(s)</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col l3 m6 s12">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">Total des utilisateurs actifs</span>
-                                <p><?= $actifUtilisateurs ?> utilisateur(s)</p>
+                                <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col l3 m6 s12">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">Total des trajets</span>
-                                <p><?= $allTrajets ?> trajet(s)</p>
+                                <p class="cyan-text text-lighten-5"><?= $allTrajets ?> trajet(s)</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col s7 push-s5">
-                        <div class="card #01579b light-blue darken-4" style="height: 400px;">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1" style="height: 400px;">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">5 derniers utilisateurs</span>
                                 <div class="card-metric">
                                     <?php foreach ($lastfiveusers as $user) : ?>
                                         <div>
-                                        <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
+                                            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
                                             <?= $user['user_pseudo'] ?>
                                         </div>
                                     <?php endforeach; ?>
@@ -173,19 +172,19 @@
                     </div>
 
                     <div class="col s5 pull-s7">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">Stats hebdo</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                <p class="cyan-text text-lighten-5">Stats à venir</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col s5 pull-s7">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-content white-text">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
                                 <span class="card-title">Stats des Moyens de transport</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                <p class="cyan-text text-lighten-5">Stats à venir</p>
                             </div>
                         </div>
                     </div>
@@ -193,23 +192,23 @@
 
 
                 <div class="row">
-    <div class="col s12">
-        <div class="card #01579b light-blue darken-4">
-            <div class="card-content white-text">
-                <span class="card-title">5 derniers trajets</span>
-                <div class="card-metric">
-                    <?php foreach ($lastfivejourneys as $trajet) : ?>
-                        <div>
-                            <?= $trajet['ride_date'] ?>
-                            <?= $trajet['user_pseudo'] ?>
-                            <?= $trajet['ride_distance'] ?>  kms
+                    <div class="col s12">
+                        <div class="card #78909c blue-grey lighten-1">
+                            <div class="card-content cyan-text text-lighten-5">
+                                <span class="card-title">5 derniers trajets</span>
+                                <div class="card-metric">
+                                    <?php foreach ($lastfivejourneys as $trajet) : ?>
+                                        <div>
+                                            <?= $trajet['ride_date'] ?>
+                                            <?= $trajet['user_pseudo'] ?>
+                                            <?= $trajet['ride_distance'] ?> kms
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
             </div>
         </div>
@@ -250,6 +249,28 @@
                 document.getElementById('editDescriptionForm').style.display = 'none';
             });
         });
+
+    // Sélectionnez toutes les cartes
+    var cards = document.querySelectorAll('.card-content');
+
+    // Initialisez la hauteur maximale à 0
+    var maxHeight = 0;
+
+    // Parcourez toutes les cartes pour trouver la hauteur maximale
+    cards.forEach(function(card) {
+        // Obtenez la hauteur de chaque carte
+        var height = card.clientHeight;
+        
+        // Mettez à jour la hauteur maximale si la hauteur actuelle est plus grande
+        if (height > maxHeight) {
+            maxHeight = height;
+        }
+    });
+
+    // Appliquez la hauteur maximale à toutes les cartes
+    cards.forEach(function(card) {
+        card.style.height = maxHeight + 'px';
+    });
     </script>
 </body>
 

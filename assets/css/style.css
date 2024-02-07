@@ -349,6 +349,10 @@ body>div>form>div:nth-child(3) {
 
 /*CSS personnalisés sur Materialize */
 
+.darken-3 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
 #sidenav-left>li>a {
   height: 5rem;
   font-size: 2rem;
@@ -585,17 +589,15 @@ body>div.container3>div.profile-image-container>form {
 
 .profile-image-container {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .profile-image {
-  max-width: 10rem;
-  max-height: 10rem;
+  max-width: 8rem;
+  max-height: 8rem;
   width: 100%;
   height: auto;
   margin-bottom: 1rem;
-  margin-left: 8rem;
   border: solid 2px #9499c9;
 }
 
@@ -606,6 +608,9 @@ body>div.container3>div.profile-image-container>form {
 .file-input-container {
   display: flex;
   flex-direction: column;
+  margin-left: 1rem;
+  height: 4rem;
+  padding: 0.3rem;
 }
 
 .file-input-container label {
@@ -623,7 +628,7 @@ body>div.container3>div.profile-image-container>form {
 .file-input-container {
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 40%;
 }
 
 .file-input {
@@ -637,7 +642,7 @@ body>div.container3>div.profile-image-container>form {
 .file-input-button,
 .file-input-container input[type="submit"] {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 0.7rem;
   margin-right: 1rem;
   background-color: #1a237e;
   color: #fff;
@@ -686,7 +691,7 @@ body>div.container3>div.profile-image-container>form {
 }
 
 #profile_image {
-  width: 14rem;
+  width: 6.3rem;
   margin-bottom: 0.3rem;
   font-size: 0.7rem;
 }
@@ -871,8 +876,8 @@ body>div.container3>div.profile-image-container>form>input[type=submit]:nth-chil
   }
 
   .profile-image {
-    max-width: 8rem;
-    max-height: 8rem;
+    max-width: 6rem;
+    max-height: 6rem;
   }
 
   .titreAccueil {
