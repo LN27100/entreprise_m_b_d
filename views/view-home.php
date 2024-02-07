@@ -201,6 +201,8 @@
                     <?php foreach ($lastfivejourneys as $trajet) : ?>
                         <div>
                             <?= $trajet['ride_date'] ?>
+                            <?= $trajet['user_pseudo'] ?>
+                            <?= $trajet['ride_distance'] ?>  kms
                         </div>
                     <?php endforeach; ?>
                 </div>

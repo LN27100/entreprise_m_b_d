@@ -351,10 +351,13 @@ public static function getlastfivejourneys(int $entreprise_id): array
     try {
         $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        $sql = "SELECT `ride_date` FROM `ride` 
-                NATURAL JOIN `enterprise`
-                WHERE `enterprise_id` = :id_entreprise
-                ORDER BY `ride_date` DESC LIMIT 5;";
+        $sql = "SELECT ride.`ride_date`, ride.`ride_distance`, userprofil.`user_pseudo` 
+        FROM `ride`
+        JOIN `userprofil`  ON ride.`user_id` = userprofil.`user_id`
+        JOIN `enterprise`  ON userprofil.`enterprise_id` = enterprise.`enterprise_id`
+        WHERE enterprise.`enterprise_id` = :id_entreprise
+        ORDER BY ride.`ride_date` DESC 
+        LIMIT 5";
 
         $query = $db->prepare($sql);
         $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
