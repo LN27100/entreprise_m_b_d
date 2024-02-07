@@ -15,28 +15,24 @@
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="has-fixed-sidenav">
+<body class="has-fixed-sidenav #1a237e indigo darken-4
+">
     <header>
         <div class="navbar-fixed">
             <nav class="navbar #e0f7fa cyan lighten-5">
-                <div class="nav-wrapper"><a href="#" class="brand-logo #e0f7fa cyan lighten-5">Portail entreprise</a>
-
+                <div class="nav-wrapper">
+                    <a href="../controllers/controller-signout.php" class="buttonHome2 right">Déconnexion</a>
                 </div>
 
             </nav>
         </div>
 
 
-
         <ul id="sidenav-left" class="sidenav sidenav-fixed #e0f7fa cyan lighten-5">
-            <?php
 
-            // Bouton de déconnexion
-            echo '<a href="../controllers/controller-signout.php" class="buttonHome2">Deconnexion</a>';
-            ?>
 
             <li><a href="../controllers/controller-home.php" class="logo-container"><?= $nom ?></a></li>
-            <div class="container3">
+            <div class="container3 #607d8b blue-grey">
 
                 <div class="profile-image-container">
 
@@ -49,12 +45,12 @@
                 </div>
 
                 <div class="profile-info">
-                    <p><span class="styleProfil"> Nom:</span> <?= $nom ?></p>
-                    <p><span class="styleProfil">Siret: </span> <?= $siret ?></p>
-                    <p><span class="styleProfil">Email: </span> <?= $email ?></p>
-                    <p><span class="styleProfil">Adresse: </span> <?= $adresse ?></p>
-                    <p><span class="styleProfil">Code postal: </span> <?= $code_postal ?></p>
-                    <p><span class="styleProfil">Ville: </span> <?= $ville ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4"> Nom:</span> <?= $nom ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Siret: </span> <?= $siret ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Email: </span> <?= $email ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Adresse: </span> <?= $adresse ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Code postal: </span> <?= $code_postal ?></p>
+                    <p class="white-text"><span class="styleProfil indigo-text text-darken-4">Ville: </span> <?= $ville ?></p>
 
                 </div>
 
@@ -129,7 +125,7 @@
         <div class="container">
             <div class="masonry row">
                 <div class="col s12">
-                    <h2>Dashboard <?= $nom ?></h2>
+                    <h2 class="blue-grey-text ">Dashboard <?= $nom ?></h2>
                 </div>
 
                 <div class="row">
@@ -137,7 +133,7 @@
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title">Total des utilisateurs</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                <p><?= $allUtilisateurs ?> utilisateur(s)</p>
                             </div>
                         </div>
                     </div>
@@ -146,7 +142,7 @@
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title">Total des utilisateurs actifs</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                <p><?= $actifUtilisateurs ?> utilisateur(s)</p>
                             </div>
                         </div>
                     </div>
@@ -155,28 +151,28 @@
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title">Total des trajets</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                <p><?= $allTrajets ?> trajet(s)</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col l3 m6 s12">
-                        <div class="card #01579b light-blue darken-4">
-                            <div class="card-stacked white-text">
+                    <div class="col s7 push-s5">
+                        <div class="card #01579b light-blue darken-4" style="height: 400px;">
+                            <div class="card-content white-text">
+                                <span class="card-title">5 derniers utilisateurs</span>
                                 <div class="card-metric">
-                                    <span class="card-title">5 derniers utilisateurs</span>
-                                    <div class="card-metric-value">0.24%</div>
-                                    <div class="card-metric-value">0.24%</div>
-                                    <div class="card-metric-value">0.24%</div>
-                                    <div class="card-metric-value">0.24%</div>
-                                    <div class="card-metric-value">0.24%</div>
+                                    <?php foreach ($lastfiveusers as $user) : ?>
+                                        <div>
+                                            <img src="<?= $user['user_photo'] ?>" alt="User Photo">
+                                            <?= $user['user_pseudo'] ?>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <canvas id="flush-area-chart-green" height="400px"></canvas>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col l4 m6 s12">
+                    <div class="col s5 pull-s7">
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title">Stats hebdo</span>
@@ -185,7 +181,7 @@
                         </div>
                     </div>
 
-                    <div class="col l4 m6 s12">
+                    <div class="col s5 pull-s7">
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title">Stats des Moyens de transport</span>
@@ -201,7 +197,7 @@
                     <div class="col s12">
                         <div class="card #01579b light-blue darken-4">
                             <div class="card-content white-text">
-                                <span class="card-title">Total des trajets</span>
+                                <span class="card-title">5 derniers trajets</span>
                                 <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                             </div>
                         </div>

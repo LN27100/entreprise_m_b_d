@@ -220,4 +220,162 @@ class Enterprise
              return 'Erreur : ' . $e->getMessage();
          }
      }
+
+     public static function getAllUtilisateurs(int $entreprise_id) : int
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "SELECT count(`user_pseudo`) as 'Total utilisateurs'  FROM `userprofil` where `enterprise_id` = :id_entreprise;";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+            // on execute la requête
+            $query->execute();
+
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+
+            // on retourne le nom de l'entreprise
+            return $result['Total utilisateurs'];
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
+
+    public static function getActifUtilisateurs(int $entreprise_id) : int
+{
+    try {
+        // Création d'un objet $db selon la classe PDO
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+        // stockage de ma requete dans une variable
+        $sql = "SELECT DISTINCT userprofil.*
+        FROM `userprofil`
+        JOIN `ride` ON userprofil.`user_id` = ride.`user_id`
+        WHERE userprofil.`enterprise_id` = :id_entreprise;";
+
+        // je prepare ma requête pour éviter les injections SQL
+        $query = $db->prepare($sql);
+
+        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+        // on execute la requête
+        $query->execute();
+
+        // on récupère le nombre d'utilisateurs actifs
+        $count = $query->rowCount();
+
+        // on retourne le nombre d'utilisateurs actifs
+        return $count;
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        die();
+    }
+}
+
+public static function getAllTrajets(int $entreprise_id) : int
+{
+    try {
+        // Création d'un objet $db selon la classe PDO
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+        // stockage de ma requete dans une variable
+        $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
+        JOIN `userprofil` ON ride.`user_id` = userprofil.`user_id`
+        WHERE `enterprise_id` = :id_entreprise;";
+
+        // je prepare ma requête pour éviter les injections SQL
+        $query = $db->prepare($sql);
+
+        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+        // on execute la requête
+        $query->execute();
+
+        // on récupère le résultat de la requête dans une variable
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+
+        // on retourne le nom de l'entreprise
+        return $result['Total des trajets'];
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        die();
+    }
+}
+
+public static function getlastfiveusers(int $entreprise_id) : array
+{
+    try {
+        // Création d'un objet $db selon la classe PDO
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+        // stockage de ma requete dans une variable
+        $sql = "SELECT `user_photo`, `user_pseudo` FROM `userprofil` 
+        WHERE `enterprise_id` = :id_entreprise
+        ORDER BY `user_id` DESC LIMIT 5";
+
+        // je prepare ma requête pour éviter les injections SQL
+        $query = $db->prepare($sql);
+
+        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+        // on execute la requête
+        $query->execute();
+
+        // on récupère le résultat de la requête dans une variable
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // on retourne le résultat
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        die();
+    }
+}
+
+public static function getlastfivejourneys(int $entreprise_id) : int
+{
+    try {
+        // Création d'un objet $db selon la classe PDO
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+        // stockage de ma requete dans une variable
+        $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
+        JOIN `userprofil` ON ride.`user_id` = userprofil.`user_id`
+        WHERE `enterprise_id` = :id_entreprise;";
+
+        // je prepare ma requête pour éviter les injections SQL
+        $query = $db->prepare($sql);
+
+        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+        // on execute la requête
+        $query->execute();
+
+        // on récupère le résultat de la requête dans une variable
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+
+        // on retourne le nom de l'entreprise
+        return $result['Total des trajets'];
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        die();
+    }
+}
+
 }

@@ -3,11 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
 /* font-family: 'Marhey', sans-serif; */
 
-body {
-  background-color: #1a237e;
-  overflow-y: auto;
-}
-
 
 /* PAGE INSCRIPTION */
 h1 {
@@ -187,6 +182,7 @@ body>form>div.container5>div:nth-child(4)>label {
   position: absolute;
   z-index: 2;
 }
+
 #passwordValidationFeedback {
   color: #dc3545;
   display: none;
@@ -196,16 +192,16 @@ body>form>div.container5>div:nth-child(4)>label {
   width: 10rem;
   position: absolute;
   top: 0;
-  right: -2rem; 
+  right: -2rem;
 }
 
 .requirements {
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
 }
 
 #password-input {
   display: block;
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .container {
@@ -351,9 +347,30 @@ body>div>form>div:nth-child(3) {
 
 /*  PAGE ACCUEIL */
 
-  /*CSS personnalisés sur Materialize */
-  
+/*CSS personnalisés sur Materialize */
 
+#sidenav-left>li>a {
+  height: 5rem;
+  font-size: 2rem;
+  color: #1a237e;
+}
+
+.buttonHome2 {
+  background-color: #1a237e;
+  display: flex;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  width: 8rem;
+  height: 2rem;
+  align-items: center;
+  padding: 1.2rem 1.2rem;
+  text-align: center;
+}
+
+.buttonHome2:hover {
+  background-color: #9499c9;
+}
 
 
 /* CSS accueil perso */
@@ -495,26 +512,12 @@ body>a {
   color: red;
 }
 
-.buttonHome2 {
-  display: flex;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  width: 2rem;
-  height: 2rem;
-  align-items: center;
-  padding: 0.2rem 0.5rem;
-}
 
-.buttonHome2:hover {
-  background-color: #9499c9;
-}
-
-body > div.container3 > div.profile-image-container > form > input[type=submit]:nth-child(2) {
+body>div.container3>div.profile-image-container>form>input[type=submit]:nth-child(2) {
   background-color: #1a237e;
 }
 
-body > div.container3 > div.profile-image-container > form > input[type=submit]:nth-child(2):hover {
+body>div.container3>div.profile-image-container>form>input[type=submit]:nth-child(2):hover {
   background-color: #9499c9;
 }
 
@@ -529,20 +532,9 @@ body.page-profil {
   padding: 4rem 0.4rem 4rem 0.4rem;
   margin-top: 1.5rem;
   position: relative;
-  background-color: rgba(215, 197, 168, 0.8);
 }
 
-.container3::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url(../img/bgProfil.jpg) no-repeat center center / cover;
-  border-radius: 7px;
-  z-index: -1;
-}
+
 
 #editDescriptionForm {
   display: flex;
@@ -570,7 +562,6 @@ body.page-profil {
   font-family: 'Exo', sans-serif;
   font-size: 1rem;
   font-weight: bold;
-  color: #1a237e;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: underline;
 }
