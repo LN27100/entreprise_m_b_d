@@ -354,6 +354,7 @@ public static function getlastfivejourneys(int $entreprise_id): array
         $sql = "SELECT ride.`ride_date`, ride.`ride_distance`, userprofil.`user_pseudo` 
         FROM `ride`
         JOIN `userprofil`  ON ride.`user_id` = userprofil.`user_id`
+        JOIN `transport` ON ride.`transport_id` = transport.`transport_id`
         JOIN `enterprise`  ON userprofil.`enterprise_id` = enterprise.`enterprise_id`
         WHERE enterprise.`enterprise_id` = :id_entreprise
         ORDER BY ride.`ride_date` DESC 

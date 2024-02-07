@@ -16,6 +16,7 @@
 </head>
 
 <body class="has-fixed-sidenav #01579b light-blue darken-4">
+
     <header>
         <div class="navbar-fixed">
             <nav class="navbar #e0f7fa cyan lighten-5">
@@ -114,7 +115,7 @@
 
                     <div class="profile-info">
                         <input type="submit" name="save_modification" value="Enregistrer" class="file-input-button">
-                        <button type="button" id="cancelEditBtn" class="file-input-button">Annuler</button>
+                        <button type="button" id="cancelEditBtn" class="file-input-button">Annuler<br></button>
                     </div>
             </form>
     </header>
@@ -122,89 +123,92 @@
 
     <main>
         <div class="container">
-            <div class="masonry row">
-                <div class="col s12">
-                <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
-                </div>
+            <div class="row">
+                <div class="col l8">
+                    <div class="masonry row">
+                        <div class="col s12 push-s2">
+                            <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
+                        </div>
 
-                <div class="row">
-                    <div class="col l3 m6 s12">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">Total des utilisateurs</span>
-                                <p class="cyan-text text-lighten-5"><?= $allUtilisateurs ?> utilisateur(s)</p>
+                        <div class="row">
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">Total des utilisateurs</span>
+                                        <p class="cyan-text text-lighten-5"><?= $allUtilisateurs ?> utilisateur(s)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">Total des utilisateurs actifs</span>
+                                        <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">Total des trajets</span>
+                                        <p class="cyan-text text-lighten-5"><?= $allTrajets ?> trajet(s)</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col l3 m6 s12">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">Total des utilisateurs actifs</span>
-                                <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
+                        <div class="row">
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">Stats hebdo</span>
+                                        <p class="cyan-text text-lighten-5">Stats à venir</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col l3 m6 s12">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">Total des trajets</span>
-                                <p class="cyan-text text-lighten-5"><?= $allTrajets ?> trajet(s)</p>
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">Stats des Moyens de transport</span>
+                                        <p class="cyan-text text-lighten-5">Stats à venir</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col s7 push-s5">
-                        <div class="card #78909c blue-grey lighten-1" style="height: 400px;">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">5 derniers utilisateurs</span>
-                                <div class="card-metric">
-                                    <?php foreach ($lastfiveusers as $user) : ?>
-                                        <div>
-                                            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
-                                            <?= $user['user_pseudo'] ?>
+                            <div class="col l4 m6 s12">
+                                <div class="card #78909c blue-grey lighten-1">
+                                    <div class="card-content cyan-text text-lighten-5">
+                                        <span class="card-title">5 derniers trajets</span>
+                                        <div class="card-metric">
+                                            <?php foreach ($lastfivejourneys as $trajet) : ?>
+                                                <div>
+                                                    <?= $trajet['ride_date'] ?>
+                                                    <?= $trajet['user_pseudo'] ?>
+                                                    <?= $trajet['ride_distance'] ?> kms
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
-                                    <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col s5 pull-s7">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">Stats hebdo</span>
-                                <p class="cyan-text text-lighten-5">Stats à venir</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col s5 pull-s7">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">Stats des Moyens de transport</span>
-                                <p class="cyan-text text-lighten-5">Stats à venir</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card #78909c blue-grey lighten-1">
-                            <div class="card-content cyan-text text-lighten-5">
-                                <span class="card-title">5 derniers trajets</span>
-                                <div class="card-metric">
-                                    <?php foreach ($lastfivejourneys as $trajet) : ?>
-                                        <div>
-                                            <?= $trajet['ride_date'] ?>
-                                            <?= $trajet['user_pseudo'] ?>
-                                            <?= $trajet['ride_distance'] ?> kms
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                <div class="col l4">
+                    <div class="card #78909c blue-grey lighten-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">5 derniers utilisateurs</span>
+                            <div class="card-metric">
+                                <?php foreach ($lastfiveusers as $user) : ?>
+                                    <div>
+                                        <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
+                                        <?= $user['user_pseudo'] ?>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -213,8 +217,6 @@
             </div>
         </div>
     </main>
-
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -250,27 +252,27 @@
             });
         });
 
-    // Sélectionnez toutes les cartes
-    var cards = document.querySelectorAll('.card-content');
+        // Sélectionnez toutes les cartes
+        var cards = document.querySelectorAll('.card-content');
 
-    // Initialisez la hauteur maximale à 0
-    var maxHeight = 0;
+        // Initialisez la hauteur maximale à 0
+        var maxHeight = 0;
 
-    // Parcourez toutes les cartes pour trouver la hauteur maximale
-    cards.forEach(function(card) {
-        // Obtenez la hauteur de chaque carte
-        var height = card.clientHeight;
-        
-        // Mettez à jour la hauteur maximale si la hauteur actuelle est plus grande
-        if (height > maxHeight) {
-            maxHeight = height;
-        }
-    });
+        // Parcourez toutes les cartes pour trouver la hauteur maximale
+        cards.forEach(function(card) {
+            // Obtenez la hauteur de chaque carte
+            var height = card.clientHeight;
 
-    // Appliquez la hauteur maximale à toutes les cartes
-    cards.forEach(function(card) {
-        card.style.height = maxHeight + 'px';
-    });
+            // Mettez à jour la hauteur maximale si la hauteur actuelle est plus grande
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        });
+
+        // Appliquez la hauteur maximale à toutes les cartes
+        cards.forEach(function(card) {
+            card.style.height = maxHeight + 'px';
+        });
     </script>
 </body>
 

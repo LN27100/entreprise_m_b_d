@@ -302,52 +302,19 @@ body>div>form>div:nth-child(3) {
   z-index: -1;
 }
 
-/* NAVBAR */
 
-.returnHome {
-  background-color: #1a237e;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-}
-
-.buttonNav:hover {
-  background-color: #9499c9;
-}
-
-.container6 {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #D7C5A8;
-  padding: 0.6rem;
-  z-index: 1000;
-  /* Assure que la navbar soit au-dessus du reste du contenu */
-}
-
-.buttonNav {
-  background-color: #1a237e;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 15px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  margin: 0 0.5rem;
-}
 
 /*  PAGE ACCUEIL */
 
 /*CSS personnalisés sur Materialize */
+
+#sidenav-left {
+  width: 15rem;
+}
+
+body > main > div > div > div.col.l4 > div {
+  margin-top: 8.2rem;
+}
 
 .darken-3 {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -510,6 +477,9 @@ body>a {
   color: #fff;
   border: none;
   border-radius: 5px;
+  width: 100px; 
+    white-space: pre-line; 
+    text-align: center; 
 }
 
 .delete_profile:hover {
@@ -593,8 +563,12 @@ body>div.container3>div.profile-image-container>form {
 }
 
 .profile-image {
-  max-width: 8rem;
-  max-height: 8rem;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  max-width: 6rem;
+  max-height: 6rem;
   width: 100%;
   height: auto;
   margin-bottom: 1rem;
@@ -628,7 +602,8 @@ body>div.container3>div.profile-image-container>form {
 .file-input-container {
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 30%;
+  background-color: transparent;
 }
 
 .file-input {
@@ -643,11 +618,11 @@ body>div.container3>div.profile-image-container>form {
 .file-input-container input[type="submit"] {
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
-  margin-right: 1rem;
   background-color: #1a237e;
   color: #fff;
   border: none;
   border-radius: 5px;
+  margin-left: 1rem;
 }
 
 #descriptionDisplay {
@@ -673,6 +648,11 @@ body>div.container3>div.profile-image-container>form {
   color: #fff;
   border: none;
   border-radius: 5px;
+  width: 100px; 
+    white-space: pre-line; 
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 0.5rem;
 }
 
 #editDescriptionBtn:hover {
@@ -688,12 +668,14 @@ body>div.container3>div.profile-image-container>form {
   color: #fff;
   border: none;
   border-radius: 5px;
+  
 }
 
 #profile_image {
   width: 6.3rem;
   margin-bottom: 0.3rem;
   font-size: 0.7rem;
+  margin-left: 1.4rem;
 }
 
 body>div.container3>div.profile-image-container>form {
@@ -886,3 +868,8 @@ body>div.container3>div.profile-image-container>form>input[type=submit]:nth-chil
   }
 
 }
+
+
+
+
+
