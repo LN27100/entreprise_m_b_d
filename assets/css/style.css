@@ -376,8 +376,8 @@ body>div>form>div:nth-child(3) {
   background-color: #9499c9;
 }
 
-body>main>div>div>div:nth-child(2)>div.col.s7.push-s5>div>div>div>div>img {
-  width: 5rem;
+img {
+  width: 8rem;
   height: auto;
 }
 
@@ -521,11 +521,11 @@ body>a {
 }
 
 
-body>div.container3>div.profile-image-container>form>input[type=submit]:nth-child(2) {
+input[type=submit]:nth-child(2) {
   background-color: #1a237e;
 }
 
-body>div.container3>div.profile-image-container>form>input[type=submit]:nth-child(2):hover {
+input[type=submit]:nth-child(2):hover {
   background-color: #9499c9;
 }
 
