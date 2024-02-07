@@ -372,6 +372,10 @@ body>div>form>div:nth-child(3) {
   background-color: #9499c9;
 }
 
+body>main>div>div>div:nth-child(2)>div.col.s7.push-s5>div>div>div>div>img {
+  width: 5rem;
+  height: auto;
+}
 
 /* CSS accueil perso */
 .global {
