@@ -346,7 +346,7 @@ public static function getlastfiveusers(int $entreprise_id) : array
     }
 }
 
-public static function getlastfivejourneys(int $entreprise_id, ?int $user_id = null): array
+public static function getlastfivejourneys(int $entreprise_id): array
 {
     try {
         $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
@@ -357,13 +357,11 @@ public static function getlastfivejourneys(int $entreprise_id, ?int $user_id = n
         JOIN `transport` ON ride.`transport_id` = transport.`transport_id`
         JOIN `enterprise`  ON userprofil.`enterprise_id` = enterprise.`enterprise_id`
         WHERE enterprise.`enterprise_id` = :enterprise_id
-        AND userprofil.`user_id` = :user_id
         ORDER BY ride.`ride_date` DESC 
         LIMIT 5";
 
         $query = $db->prepare($sql);
         $query->bindValue(':enterprise_id', $entreprise_id, PDO::PARAM_INT);
-        $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
         $query->execute();
 
