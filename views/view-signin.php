@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -15,55 +16,41 @@
     <?php
 
     ?>
-    <h1>Portail entreprise</h1>
+    <h1 class="center-align">Portail entreprise</h1>
 
-    <h2>Veuillez vous connecter</h2>
-    <div class="container2">
+    <h2 class="center-align">Veuillez vous connecter</h2>
+    <div class="container">
         <form class="row" method="POST" action="../controllers/controller-signin.php" novalidate>
 
-            <div class="form-group col-md-6">
-                <label for="enterprise_email" class="form-label">Email : </label>
-                <input type="email" class="form-control <?php if (isset($errors['enterprise_email'])) echo 'is-invalid'; ?>" id="validationServerEmail" name="enterprise_email" placeholder="adresse email" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
-                <div class="invalid-feedback" id="emailValidationFeedback">
-                    <?php
-                    echo isset($errors['enterprise_email']) ? $errors['enterprise_email'] : "Champ obligatoire";
-                    ?>
-                </div>
+            <div class="input-field col s12 m6">
+                <input id="enterprise_email" type="email" class="validate <?php if (isset($errors['enterprise_email'])) echo 'invalid'; ?>" name="enterprise_email" placeholder="adresse email" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
+                <label for="enterprise_email" class="active">Email :</label>
+                <span class="helper-text" data-error="<?php echo isset($errors['enterprise_email']) ? $errors['enterprise_email'] : 'Champ obligatoire'; ?>"></span>
             </div>
 
-            <div class="form-group col-md-12">
-                <label for="enterprise_password" class="form-label">Mot de passe : </label>
-                <div class="input-group d-flex position-relative">
-                    <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="validationServerPassword">
-                    <i class="bi bi-eye password-toggle-icon" onclick="togglePasswordVisibility()"></i>
-                    <div class="invalid-feedback" id="passwordValidationFeedback">
-                        <?php
-                        echo isset($errors['enterprise_password']) ? $errors['enterprise_password'] : "Champ obligatoire";
-                        ?>
-                    </div>
-                </div>
+            <div class="input-field col s12">
+                <input id="enterprise_password" type="password" class="validate <?php if (isset($errors['enterprise_password'])) echo 'invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password">
+                <label for="enterprise_password">Mot de passe :</label>
+                <span class="helper-text" data-error="<?php echo isset($errors['enterprise_password']) ? $errors['enterprise_password'] : 'Champ obligatoire'; ?>"></span>
+                <i class="material-icons suffix" style="cursor:pointer" onclick="togglePasswordVisibility()">remove_red_eye</i>
             </div>
 
-
-            <div class="text-center">
-                <button class="button" type="submit" id="submitButton">Se connecter</button>
+            <div class="center-align">
+                <button class="btn waves-effect waves-light" type="submit" id="submitButton">Se connecter</button>
             </div>
 
-            <div class="text-center">
+            <div class="center-align">
                 <p>Pas encore membre?</p>
                 <a href="../controllers/controller-signup.php">Inscrivez-vous!</a>
             </div>
 
-        
-
         </form>
     </div>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         function togglePasswordVisibility() {
-            var passwordInput = document.getElementById('validationServerPassword');
-
+            var passwordInput = document.getElementById('enterprise_password');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
             } else {
