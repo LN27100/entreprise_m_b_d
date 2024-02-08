@@ -42,10 +42,12 @@
 
         </form>
 
-        <div class="center-align #01579b light-blue darken-4">
+        <div class="row">
+        <div class="custom-div center-align #01579b light-blue darken-4">
             <p class="textBold blue-grey-text darken-3">Pas encore membre?</p>
             <a href="../controllers/controller-signup.php" class="textBold green-text">Inscrivez-vous!</a>
         </div>
+    </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
