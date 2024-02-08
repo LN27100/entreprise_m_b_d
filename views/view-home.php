@@ -21,7 +21,7 @@
         <div class="navbar-fixed">
             <nav class="navbar #e0f7fa cyan lighten-5">
                 <div class="nav-wrapper">
-                    <a href="../controllers/controller-signout.php" class="buttonHome2 right">Déconnexion</a>
+                    <a href="../controllers/controller-signout.php" class="buttonHome2 right hoverable">Déconnexion</a>
                 </div>
 
             </nav>
@@ -56,11 +56,11 @@
 
 
                 <div class="contnair">
-                    <button id="editDescriptionBtn">Modifier le profil</button>
+                    <button class="hoverable" id="editDescriptionBtn">Modifier le profil</button>
 
-                    <form action="../controllers/controller-profil.php" method="post" class="deleteProfil">
+                    <form action="../controllers/controller-home.php" method="post" class="deleteProfil">
                         <input type="hidden" name="delete_profile" value="<?= $enterprise_id ?>">
-                        <button class="delete_profile" type="submit" name="delete_profile" onclick="return confirm('Voulez-vous vraiment supprimer ce profil ?')">Supprimer le profil</button>
+                        <button class="delete_profile hoverable" type="submit" name="delete_profile" onclick="return confirm('Voulez-vous vraiment supprimer ce profil ?')">Supprimer le profil</button>
                     </form>
                 </div>
             </div>
@@ -69,7 +69,7 @@
 
 
             <!-- Formulaire de modification du profil (masqué par défaut) -->
-            <form method="post" action="../controllers/controller-profil.php" class="transparent-form" enctype="multipart/form-data" id="editDescriptionForm" style="display: none;">
+            <form method="post" action="../controllers/controller-home.php" class="transparent-form" enctype="multipart/form-data" id="editDescriptionForm" style="display: none;">
 
                 <div class="profile-info">
                     <p><span class="styleProfil"> Nom:</span></p>
@@ -134,7 +134,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">Total des utilisateurs</span>
+                                        <span class="card-title center-align">Total des utilisateurs</span>
                                         <p class="cyan-text text-lighten-5"><?= $allUtilisateurs ?> utilisateur(s)</p>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">Total des utilisateurs actifs</span>
+                                        <span class="card-title center-align">Total des utilisateurs actifs</span>
                                         <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">Total des trajets</span>
+                                        <span class="card-title center-align">Total des trajets</span>
                                         <p class="cyan-text text-lighten-5"><?= $allTrajets ?> trajet(s)</p>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">Stats hebdo</span>
+                                        <span class="card-title center-align">Stats hebdo</span>
                                         <p class="cyan-text text-lighten-5">Stats à venir</p>
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">Stats des Moyens de transport</span>
+                                        <span class="card-title center-align">Stats des Moyens de transport</span>
                                         <p class="cyan-text text-lighten-5">Stats à venir</p>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@
                             <div class="col l4 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title">5 derniers trajets</span>
+                                        <span class="card-title center-align">5 derniers trajets</span>
                                         <div class="card-metric">
                                             <?php foreach ($lastfivejourneys as $trajet) : ?>
                                                 <div>
@@ -202,7 +202,7 @@
                 <div class="col l4">
                     <div class="card #78909c blue-grey lighten-1">
                         <div class="card-content white-text">
-                            <span class="card-title">5 derniers utilisateurs</span>
+                            <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
                                 <?php foreach ($lastfiveusers as $user) : ?>
                                     <div>
@@ -253,27 +253,7 @@
             });
         });
 
-        // Sélectionnez toutes les cartes
-        var cards = document.querySelectorAll('.card-content');
-
-        // Initialisez la hauteur maximale à 0
-        var maxHeight = 0;
-
-        // Parcourez toutes les cartes pour trouver la hauteur maximale
-        cards.forEach(function(card) {
-            // Obtenez la hauteur de chaque carte
-            var height = card.clientHeight;
-
-            // Mettez à jour la hauteur maximale si la hauteur actuelle est plus grande
-            if (height > maxHeight) {
-                maxHeight = height;
-            }
-        });
-
-        // Appliquez la hauteur maximale à toutes les cartes
-        cards.forEach(function(card) {
-            card.style.height = maxHeight + 'px';
-        });
+        
     </script>
 </body>
 

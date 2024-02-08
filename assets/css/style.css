@@ -22,7 +22,6 @@ h1 {
 
 
 .container form {
-  background-image: url(/assets/img/bginscription.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -297,12 +296,9 @@ body>div>form>div:nth-child(3) {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(../img/formConnexion.jpg) no-repeat center center / cover;
   border-radius: 7px;
   z-index: -1;
 }
-
-
 
 /*  PAGE ACCUEIL */
 
@@ -312,12 +308,12 @@ body>div>form>div:nth-child(3) {
   width: 15rem;
 }
 
-body > main > div > div > div.col.l4 > div {
+body>main>div>div>div.col.l4>div {
   margin-top: 8.2rem;
 }
 
 .darken-3 {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #sidenav-left>li>a {
@@ -348,118 +344,8 @@ img {
   height: auto;
 }
 
-/* CSS accueil perso */
-.global {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 2rem 2rem;
-  margin-top: 0;
-  position: relative;
-  background-color: rgba(215, 197, 168, 0.7);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.global::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url(../img/bgAccueil.jpg) no-repeat center center / cover;
-  border-radius: 7px;
-  z-index: -1;
-}
-
-body>div:nth-child(3)>img {
-  align-items: center;
-}
-
-.titreAccueil {
-  font-family: 'Marhey', sans-serif;
-  font-size: 2.5rem;
-  text-align: center;
-  color: #9499c9;
-  font-weight: bolder;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-}
-
-body>div:nth-child(2) {
-  color: #1a237e;
-  font-weight: bold;
-  font-size: 1.3rem;
-  font-family: 'Exo', sans-serif;
-  margin-top: 1rem;
-}
-
-body>div:nth-child(3)>h3 {
-  font-family: 'Marhey', sans-serif;
-  margin-top: 1rem;
-  color: #D7C5A8;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 0.5rem;
-}
-
-.container4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.imageHome {
-  margin-top: 1rem;
-  width: 10rem;
-  height: auto;
-  border: solid 2px #9499c9;
-}
-
-.buttonHome {
-  text-decoration: none;
-  background-color: #1a237e;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  text-align: center;
-  margin-top: 7rem;
-  height: 5rem;
-  font-size: 1.5rem;
-  font-family: 'Exo', sans-serif;
-  padding: 1.2rem 1rem 0 1rem;
-  margin-bottom: 4rem;
-}
-
-body>a {
-  padding: 5px 10px;
-  background-color: #1a237e;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  text-align: center;
-  height: 3rem;
-  font-size: 0.8rem;
-  font-family: 'Exo', sans-serif;
-  text-decoration: none;
-}
-
-.buttonHome:hover {
-  background-color: #9499c9;
-}
-
 
 /* PAGE PROFIL */
-
-.tittleProfil {
-  color: #D7C5A8;
-  text-align: center;
-  font-family: 'Marhey', sans-serif;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
 
 .deleteProfil {
   background-color: transparent;
@@ -477,9 +363,9 @@ body>a {
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 100px; 
-    white-space: pre-line; 
-    text-align: center; 
+  width: 100px;
+  white-space: pre-line;
+  text-align: center;
 }
 
 .delete_profile:hover {
@@ -488,19 +374,6 @@ body>a {
 
 .error-message {
   color: red;
-}
-
-
-input[type=submit]:nth-child(2) {
-  background-color: #1a237e;
-}
-
-input[type=submit]:nth-child(2):hover {
-  background-color: #9499c9;
-}
-
-body.page-profil {
-  overflow-y: auto;
 }
 
 .container3 {
@@ -512,49 +385,12 @@ body.page-profil {
   position: relative;
 }
 
-
-
-#editDescriptionForm {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 4rem 0.4rem 4rem 0.4rem;
-  margin-top: 1.5rem;
-  position: relative;
-  background-color: rgba(215, 197, 168, 0.8);
-}
-
-#editDescriptionForm::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url(../img/bfModifProfil.jpg) no-repeat center center / cover;
-  border-radius: 7px;
-  z-index: -1;
-}
-
 .styleProfil {
   font-family: 'Exo', sans-serif;
   font-size: 1rem;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: underline;
-}
-
-p {
-  font-family: 'Exo', sans-serif;
-  color: black;
-  font-size: 1rem;
-}
-
-body>div.container3>div.profile-image-container>form {
-  height: 5rem;
-  width: 20rem;
-  background-color: transparent;
-  margin-right: 5rem;
 }
 
 .profile-image-container {
@@ -575,43 +411,15 @@ body>div.container3>div.profile-image-container>form {
   border: solid 2px #9499c9;
 }
 
-.file-label {
-  background-color: white;
-}
-
 .file-input-container {
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
   height: 4rem;
   padding: 0.3rem;
-}
-
-.file-input-container label {
-  margin-bottom: 5px;
-}
-
-.file-input-text {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.5rem;
-  flex-grow: 1;
-  width: 10rem;
-}
-
-.file-input-container {
-  display: flex;
   align-items: center;
-  width: 30%;
+  width: 40%;
   background-color: transparent;
-}
-
-.file-input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.5rem;
-  width: calc(100% - 80px);
-  margin-right: 10px;
 }
 
 .file-input-button,
@@ -625,8 +433,8 @@ body>div.container3>div.profile-image-container>form {
   margin-left: 1rem;
 }
 
-#descriptionDisplay {
-  margin-bottom: 1rem;
+.file-input-button:hover {
+  background-color: #9499c9;
 }
 
 #editDescriptionForm {
@@ -648,27 +456,15 @@ body>div.container3>div.profile-image-container>form {
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 100px; 
-    white-space: pre-line; 
-    text-align: center;
-    margin-right: 10px;
-    margin-top: 0.5rem;
+  width: 100px;
+  white-space: pre-line;
+  text-align: center;
+  margin-right: 10px;
+  margin-top: 0.5rem;
 }
 
 #editDescriptionBtn:hover {
   background-color: #9499c9;
-}
-
-
-.file-input-button {
-  padding: 0.3rem 0.5rem;
-  font-size: 0.8rem;
-  margin-right: 1rem;
-  background-color: #1a237e;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  
 }
 
 #profile_image {
@@ -678,21 +474,7 @@ body>div.container3>div.profile-image-container>form {
   margin-left: 1.4rem;
 }
 
-body>div.container3>div.profile-image-container>form {
-  height: 6rem;
-  font-size: 0.5rem;
-  margin-top: 0;
-  margin-bottom: 0;
-}
 
-body>div.container3>div.profile-image-container>form>input[type=submit]:nth-child(2) {
-  font-size: 0.7rem;
-  padding: 0.2rem;
-}
-
-.file-input-button:hover {
-  background-color: #9499c9;
-}
 
 
 /* RESPONSIVE */
@@ -809,7 +591,6 @@ body>div.container3>div.profile-image-container>form>input[type=submit]:nth-chil
   }
 }
 
-
 @media only screen and (min-width: 320px) and (max-width: 450px) {
 
   body>div.container8>div>section>table>thead>tr>th,
@@ -868,8 +649,3 @@ body>div.container3>div.profile-image-container>form>input[type=submit]:nth-chil
   }
 
 }
-
-
-
-
-
