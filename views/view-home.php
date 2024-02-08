@@ -187,6 +187,7 @@
                                                 <div>
                                                     <?= $trajet['ride_date'] ?>
                                                     <?= $trajet['user_pseudo'] ?>
+                                                    <?= $trajet['transport_type'] ?>
                                                     <?= $trajet['ride_distance'] ?> kms
                                                 </div>
                                             <?php endforeach; ?>
