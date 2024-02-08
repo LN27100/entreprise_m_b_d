@@ -3,10 +3,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
 /* font-family: 'Marhey', sans-serif; */
 
-
-
 /* PAGE CONNEXION */
 
+input[type="text"] + label,
+input[type="password"] + label,
+input[type="email"] + label {
+  font-size: 1.5rem; 
+}
+
+h1 {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.textBold {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+}
+
+.custom-btn {
+background-color: #1a237e;
+}
+
+.custom-btn:hover {
+  background-color: #9499c9;
+}
 
 /*  PAGE ACCUEIL */
 
