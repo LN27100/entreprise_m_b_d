@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-
     // Contrôle des CGU
     if (empty($_POST["cgu"]) || $_POST["cgu"] !== "on") {
         $errors["cgu"] = "Veuillez accepter les conditions générales d'utilisation pour continuer.";
