@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../assets//css//style.css">
 
     <title>Inscription pro</title>
 </head>
-<body>
+
+<body class="#e0f7fa cyan lighten-5">
+
     <?php if ($showform) : ?>
-        <h1>Formulaire d'inscription pro</h1>
+        <h1 class="center-align indigo-text">Formulaire d'inscription pro</h1>
     <?php endif; ?>
     <div class="container">
         <?php
         if ($showform) {
         ?>
-            <form class="row " method="POST" action="../controllers/controller-signup.php" novalidate>
+            <form class="row #455a64 blue-grey darken-2" method="POST" action="../controllers/controller-signup.php" novalidate>
+                <!-- Champs entreprise -->
                 <div class="col-md-4">
-                    <label for="validationServer01" class="form-label">Nom d'entreprise: </label>
+                    <label for="validationServer01" class="active cyan-text text-lighten-5">Nom d'entreprise :</label>
                     <input type="text" class="form-control <?php if (isset($errors['enterprise_name'])) echo 'is-invalid'; ?>" id="validationServer01" name="enterprise_name" placeholder="ex.Afpa" value="<?= isset($_POST['enterprise_name']) ? htmlspecialchars($_POST['enterprise_name']) : '' ?>" required>
-                    <div class="invalid-feedback" id="nomValidationFeedback">
-                        <?php
-                        if (isset($errors['enterprise_name'])) {
-                            echo $errors['enterprise_name'];
-                        }
-                        ?></div>
-                </div>
-            
-                <div class="col-md-4">
-                    <label for="validationServer03" class="form-label">Numéro de Siret: </label>
-                    <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret"  placeholder="numéro siret" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
-                    <div class="invalid-feedback" id="pseudoValidationFeedback">
-                        <?php
-                        if (isset($errors['enterprise_siret'])) {
-                            echo $errors['enterprise_siret'];
-                        }
-                        ?>
+                    <div class="invalid-feedback" id="enterpriseNameValidationFeedback">
+                        <?php if (isset($errors['enterprise_name'])) echo $errors['enterprise_name']; ?>
                     </div>
                 </div>
+
+                <!-- Numéro de Siret -->
                 <div class="col-md-4">
-                    <label for="enterprise_adress" class="form-label2">Adresse entreprise:</label>
+                    <label for="validationServer03" class="cyan-text text-lighten-5">Numéro de Siret :</label>
+                    <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret" placeholder="numéro siret" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
+                    <div class="invalid-feedback" id="enterpriseSiretValidationFeedback">
+                        <?php if (isset($errors['enterprise_siret'])) echo $errors['enterprise_siret']; ?>
+                    </div>
+                </div>
+
+                <!-- Adresse entreprise -->
+                <div class="col-md-4">
+                    <label for="enterprise_adress" class="cyan-text text-lighten-5">Adresse entreprise:</label>
                     <input type="text" name="enterprise_adress" value="<?= isset($_POST['enterprise_adress']) ? htmlspecialchars($_POST['enterprise_adress']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_adress'])) echo 'is-invalid'; ?>" required>
-                    <div class="invalid-feedback" id="dateValidationFeedback">
-                        <?php
-                        if (isset($errors['enterprise_adress'])) {
-                            echo $errors['enterprise_adress'];
-                        }
-                        ?>
+                    <div class="invalid-feedback" id="enterpriseAdressValidationFeedback">
+                        <?php if (isset($errors['enterprise_adress'])) echo $errors['enterprise_adress']; ?>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <label for="enterprise_zipcode" class="form-label2">Code postal:</label>
+                    <label for="enterprise_zipcode" class="cyan-text text-lighten-5">Code postal:</label>
                     <input type="text" name="enterprise_zipcode" value="<?= isset($_POST['enterprise_zipcode']) ? htmlspecialchars($_POST['enterprise_zipcode']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_zipcode'])) echo 'is-invalid'; ?>" required>
                     <div class="invalid-feedback" id="dateValidationFeedback">
                         <?php
@@ -65,21 +61,18 @@
                     </div>
                 </div>
 
+                <!-- Ville -->
                 <div class="col-md-4">
-                    <label for="enterprise_city" class="form-label2">Ville:</label>
+                    <label for="enterprise_city" class="cyan-text text-lighten-5">Ville:</label>
                     <input type="text" name="enterprise_city" value="<?= isset($_POST['enterprise_city']) ? htmlspecialchars($_POST['enterprise_city']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_city'])) echo 'is-invalid'; ?>" required>
-                    <div class="invalid-feedback" id="dateValidationFeedback">
-                        <?php
-                        if (isset($errors['enterprise_city'])) {
-                            echo $errors['enterprise_city'];
-                        }
-                        ?>
+                    <div class="invalid-feedback" id="enterpriseCityValidationFeedback">
+                        <?php if (isset($errors['enterprise_city'])) echo $errors['enterprise_city']; ?>
                     </div>
                 </div>
 
                 <form method="post" action="../controllers/controller-signup.php">
-                <div class="form-group col-md-6">
-                        <label for="email" class="form-label2">Email: </label>
+                    <div class="form-group col-md-6">
+                        <label for="email" class="cyan-text text-lighten-5">Email: </label>
                         <input type="email" class="form-control <?php if (isset($errors['enterprise_email'])) echo 'is-invalid'; ?>" id="email" name="enterprise_email" placeholder="adresse email" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
                         <div class="invalid-feedback" id="emailValidationFeedback">
                             <?php
@@ -91,12 +84,12 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                    <label for="enterprise_password" class="form-label2">Mot de passe: </label>
+                        <label for="enterprise_password" class="cyan-text text-lighten-5">Mot de passe: </label>
                         <div class="input-group d-flex">
-                        <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="password-input">
+                            <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="password-input">
                             <div class="invalid-feedback" id="passwordValidationFeedback">
                                 <?php
-                                 if (isset($errors['enterprise_password'])) {
+                                if (isset($errors['enterprise_password'])) {
                                     echo $errors['enterprise_password'];
                                 }
                                 ?>
@@ -132,28 +125,32 @@
 
                     <div class="col-12 mt-4 mt-xxl-0  h-auto">
                         <div class="input-group d-flex">
-                        <label for="mot_de_passe" class="form-label1">Confirmer Mot de passe:</label>
+                            <label for="mot_de_passe" class="cyan-text text-lighten-5">Confirmer Mot de passe:</label>
                             <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['conf_mot_de_passe'])) echo 'is-invalid'; ?>" name="conf_mot_de_passe" placeholder="Confirmez votre mot de passe" aria-label="confirm-password" aria-describedby="confirm-password" id="confirm-password-input" />
                             <div class="invalid-feedback" id="confirmPasswordValidationFeedback"></div>
                             <div class="valid-feedback"></div>
                         </div>
                     </div>
-                    <div class="texte form-check">
-                        <input class="form-check-input" type="checkbox" value="on" id="cgu" name="cgu" required>
-                        <label class="form-check-label" for="cgu">
-                            J'accepte les conditions d'utilisation
+                    <div class="input-field blue-border-checkbox">
+                        <label>
+                            <input type="checkbox" class="filled-in" id="cgu" name="cgu" required value="on">
+                            <span class="cyan-text text-lighten-5">J'accepte les conditions d'utilisation</span>
                         </label>
-                        <div class="invalid-feedback" id="cguValidationFeedback">Veuillez accepter les conditions d'utilisation</div>
+                        <div class="invalid-feedback" id="cguValidationFeedback">
+                            <?php if (isset($errors['cgu'])) echo $errors['cgu']; ?>
+                        </div>
                     </div>
+
+
                     <div class="text-center">
-                        <button class="button" type="submit" id="submitButton">S'enregistrer</button>
+                        <button class="btn waves-effect custom-btn" type="submit" id="submitButton">S'enregistrer</button>
                     </div>
                     <p class="returnConnexion">------------------------</p>
                     <div class="text-center">
-                    <label for="submitButton" class="retoutCo">Déjà inscrit?</label>
+                        <label for="submitButton" class="retoutCo">Déjà inscrit?</label>
                     </div>
                     <div class="text-center">
-                <a href="../controllers/controller-signin.php" class="buttonRetourCo">Connexion</a>
+                        <a href="../controllers/controller-signin.php" class="buttonRetourCo">Connexion</a>
                     </div>
                 </form>
             <?php } else { ?>
@@ -162,6 +159,8 @@
                 <a href="../controllers/controller-signin.php" class="button">Connexion</a>
             <?php } ?>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -271,6 +270,7 @@
             dateInput.addEventListener("input", function() {
                 toggleValidity(dateInput, dateFeedback);
             });
+
             function toggleValidity(input, feedback, regex, errorMessage) {
                 if (input.id === "entreprise" && input.value !== "") {
                     input.classList.remove("is-invalid");
@@ -367,4 +367,5 @@
         });
     </script>
 </body>
+
 </html>
