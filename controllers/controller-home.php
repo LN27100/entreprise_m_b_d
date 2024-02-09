@@ -149,7 +149,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
         exit();
     }
 }
-
 $allUtilisateurs = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $actifUtilisateurs = Enterprise::getActifUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $allTrajets = Enterprise::getAllTrajets($_SESSION['enterprise']['enterprise_id']);

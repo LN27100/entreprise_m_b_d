@@ -52,7 +52,7 @@
             </div>
 
             <!-- Formulaire de modification du profil (masqué par défaut) -->
-            <form method="post" action="../controllers/controller-home.php" class="transparent-form" enctype="multipart/form-data" id="editDescriptionForm" style="display: none;">
+            <form method="post" action="/controllers/controller-home.php" class="transparent-form" enctype="multipart/form-data" id="editDescriptionForm" style="display: none;">
                 <div class="profile-info">
                     <p><span class="styleProfil"> Nom:</span></p>
                     <input type="text" name="enterprise_name" placeholder="Nouveau nom" value="<?= $nom ?>">

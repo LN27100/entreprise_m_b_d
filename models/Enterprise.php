@@ -174,11 +174,11 @@ class Enterprise
              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
              $sql = "UPDATE enterprise 
-                     SET enterprise_name = ::new_name, 
+                     SET enterprise_name = :new_name, 
                          enterprise_email = :new_email, 
                          enterprise_adress = :new_adress, 
-                         enterprise_zipcode = :enterprise_zipcode,
-                         enterprise_city = :enterprise_city
+                         enterprise_zipcode = :new_zipcode,
+                         enterprise_city = :new_city
                      WHERE enterprise_id = :enterprise_id";
      
              $query = $db->prepare($sql);
