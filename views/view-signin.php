@@ -23,15 +23,15 @@
     <div class="container">
         <form class="row #455a64 blue-grey darken-2" method="POST" action="../controllers/controller-signin.php" novalidate>
 
-            <div class="input-field col s12 m6 offset-m3 center-align">
+        <div class="input-field col s12 m6 offset-m3 center-align">
+            <label for="enterprise_email" class="active cyan-text text-lighten-5">Email :</label>
                 <input id="enterprise_email" type="email" class="validate <?php if (isset($errors['enterprise_email'])) echo 'invalid'; ?>" name="enterprise_email" placeholder="adresse email" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
-                <label for="enterprise_email" class="active cyan-text text-lighten-5">Email :</label>
                 <span class="helper-text" data-error="<?php echo isset($errors['enterprise_email']) ? $errors['enterprise_email'] : 'Champ obligatoire'; ?>"></span>
             </div>
 
             <div class="input-field col s12 m6 offset-m3 center-align">
+            <label for="enterprise_password" class="cyan-text text-lighten-5">Mot de passe :</label>
                 <input id="enterprise_password" type="password" class="validate <?php if (isset($errors['enterprise_password'])) echo 'invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password">
-                <label for="enterprise_password" class="cyan-text text-lighten-5">Mot de passe :</label>
                 <i class="material-icons suffix cyan-text text-lighten-5" style="cursor:pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility()">remove_red_eye</i>
                 <span class="helper-text" data-error="<?php echo isset($errors['enterprise_password']) ? $errors['enterprise_password'] : 'Champ obligatoire'; ?>"></span>
             </div>

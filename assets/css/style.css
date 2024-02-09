@@ -216,11 +216,8 @@ body>div>p>strong>em {
 }
 /* PAGE CONNEXION */
 
-input[type="text"] + label,
-input[type="password"] + label,
-input[type="email"] + label {
-  font-size: 1.5rem; 
-}
+
+
 
 h1 {
   font-weight: bold;
