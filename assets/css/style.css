@@ -82,12 +82,6 @@ select#entreprise {
   margin-left: 0.8rem;
 }
 
-.blue-border-checkbox .filled-in[type="checkbox"]:not(:checked) + label:before {
-  border: 2px solid blue !important;
-}
-
-
-
 
 .button {
   padding: 10px 20px;
