@@ -151,10 +151,11 @@
                             <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
                                 <?php foreach ($lastfiveusers as $user) : ?>
-                                    <div>
+                                    <div class="user-profile">
                                         <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
-                                        <?= $user['user_pseudo'] ?>
+                                        <p><?= $user['user_pseudo'] ?></p>
                                     </div>
+
                                 <?php endforeach; ?>
                             </div>
                         </div>
