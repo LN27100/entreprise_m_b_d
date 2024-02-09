@@ -2,6 +2,8 @@
 /* font-family: 'Exo', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
 /* font-family: 'Marhey', sans-serif; */
+
+
 /* PAGE INSCRIPTION */
 h1 {
   font-family: 'Marhey', sans-serif;
@@ -10,11 +12,13 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 1.5rem;
 }
+
 .container form {
   background-image: url(/assets/img/bginscription.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -121,6 +125,7 @@ body>form>div.container5>div:nth-child(4)>label {
   margin-bottom: 0;
   z-index: 1;
 }
+
 .invalid-feedback {
   color: #dc3545;
   display: none;
@@ -130,32 +135,39 @@ body>form>div.container5>div:nth-child(4)>label {
   width: 7rem;
   
 }
+
 #passwordValidationFeedback {
   color: #dc3545;
   background-color: #D7C5A8;
   font-size: 0.8rem;
   top: 0;
 }
+
 .requirements {
   font-size: 0.8rem; 
 }
+
 #password-input {
   display: block;
   margin-top: 1rem; 
 }
+
 .container {
   position: relative;
 }
+
 /* Style des messages d'alerte */
 .alert {
   width: 100%;
   margin-top: 10px;
   display: block;
 }
+
 .alert ul {
   list-style: none;
   padding-left: 0;
 }
+
 .alert .requirements {
   margin-bottom: 5px;
   display: flex;
@@ -200,6 +212,11 @@ background-color: #1a237e;
 
 /*  PAGE ACCUEIL */
 
+body > main > div > div > div.col.l8 > div > div.col.s12.push-s2 > h2{
+  font-size: 3rem;
+  font-family: 'Marhey', sans-serif;
+}
+
 .table-container {
   max-width: 37.5rem; 
   overflow-x: auto; 
@@ -214,7 +231,7 @@ background-color: #1a237e;
   width: 15rem;
 }
 body>main>div>div>div.col.l4>div {
-  margin-top: 6.4rem;
+  margin-top: 7.6rem;
 }
 .darken-3 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
