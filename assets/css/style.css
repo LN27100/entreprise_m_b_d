@@ -200,6 +200,16 @@ background-color: #1a237e;
 
 /*  PAGE ACCUEIL */
 
+.table-container {
+  max-width: 37.5rem; 
+  overflow-x: auto; 
+}
+
+.reduced-width {
+  max-width: 37.5rem; 
+  margin-left: 0; 
+}
+
 #sidenav-left {
   width: 15rem;
 }

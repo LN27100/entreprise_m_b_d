@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-            <!-- La carte "5 derniers utilisateurs" et le tableau sont ici -->
+
             <div class="col l4">
                 <div class="card #78909c blue-grey lighten-1">
                     <div class="card-content white-text">
@@ -158,35 +158,39 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col s12">
-                <div class="card #78909c blue-grey lighten-1">
-                    <div class="card-content cyan-text text-lighten-5">
-                        <span class="card-title center-align">5 derniers trajets</span>
-                        <div class="card-metric">
-                            <table class="highlight responsive-table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Pseudo</th>
-                                        <th>Transport</th>
-                                        <th>Kilomètres</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($lastfivejourneys as $trajet) : ?>
-                                        <tr>
-                                            <td><?= $trajet['ride_date'] ?></td>
-                                            <td><?= $trajet['user_pseudo'] ?></td>
-                                            <td><?= $trajet['transport_type'] ?></td>
-                                            <td><?= $trajet['ride_distance'] ?> kms</td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="card #78909c blue-grey lighten-1 reduced-width">
+        <div class="card-content cyan-text text-lighten-5">
+            <span class="card-title center-align">5 derniers trajets</span>
+            <div class="card-metric">
+                <div class="table-container"> <!-- Ajout de la classe table-container -->
+                    <table class="highlight responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Pseudo</th>
+                                <th>Transport</th>
+                                <th>Kilomètres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lastfivejourneys as $trajet) : ?>
+                                <tr>
+                                    <td><?= $trajet['ride_date'] ?></td>
+                                    <td><?= $trajet['user_pseudo'] ?></td>
+                                    <td><?= $trajet['transport_type'] ?></td>
+                                    <td><?= $trajet['ride_distance'] ?> kms</td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </main>
