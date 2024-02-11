@@ -189,6 +189,12 @@ body>div>h2 {
 
 
 /* PAGE CONNEXION */
+
+#enterprise_email {
+  height: 2rem;
+  margin-top: 0.5rem;
+}
+
 h1 {
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);

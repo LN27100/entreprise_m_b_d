@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Enterprise
 {
@@ -134,94 +134,102 @@ class Enterprise
      * @param int $entreprise_id est l'id de l'entreprise
      */
 
-     public static function updateProfileImage(int $enterprise_id, string $new_image_path)
-     {
-         try {
-             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
-             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     
-             // Obtenir l'extension du fichier à partir du chemin de l'image
-             $file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
-     
-             // Construire un nom de fichier unique avec le entreprise_id
-             $new_file_name = "profile_" . $enterprise_id . "." . $file_extension;
-     
-             // Nouveau chemin de l'image avec le nom de fichier unique
-             $new_image_path_with_enterprise_id = '../assets/uploads/' . $new_file_name;
-     
-             $sql = "UPDATE enterprise SET enterprise_photo = :new_image_path WHERE enterprise_id = :enterprise_id";
-     
-             $query = $db->prepare($sql);
-     
-             $query->bindValue(':new_image_path', $new_image_path_with_enterprise_id, PDO::PARAM_STR);
-             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
-     
-             $query->execute();
-         } catch (PDOException $e) {
-             echo 'Erreur :' . $e->getMessage();
-             die();
-         }
-     }
-     
+    public static function updateProfileImage(int $enterprise_id, string $new_image_path)
+    {
+        try {
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-         /**
-          * * Méthode pour modifier le profil entreprise
-          */
-         public static function updateProfil(int $enterprise_id, string $new_name, string $new_email, string $new_adress, string $new_zipcode, string $new_city)
-     {   
-         try {
-             $db = new PDO(DBNAME, DBUSER, DBPASSWORD, array(PDO::ATTR_PERSISTENT => true));
-             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     
-             $sql = "UPDATE enterprise 
+            // Obtenir l'extension du fichier à partir du chemin de l'image
+            $file_extension = pathinfo($new_image_path, PATHINFO_EXTENSION);
+
+            // Construire un nom de fichier unique avec le entreprise_id
+            $new_file_name = "profile_" . $enterprise_id . "." . $file_extension;
+
+            // Nouveau chemin de l'image avec le nom de fichier unique
+            $new_image_path_with_enterprise_id = '../assets/uploads/' . $new_file_name;
+
+            $sql = "UPDATE enterprise SET enterprise_photo = :new_image_path WHERE enterprise_id = :enterprise_id";
+
+            $query = $db->prepare($sql);
+
+            $query->bindValue(':new_image_path', $new_image_path_with_enterprise_id, PDO::PARAM_STR);
+            $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
+
+            $query->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur :' . $e->getMessage();
+            die();
+        }
+    }
+
+
+    /**
+     * * Méthode pour modifier le profil entreprise
+     */
+    public static function updateProfil(int $enterprise_id, string $new_name, string $new_email, string $new_adress, string $new_zipcode, string $new_city)
+    {
+        try {
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD, array(PDO::ATTR_PERSISTENT => true));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "UPDATE enterprise 
                      SET enterprise_name = :new_name, 
                          enterprise_email = :new_email, 
                          enterprise_adress = :new_adress, 
                          enterprise_zipcode = :new_zipcode,
                          enterprise_city = :new_city
                      WHERE enterprise_id = :enterprise_id";
-     
-             $query = $db->prepare($sql);
-     
-             $query->bindValue(':new_name', $new_name, PDO::PARAM_STR);
-             $query->bindValue(':new_email', $new_email, PDO::PARAM_STR);
-             $query->bindValue(':new_adress', $new_adress, PDO::PARAM_STR);
-             $query->bindValue(':new_zipcode', $new_zipcode, PDO::PARAM_STR);
-             $query->bindValue(':new_city', $new_city, PDO::PARAM_STR);
-             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
-     
-             $query->execute();
-         } catch (PDOException $e) {
-             error_log('Erreur lors de la mise à jour du profil : ' . $e->getMessage());
-             throw new Exception('Une erreur s\'est produite lors de la mise à jour du profil.');
-         }
-     }
-     
 
-     /**
-      * Méthode pour supprimer le profil entreprise
-      * @param int $entreprise_id est l'id de l'entreprise
-      * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
-      */
-     
-     public static function deleteEnterprise(int $enterprise_id) {
-         try {
-             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
-     
-             $sql = "DELETE FROM enterprise WHERE enterprise_id = :enterprise_id";
-             $query = $db->prepare($sql);
-             $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
-             $query->execute();
-     
-             
-             return true;
-         } catch (PDOException $e) {
-             // Si une erreur se produit, retourner le message d'erreur
-             return 'Erreur : ' . $e->getMessage();
-         }
-     }
+            $query = $db->prepare($sql);
 
-     public static function getAllUtilisateurs(int $entreprise_id) : int
+            $query->bindValue(':new_name', $new_name, PDO::PARAM_STR);
+            $query->bindValue(':new_email', $new_email, PDO::PARAM_STR);
+            $query->bindValue(':new_adress', $new_adress, PDO::PARAM_STR);
+            $query->bindValue(':new_zipcode', $new_zipcode, PDO::PARAM_STR);
+            $query->bindValue(':new_city', $new_city, PDO::PARAM_STR);
+            $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
+
+            $query->execute();
+        } catch (PDOException $e) {
+            error_log('Erreur lors de la mise à jour du profil : ' . $e->getMessage());
+            throw new Exception('Une erreur s\'est produite lors de la mise à jour du profil.');
+        }
+    }
+
+
+    /**
+     * Méthode pour supprimer le profil entreprise
+     * @param int $entreprise_id est l'id de l'entreprise
+     * @return bool|string Renvoie true si la suppression est réussie, sinon renvoie un message d'erreur
+     */
+
+    public static function deleteEnterprise(int $enterprise_id)
+    {
+        try {
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            $sql = "DELETE FROM enterprise WHERE enterprise_id = :enterprise_id";
+            $query = $db->prepare($sql);
+            $query->bindValue(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
+            $query->execute();
+
+            // Détruire la session
+            session_destroy();
+
+            // Supprimer le mot de passe de la session
+            unset($_SESSION['password']);
+
+            return true;
+        } catch (PDOException $e) {
+            // Si une erreur se produit, retourner le message d'erreur
+            return 'Erreur : ' . $e->getMessage();
+        }
+    }
+
+
+
+    public static function getAllUtilisateurs(int $entreprise_id): int
     {
         try {
             // Création d'un objet $db selon la classe PDO
@@ -251,107 +259,107 @@ class Enterprise
         }
     }
 
-    public static function getActifUtilisateurs(int $entreprise_id) : int
-{
-    try {
-        // Création d'un objet $db selon la classe PDO
-        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    public static function getActifUtilisateurs(int $entreprise_id): int
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        // stockage de ma requete dans une variable
-        $sql = "SELECT DISTINCT userprofil.*
+            // stockage de ma requete dans une variable
+            $sql = "SELECT DISTINCT userprofil.*
         FROM `userprofil`
         JOIN `ride` ON userprofil.`user_id` = ride.`user_id`
         WHERE userprofil.`enterprise_id` = :id_entreprise;";
 
-        // je prepare ma requête pour éviter les injections SQL
-        $query = $db->prepare($sql);
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
 
-        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
-        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
 
-        // on execute la requête
-        $query->execute();
+            // on execute la requête
+            $query->execute();
 
-        // on récupère le nombre d'utilisateurs actifs
-        $count = $query->rowCount();
+            // on récupère le nombre d'utilisateurs actifs
+            $count = $query->rowCount();
 
-        // on retourne le nombre d'utilisateurs actifs
-        return $count;
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage();
-        die();
+            // on retourne le nombre d'utilisateurs actifs
+            return $count;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
     }
-}
 
-public static function getAllTrajets(int $entreprise_id) : int
-{
-    try {
-        // Création d'un objet $db selon la classe PDO
-        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    public static function getAllTrajets(int $entreprise_id): int
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        // stockage de ma requete dans une variable
-        $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
+            // stockage de ma requete dans une variable
+            $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
         JOIN `userprofil` ON ride.`user_id` = userprofil.`user_id`
         WHERE `enterprise_id` = :id_entreprise;";
 
-        // je prepare ma requête pour éviter les injections SQL
-        $query = $db->prepare($sql);
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
 
-        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
-        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
 
-        // on execute la requête
-        $query->execute();
+            // on execute la requête
+            $query->execute();
 
-        // on récupère le résultat de la requête dans une variable
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetch(PDO::FETCH_ASSOC);
 
 
-        // on retourne le nom de l'entreprise
-        return $result['Total des trajets'];
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage();
-        die();
+            // on retourne le nom de l'entreprise
+            return $result['Total des trajets'];
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
     }
-}
 
-public static function getlastfiveusers(int $entreprise_id) : array
-{
-    try {
-        // Création d'un objet $db selon la classe PDO
-        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    public static function getlastfiveusers(int $entreprise_id): array
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        // stockage de ma requete dans une variable
-        $sql = "SELECT `user_photo`, `user_pseudo` FROM `userprofil` 
+            // stockage de ma requete dans une variable
+            $sql = "SELECT `user_photo`, `user_pseudo` FROM `userprofil` 
         WHERE `enterprise_id` = :id_entreprise
         ORDER BY `user_id` DESC LIMIT 5";
 
-        // je prepare ma requête pour éviter les injections SQL
-        $query = $db->prepare($sql);
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
 
-        // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
-        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
 
-        // on execute la requête
-        $query->execute();
+            // on execute la requête
+            $query->execute();
 
-        // on récupère le résultat de la requête dans une variable
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        // on retourne le résultat
-        return $result;
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage();
-        die();
+            // on retourne le résultat
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
     }
-}
 
-public static function getlastfivejourneys(int $entreprise_id): array
-{
-    try {
-        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    public static function getlastfivejourneys(int $entreprise_id): array
+    {
+        try {
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-        $sql = "SELECT ride.`ride_date`, ride.`ride_distance`, userprofil.`user_pseudo` , transport.`transport_type`
+            $sql = "SELECT ride.`ride_date`, ride.`ride_distance`, userprofil.`user_pseudo` , transport.`transport_type`
         FROM `ride`
         JOIN `userprofil`  ON ride.`user_id` = userprofil.`user_id`
         JOIN `transport` ON ride.`transport_id` = transport.`transport_id`
@@ -360,19 +368,18 @@ public static function getlastfivejourneys(int $entreprise_id): array
         ORDER BY ride.`ride_date` DESC 
         LIMIT 5";
 
-        $query = $db->prepare($sql);
-        $query->bindValue(':enterprise_id', $entreprise_id, PDO::PARAM_INT);
+            $query = $db->prepare($sql);
+            $query->bindValue(':enterprise_id', $entreprise_id, PDO::PARAM_INT);
 
-        $query->execute();
+            $query->execute();
 
-        // Récupérer tous les résultats
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            // Récupérer tous les résultats
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage();
-        die();
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
     }
-}
-
 }
