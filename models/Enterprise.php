@@ -218,7 +218,7 @@ class Enterprise
             session_destroy();
 
             // Supprimer le mot de passe de la session
-            unset($_SESSION['password']);
+            unset($_SESSION['enterprise_password']);
 
             return true;
         } catch (PDOException $e) {
