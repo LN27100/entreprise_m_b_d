@@ -22,30 +22,35 @@
         if ($showform) {
         ?>
             <form class="row #455a64 blue-grey darken-2" method="POST" action="../controllers/controller-signup.php" novalidate>
-                <!-- Champs entreprise -->
-                <div class="col-md-4">
-                    <label for="validationServer01" class="active cyan-text text-lighten-5">Nom d'entreprise :</label>
-                    <input type="text" class="form-control <?php if (isset($errors['enterprise_name'])) echo 'is-invalid'; ?>" id="validationServer01" name="enterprise_name" placeholder="ex.Afpa" value="<?= isset($_POST['enterprise_name']) ? htmlspecialchars($_POST['enterprise_name']) : '' ?>" required>
-                    <div class="invalid-feedback" id="enterpriseNameValidationFeedback">
-                        <?php if (isset($errors['enterprise_name'])) echo $errors['enterprise_name']; ?>
-                    </div>
-                </div>
 
-                <!-- Numéro de Siret -->
-                <div class="col-md-4">
-                    <label for="validationServer03" class="cyan-text text-lighten-5">Numéro de Siret :</label>
-                    <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret" placeholder="numéro siret" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
-                    <div class="invalid-feedback" id="enterpriseSiretValidationFeedback">
-                        <?php if (isset($errors['enterprise_siret'])) echo $errors['enterprise_siret']; ?>
+                <!-- Nom de l' entreprise -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="validationServer01" class="active cyan-text text-lighten-5">Nom d'entreprise :</label>
+                        <input type="text" class="form-control <?php if (isset($errors['enterprise_name'])) echo 'is-invalid'; ?>" id="validationServer01" name="enterprise_name" placeholder="ex.Afpa" value="<?= isset($_POST['enterprise_name']) ? htmlspecialchars($_POST['enterprise_name']) : '' ?>" required>
+                        <div class="invalid-feedback" id="enterpriseNameValidationFeedback">
+                            <?php if (isset($errors['enterprise_name'])) echo $errors['enterprise_name']; ?>
+                        </div>
+                    </div>
+
+                    <!-- Numéro de Siret -->
+                    <div class="col-md-4">
+                        <label for="validationServer03" class="cyan-text text-lighten-5">Numéro de Siret :</label>
+                        <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret" placeholder="numéro siret" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
+                        <div class="invalid-feedback" id="enterpriseSiretValidationFeedback">
+                            <?php if (isset($errors['enterprise_siret'])) echo $errors['enterprise_siret']; ?>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Adresse entreprise -->
-                <div class="col-md-4">
-                    <label for="enterprise_adress" class="cyan-text text-lighten-5">Adresse entreprise:</label>
-                    <input type="text" name="enterprise_adress" value="<?= isset($_POST['enterprise_adress']) ? htmlspecialchars($_POST['enterprise_adress']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_adress'])) echo 'is-invalid'; ?>" required>
-                    <div class="invalid-feedback" id="enterpriseAdressValidationFeedback">
-                        <?php if (isset($errors['enterprise_adress'])) echo $errors['enterprise_adress']; ?>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="enterprise_adress" class="cyan-text text-lighten-5">Adresse entreprise:</label>
+                        <input type="text" name="enterprise_adress" value="<?= isset($_POST['enterprise_adress']) ? htmlspecialchars($_POST['enterprise_adress']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_adress'])) echo 'is-invalid'; ?>" required>
+                        <div class="invalid-feedback" id="enterpriseAdressValidationFeedback">
+                            <?php if (isset($errors['enterprise_adress'])) echo $errors['enterprise_adress']; ?>
+                        </div>
                     </div>
                 </div>
 
@@ -153,11 +158,15 @@
                         <a href="../controllers/controller-signin.php" class="buttonRetourCo">Connexion</a>
                     </div>
                 </form>
+
             <?php } else { ?>
-                <h2>Inscription réussie</h2>
-                <p><strong><em>Vous pouvez maintenant vous connecter.</em></strong></p>
-                <a href="../controllers/controller-signin.php" class="button">Connexion</a>
+                <div class="#455a64 blue-grey darken-2">
+                    <h2 class="center-align cyan-text text-lighten-5">Inscription réussie</h2>
+                    <p class="success-message "><strong><em>Vous pouvez maintenant vous connecter.</em></strong></p>
+                    <a href="../controllers/controller-signin.php" class="button success-link">Connexion</a>
+                </div>
             <?php } ?>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

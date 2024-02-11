@@ -147,7 +147,7 @@
 
                 <div class="col l4">
                     <div class="card #78909c blue-grey lighten-1">
-                        <div class="card-content white-text">
+                        <div class="card-content cyan-text text-lighten-5">
                             <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
                                 <?php foreach ($lastfiveusers as $user) : ?>
