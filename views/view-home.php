@@ -124,7 +124,7 @@
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
-                                    <span class="card-title center-align">Total des utilisateurs actifs</span>
+                                    <span class="card-title center-align">Utilisateurs actifs</span>
                                     <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
-                                    <span class="card-title center-align">Stats hebdo</span>
+                                    <span class="card-title center-align">Stats hebdomadaire globales</span>
                                     <p class="cyan-text text-lighten-5">Stats à venir</p>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col l4 m6 s12">
+                        <div class="col l8 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
                                     <span class="card-title center-align">5 derniers trajets</span>
