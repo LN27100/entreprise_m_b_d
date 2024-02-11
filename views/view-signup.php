@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../assets//css//style.css">
 
@@ -92,6 +92,7 @@
                         <label for="enterprise_password" class="cyan-text text-lighten-5">Mot de passe: </label>
                         <div class="input-group d-flex">
                             <input type="password" class="cyan-text text-lighten-5" placeholder="********" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" aria-label="password" aria-describedby="password" id="password-input">
+                            <i class="material-icons suffix cyan-text text-lighten-5" style="cursor:pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility()">remove_red_eye</i>
                             <div class="invalid-feedback" id="passwordValidationFeedback">
                                 <?php
                                 if (isset($errors['enterprise_password'])) {
@@ -174,6 +175,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password-input');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             console.log("Le DOM est chargé. Le script fonctionne.");
             const password = document.getElementById("password-input");
