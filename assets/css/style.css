@@ -70,9 +70,11 @@ input[type="password"] {
   z-index: 1;
   font-size: 1.2rem;
 }
+
 .form-control[type="password"] {
   width: 100%;
 }
+
 select#entreprise {
   margin-bottom: 2rem;
   width: 66rem;
@@ -256,13 +258,24 @@ background-color: #1a237e;
 
 /*  PAGE ACCUEIL */
 
+/* Assure que la barre latérale est toujours affichée et empêche au framework Materialize de la cacher */
+/* .sidenav {
+  display: block !important; 
+  transform: none !important;
+  transition: none !important;
+} */
+
+#sidenav-left > li > a {
+  font-family: 'Exo', sans-serif;
+  text-align: center;
+}
 
 .card-title {
   font-weight: bold !important;
   font-size: 1.2rem !important;
 }
 
-body > main > div > div > div.col.l8 > div > div.col.s12.push-s2 > h2{
+body > main > div > div > div.col.s12.m8 > div > div.col.s12.push-s2 > h2{
   font-size: 3rem;
   font-family: 'Marhey', sans-serif;
 }
@@ -451,17 +464,9 @@ img {
 }
 
 
-/* RESPONSIVE */
-@media only screen and (min-width: 300px) and (max-width: 780px) {
-  .container6 {
-    justify-content: center;
-  }
-  .buttonNav {
-    padding: 8px 12px;
-    margin: 0 0.3rem;
-  }
-}
-@media screen and (max-width: 1086px) {
+/* RESPONSIVE POUR SAMSUNG GALAXY S20 */
+@media only screen and (max-width: 360px) {
+  /* Ajoutez vos règles CSS pour les petits écrans ici */
   .container {
     max-width: 90%;
     padding: 1rem;
@@ -511,8 +516,6 @@ img {
     padding: 1rem;
     margin-top: 0rem;
   }
-}
-@media screen and (max-width: 768px) {
   label {
     width: 60%;
     box-sizing: border-box;
@@ -544,8 +547,6 @@ img {
     margin-bottom: 0.5em;
     background-color: rgba(215, 197, 168, 0.9);
   }
-}
-@media only screen and (min-width: 320px) and (max-width: 450px) {
   body>div.container8>div>section>table>thead>tr>th,
   body>div.container8>div>section>table>tbody>tr>td {
     font-size: 0.7rem;
@@ -592,3 +593,4 @@ img {
     margin-top: 0.5rem;
   }
 }
+

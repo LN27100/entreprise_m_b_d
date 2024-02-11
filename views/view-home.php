@@ -16,14 +16,14 @@
 </head>
 
 <body class="has-fixed-sidenav #01579b light-blue darken-4">
-    <header>
-        <div class="navbar-fixed">
-            <nav class="navbar #e0f7fa cyan lighten-5">
-                <div class="nav-wrapper">
-                    <a href="../controllers/controller-signout.php" class="buttonHome2 right hoverable">Déconnexion</a>
-                </div>
-            </nav>
-        </div>
+<header>
+        <nav class="cyan lighten-5">
+            <div class="nav-wrapper">
+                <a href="../controllers/controller-signout.php" class="right buttonHome2 hoverable">Déconnexion</a>
+                <a href="../controllers/controller-home.php" class="logo-container indigo-text"><?= $nom ?></a>
+            </div>
+        </nav>
+
         <ul id="sidenav-left" class="sidenav sidenav-fixed #e0f7fa cyan lighten-5">
             <li><a href="../controllers/controller-home.php" class="logo-container"><?= $nom ?></a></li>
             <div class="container3 #607d8b blue-grey">
@@ -90,10 +90,11 @@
                     </div>
             </form>
     </header>
+
     <main>
-        <div class="container">
+       <div class="container">
             <div class="row">
-                <div class="col l8">
+                <div class="col s12 m8">
                     <div class="masonry row">
                         <div class="col s12 push-s2">
                             <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
@@ -226,6 +227,8 @@
                 document.getElementById('editDescriptionForm').style.display = 'none';
             });
         });
+
+        
     </script>
 </body>
 
