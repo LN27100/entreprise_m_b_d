@@ -465,23 +465,26 @@ img {
 }
 
 
-/* RESPONSIVE POUR SAMSUNG GALAXY S20 */
-@media only screen and (max-width: 360px) {
-  /* Ajoutez vos règles CSS pour les petits écrans ici */
+/* RESPONSIVE*/
+
+@media only screen and (max-width: 500px) {
   .container {
     max-width: 90%;
     padding: 1rem;
     margin-top: 0rem;
   }
+
   h1 {
     font-size: 1.5rem;
     margin-bottom: 0rem;
   }
+
   form {
     width: 90%;
     max-width: 100%;
     height: auto;
   }
+
   input[type="text"],
   input[type="email"],
   input[type="date"],
@@ -491,49 +494,59 @@ img {
     margin-right: 0;
     padding: 0.1rem;
   }
+
   select#entreprise {
     width: 91%;
     margin-right: 0;
     padding: 0.1rem;
   }
+
   .button {
     width: 100%;
     max-width: 100%;
   }
+
   input,
   select,
   label {
     margin-bottom: 0rem;
   }
+
   .form-check {
     margin-bottom: 0rem;
   }
+
   .texte.form-check {
     margin-top: 0rem;
     margin-bottom: 0rem;
   }
+
   .container2 {
-    max-width: 100%;
+    max-width: 90%;
     padding: 1rem;
     margin-top: 0rem;
   }
+
   label {
     width: 60%;
     box-sizing: border-box;
     margin-bottom: 0.5em;
   }
+
   .form-label2 {
     width: 60%;
     box-sizing: border-box;
     margin-bottom: 0.5em;
     background-color: rgba(215, 197, 168, 0.9);
   }
+
   .form-label1 {
     width: 80%;
     box-sizing: border-box;
     margin-bottom: 0.5em;
     background-color: rgba(215, 197, 168, 0.9);
   }
+
   .form-labels {
     width: 65%;
     box-sizing: border-box;
@@ -542,17 +555,20 @@ img {
     background-color: rgba(215, 197, 168, 0.9);
     padding: 0.1rem;
   }
+
   .form-check-label {
     width: 110%;
     box-sizing: border-box;
     margin-bottom: 0.5em;
     background-color: rgba(215, 197, 168, 0.9);
   }
+
   body>div.container8>div>section>table>thead>tr>th,
   body>div.container8>div>section>table>tbody>tr>td {
     font-size: 0.7rem;
     padding: 0.2rem;
   }
+
   .btnSupp {
     display: flex;
     align-items: center;
@@ -562,36 +578,123 @@ img {
     font-size: 0.7rem;
     background-color: #ca2121;
   }
+
   .btnSupp i {
     font-size: 0.7rem;
   }
+
   body>div.container8>div>section>table {
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
   }
+
   .file-input-text {
     width: 100%;
   }
+
   .file-input-container {
     width: 100%;
   }
+
   .file-input {
     width: 100%;
   }
+
   .file-input-button,
   .file-input-container input[type="submit"] {
     padding: 0.3rem 0.6rem;
     font-size: 0.5rem;
     margin-right: 0.5rem;
   }
+
   .profile-image {
     max-width: 6rem;
     max-height: 6rem;
   }
+
   .titreAccueil {
     font-size: 2rem;
     margin-top: 0.5rem;
+  }
+
+}
+
+@media only screen and (max-width: 992px) {
+  .sidenav-fixed {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav-fixed {
+    position: static;
+    transform: translateX(0%);
+  }
+
+  .sidenav-fixed #sidenav-left {
+    width: 100%;
+    max-width: none;
+    position: static;
+    transform: translateX(0%);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container,
+  .container3,
+  .container8 {
+    max-width: 100%;
+  }
+
+  .container3 {
+    padding: 0.5rem;
+  }
+
+  .col.l4,
+  .col.l3,
+  .col.m6,
+  .col.s12 {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .profile-image {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .col.l4 .card,
+  .col.l3 .card {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table.highlight {
+    width: 100%;
+  }
+
+  body > main > div > div > div.col.s12.m8 > div > div.col.s12.push-s2 > h2 {
+    font-size: 1.3rem;
+  }
+
+  body > main > div > div > div.col.s12.m8 > div > div:nth-child(2) > div,
+  body > main > div > div > div.col.s12.m8 > div > div:nth-child(3) > div,
+  body > main > div > div > div.col.l4 > div > div {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0;
+  }
+
+  body > main > div > div > div.col.s12.m8 > div > div:nth-child(3) > div.col.l8.m6.s12 > div > div {
+    padding: 0;
   }
 }
 

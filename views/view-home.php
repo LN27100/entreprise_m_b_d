@@ -109,9 +109,11 @@
         <div class="row">
             <div class="col s12 m8">
                 <div class="masonry row">
+
                     <div class="col s12 push-s2">
                         <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
                     </div>
+
                     <div class="row">
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
@@ -121,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
@@ -129,6 +132,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
@@ -138,6 +142,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col l4 m6 s12">
                             <div class="card #78909c blue-grey lighten-1">
@@ -161,7 +166,7 @@
                                     <span class="card-title center-align">5 derniers trajets</span>
                                     <div class="card-metric">
                                         <div class="table-container">
-                                            <table class="highlight responsive-table">
+                                            <table class="highlight ">
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>
