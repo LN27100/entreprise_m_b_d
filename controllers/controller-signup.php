@@ -32,7 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Contrôle du siret
     if (empty($_POST["enterprise_siret"])) {
         $errors["enterprise_siret"] = "Champ obligatoire";
-    } 
+    } elseif (strlen($_POST["enterprise_siret"]) < 14) {
+        $errors["enterprise_siret"] = "Le siret doit contenir au moins 14 caractères";
+    } elseif (!is_numeric([0-9],$_POST["enterprise_siret"])) {
+        $errors["enterprise_siret"] = "Le siret ne peut contenir que des chiffres";
+    }
 
     // Contrôle de l'email
     if (empty($_POST["enterprise_email"])) {
