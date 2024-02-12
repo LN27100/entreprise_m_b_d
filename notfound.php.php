@@ -18,9 +18,10 @@
         }
     </style>
 </head>
+
 <body>
 
-<img src="../assets/img/erreur403.jpg" alt="erreur 403">
+<img src="../assets/img/erreur404.php" alt="erreur 404">
 
 </body>
 </html>

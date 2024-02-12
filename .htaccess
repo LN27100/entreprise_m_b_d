@@ -1,2 +1,4 @@
 Options -Indexes
 ErrorDocument 403 /forbidden.php
+
+ErrorDocument 404 /notfound.php
