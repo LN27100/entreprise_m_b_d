@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body class="erreur403">
+<body>
 
+<img src="../assets/img/erreur403.jpg" alt="erreur 403">
 
 </body>
 </html>

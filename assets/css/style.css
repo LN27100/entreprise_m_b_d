@@ -3,11 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
 /* font-family: 'Marhey', sans-serif; */
 
-.erreur403{
-  background-image: url(../img/erreur403.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 
 /* PAGE INSCRIPTION */
 h1 {
