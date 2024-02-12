@@ -21,7 +21,7 @@
 
 <body>
 
-<img src="../assets/img/erreur404.php" alt="erreur 404">
+<img src="../assets/img/erreur404.jpg" alt="erreur 404">
 
 </body>
 </html>
