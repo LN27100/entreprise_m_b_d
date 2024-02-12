@@ -56,7 +56,7 @@
 
                     <label for="validationServer01" class="active cyan-text text-lighten-5">Nom d'entreprise :</label>
 
-                    <input type="text" class="form-control <?php if (isset($errors['enterprise_name'])) echo 'is-invalid'; ?>" id="validationServer01" name="enterprise_name" placeholder="ex.Afpa" value="<?= isset($_POST['enterprise_name']) ? htmlspecialchars($_POST['enterprise_name']) : '' ?>" required>
+                    <input type="text" placeholder="saisissez le nom de votre entreprise" class="form-control <?php if (isset($errors['enterprise_name'])) echo 'is-invalid'; ?>" id="validationServer01" name="enterprise_name" value="<?= isset($_POST['enterprise_name']) ? htmlspecialchars($_POST['enterprise_name']) : '' ?>" required>
 
                     <div class="invalid-feedback" id="enterpriseNameValidationFeedback">
 
@@ -78,7 +78,7 @@
 
                     <label for="validationServer03" class="cyan-text text-lighten-5">Numéro de Siret :</label>
 
-                    <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret" placeholder="numéro siret" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
+                    <input type="text" class="form-control <?php if (isset($errors['enterprise_siret'])) echo 'is-invalid'; ?>" id="validationServer03" name="enterprise_siret" placeholder="saisissez le siret de votre entreprise" value="<?= isset($_POST['enterprise_siret']) ? htmlspecialchars($_POST['enterprise_siret']) : '' ?>" required>
 
                     <div class="invalid-feedback" id="enterpriseSiretValidationFeedback">
 
@@ -101,7 +101,7 @@
 
                     <label for="enterprise_adress" class="cyan-text text-lighten-5">Adresse entreprise:</label>
 
-                    <input type="text" name="enterprise_adress" value="<?= isset($_POST['enterprise_adress']) ? htmlspecialchars($_POST['enterprise_adress']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_adress'])) echo 'is-invalid'; ?>" required>
+                    <input type="text" placeholder="saisissez votre adresse" name="enterprise_adress" value="<?= isset($_POST['enterprise_adress']) ? htmlspecialchars($_POST['enterprise_adress']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_adress'])) echo 'is-invalid'; ?>" required>
 
                     <div class="invalid-feedback" id="enterpriseAdressValidationFeedback">
 
@@ -122,7 +122,7 @@
 
                     <label for="enterprise_zipcode" class="cyan-text text-lighten-5">Code postal:</label>
 
-                    <input type="text" name="enterprise_zipcode" value="<?= isset($_POST['enterprise_zipcode']) ? htmlspecialchars($_POST['enterprise_zipcode']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_zipcode'])) echo 'is-invalid'; ?>" required>
+                    <input type="text" placeholder="saisissez votre code postal" name="enterprise_zipcode" value="<?= isset($_POST['enterprise_zipcode']) ? htmlspecialchars($_POST['enterprise_zipcode']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_zipcode'])) echo 'is-invalid'; ?>" required>
 
                     <div class="invalid-feedback" id="dateValidationFeedback">
 
@@ -145,7 +145,7 @@
 
                     <label for="enterprise_city" class="cyan-text text-lighten-5">Ville:</label>
 
-                    <input type="text" name="enterprise_city" value="<?= isset($_POST['enterprise_city']) ? htmlspecialchars($_POST['enterprise_city']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_city'])) echo 'is-invalid'; ?>" required>
+                    <input type="text" placeholder="saisissez votre ville" name="enterprise_city" value="<?= isset($_POST['enterprise_city']) ? htmlspecialchars($_POST['enterprise_city']) : '' ?>" class="form-control <?php if (isset($errors['enterprise_city'])) echo 'is-invalid'; ?>" required>
 
                     <div class="invalid-feedback" id="enterpriseCityValidationFeedback">
 
@@ -168,7 +168,7 @@
 
                         <label for="email" class="cyan-text text-lighten-5">Email: </label>
 
-                        <input type="email" class="form-control <?php if (isset($errors['enterprise_email'])) echo 'is-invalid'; ?>" id="email" name="enterprise_email" placeholder="adresse email" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
+                        <input type="email" class="form-control <?php if (isset($errors['enterprise_email'])) echo 'is-invalid'; ?>" id="email" name="enterprise_email" placeholder="saisissez votre adresse mail" value="<?= isset($_POST['enterprise_email']) ? htmlspecialchars($_POST['enterprise_email']) : '' ?>" required>
 
                         <div class="invalid-feedback" id="emailValidationFeedback">
 
@@ -190,7 +190,7 @@
 
                         <div class="input-group d-flex">
 
-                            <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="Votre mot de passe" aria-label="password" aria-describedby="password" id="password-input">
+                            <input type="password" class="form-control rounded mt-1 password-input <?php if (isset($errors['enterprise_password'])) echo 'is-invalid'; ?>" name="enterprise_password" placeholder="********" aria-label="password" aria-describedby="password" id="password-input">
 
                             <div class="invalid-feedback" id="passwordValidationFeedback">
 
