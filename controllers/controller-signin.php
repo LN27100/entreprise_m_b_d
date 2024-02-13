@@ -41,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // print_r($dataRow);
 
-            if($dataRow['success']==true) {
-                $msg = 'Recaptcha vérifié avec succès';
-                    } else {
-                 $msg = 'Recaptcha non valide';
-                        }
+        if(!$dataRow['success']==true) {
+            $errors['recaptcha'] = 'Recaptcha obligatoire';
+                } 
+        
             }
 
     // Si aucune erreur, procédez à la vérification de l'utilisateur

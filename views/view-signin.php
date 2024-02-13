@@ -38,13 +38,14 @@
                  <!-- reCaptcha -->
              <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
                    
-                   <?php
-                    if (isset($msg)) {
+             <?php
+                    if (isset($errors['recaptcha'])) {
                     ?>
-                        <p class="recaptchas"><?= $msg; ?></p>
+                        <p class="recaptchas"><?= $errors['recaptcha']; ?></p>
                     <?php
                     }
                     ?>
+                    
                 <button class="btn waves-effect custom-btn" type="submit" id="submitButton">Se connecter</button>
             </div>
 
