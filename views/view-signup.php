@@ -23,6 +23,7 @@
 
 
     <title>Inscription pro</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -271,7 +272,8 @@
                     </div>
 
 
-
+ <!-- reCaptcha -->
+ <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
 
 
 
