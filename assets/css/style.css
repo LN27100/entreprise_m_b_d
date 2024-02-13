@@ -11,6 +11,10 @@
   color: red; 
 }
 
+[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
+  border: 2px solid #1a237e;
+}
+
 body > div > div > div {
   border-radius: 5px;
 }
