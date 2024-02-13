@@ -267,6 +267,8 @@ background-color: #1a237e;
   transition: none !important;
 } */
 
+
+
 #sidenav-left > li > a {
   font-family: 'Exo', sans-serif;
   text-align: center;
@@ -282,10 +284,7 @@ body > main > div > div > div.col.s12.m8 > div > div.col.s12.push-s2 > h2{
   font-family: 'Marhey', sans-serif;
 }
 
-.table-container {
-  max-width: 37.5rem; 
-  overflow-x: auto; 
-}
+
 
 .reduced-width {
   max-width: 37.5rem; 
@@ -298,14 +297,17 @@ body > main > div > div > div.col.s12.m8 > div > div.col.s12.push-s2 > h2{
 body>main>div>div>div.col.l4>div {
   margin-top: 7.6rem;
 }
+
 .darken-3 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 #sidenav-left>li>a {
   height: 5rem;
   font-size: 2rem;
   color: #1a237e;
 }
+
 .buttonHome2 {
   background-color: #1a237e;
   display: flex;
@@ -342,6 +344,7 @@ body > main > div > div > div.col.s12.m8 > div > div > div > div > div > p {
   font-size: 2rem !important;
   text-align: center;
 }
+
 /* PAGE PROFIL */
 .deleteProfil {
   background-color: transparent;

@@ -137,7 +137,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col l4 m6 s12">
+                            <div class="col l6 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Stats hebdomadaire globales</span>
@@ -146,16 +146,16 @@
                                 </div>
                             </div>
 
-                            <div class="col l4 m6 s12">
+                            <div class="col l6 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Stats des Moyens de transport</span>
-                                        <canvas id="doughnutChart" width="400" height="400"></canvas> 
+                                        <canvas id="doughnutChart" width="400" height="400"></canvas>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col l8 m6 s12">
+                            <div class="col l12 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">5 derniers trajets</span>
@@ -212,48 +212,58 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-         // Récupérer les données PHP dans une variable JavaScript
-    var transportStats = <?php echo json_encode($statstransports); ?>;
+        // Récupérer les données PHP dans une variable JavaScript
+        var transportStats = <?php echo json_encode($statstransports); ?>;
 
-// Initialiser les tableaux pour les étiquettes, les données et les couleurs
-var labels = [];
-var data = [];
-var backgroundColors = [];
-var borderColors = [];
+        // Initialiser les tableaux pour les étiquettes, les données et les couleurs
+        var labels = [];
+        var data = [];
+        var backgroundColors = [];
+        var borderColors = [];
 
-// Générer des couleurs aléatoires
-function generateRandomColor() {
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    return 'rgba(' + r + ',' + g + ',' + b + ')';
-}
+        // Générer des couleurs aléatoires
+        function generateRandomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return 'rgba(' + r + ',' + g + ',' + b + ')';
+        }
 
-// Itérer à travers les données de transport
-transportStats.forEach(function(stat) {
-    labels.push(stat.transport_type);
-    data.push(stat.stats);
-    var randomColor = generateRandomColor();
-    backgroundColors.push(randomColor);
-    borderColors.push(randomColor.replace('0.2', '1')); // Utilisez une opacité plus élevée pour la bordure
-});
+        // Itérer à travers les données de transport
+        transportStats.forEach(function(stat) {
+            labels.push(stat.transport_type);
+            data.push(stat.stats);
+            var randomColor = generateRandomColor();
+            backgroundColors.push(randomColor);
+            borderColors.push(randomColor.replace('0.2', '1'));
+        });
 
-// Générer le graphique Doughnut
-var ctx = document.getElementById('doughnutChart').getContext('2d');
-var doughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Nombre de trajets',
-            data: data,
-            backgroundColor: backgroundColors,
-            borderColor: borderColors,
-            borderWidth: 1
-        }]
-    },
-    
-});
+        // Générer le graphique Doughnut
+        var ctx = document.getElementById('doughnutChart').getContext('2d');
+        var doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre de trajets',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#E0F7FA'
+                    }
+                }
+            }
+        }
+
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
             const navbarToggle = document.getElementById("navbar-toggle");
             const navbarNav = document.getElementById("navbar-nav");

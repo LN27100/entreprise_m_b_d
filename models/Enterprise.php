@@ -394,7 +394,6 @@ class Enterprise
     public static function getTransportStats(int $entreprise_id): array
     {
         try {
-            // Établir la connexion à la base de données
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer les statistiques de transport
