@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!$dataRow['success']==true) {
             $errors['recaptcha'] = 'Recaptcha obligatoire';
                 } 
-        
             }
 
     // Si aucune erreur, procédez à la vérification de l'utilisateur

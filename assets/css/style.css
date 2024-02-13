@@ -11,6 +11,9 @@
   color: red; 
 }
 
+body > div > div > div {
+  border-radius: 5px;
+}
 
 body > div.container > form > div:nth-child(3) > div {
   display: flex;
@@ -98,25 +101,6 @@ select#entreprise {
 
 .button {
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  font-family: 'Exo', sans-serif;
-  margin-bottom: 3.5rem;
-}
-
-.retoutCo {
-  display: inline-block;
-  padding: 0.2em 0.5em;
-  font-size: 1rem;
-  width: 7rem;
-}
-
-.buttonRetourCo {
-  padding: 8px 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
   border: none;
   border-radius: 5px;
   text-align: center;

@@ -64,13 +64,7 @@
 
                     </div>
 
-
-
-
                 </div>
-
-
-
 
                 <!-- Numéro de Siret -->
 
@@ -84,15 +78,9 @@
 
                         <?php if (isset($errors['enterprise_siret'])) echo $errors['enterprise_siret']; ?>
 
-
-
-
-
                     </div>
 
                 </div>
-
-
 
 
                 <!-- Adresse entreprise -->
@@ -107,15 +95,9 @@
 
                         <?php if (isset($errors['enterprise_adress'])) echo $errors['enterprise_adress']; ?>
 
-
-
-
-
                     </div>
 
                 </div>
-
-
 
 
                 <div class="col-md-4">
@@ -137,8 +119,6 @@
                 </div>
 
 
-
-
                 <!-- Ville -->
 
                 <div class="col-md-4">
@@ -151,15 +131,9 @@
 
                         <?php if (isset($errors['enterprise_city'])) echo $errors['enterprise_city']; ?>
 
-
-
-
-
                     </div>
 
                 </div>
-
-
 
 
                 <form method="post" action="../controllers/controller-signup.php">
@@ -180,8 +154,6 @@
                         </div>
 
                     </div>
-
-
 
 
                     <div class="form-group col-md-12">
@@ -205,6 +177,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="conditionPassword col-6 mt-4 mt-xxl-0 w-auto h-auto">
                         <div class="alert px-4 py-3 mb-0 d-none" role="alert" data-mdb-color="warning" id="password-alert">
                             <ul class="list-unstyled mb-0">
@@ -231,8 +204,6 @@
                             </ul>
                         </div>
                     </div>
-
-
 
 
                     <div class="col-12 mt-4 mt-xxl-0  h-auto">
@@ -269,7 +240,6 @@
 
                     </div>
 
-                   
 
                     <div class="text-center">
 
@@ -277,21 +247,19 @@
 
                     </div>
 
-                    <p class="returnConnexion">------------------------</p>
-
-                    <div class="text-center">
-
-                        <label for="submitButton" class="retoutCo">Déjà inscrit?</label>
-
-                    </div>
-
-                    <div class="text-center">
-
-                        <a href="../controllers/controller-signin.php" class="buttonRetourCo">Connexion</a>
-
-                    </div>
 
                 </form>
+
+
+                <div class="row">
+                    <div class="custom-div center-align #01579b light-blue darken-4">
+                    <div class="text-center">
+                    <p class="textBold blue-grey-text darken-3">Déjà inscrit?</p>
+                        </div>
+                        <a href="../controllers/controller-signin.php" class="textBold green-text"">Connexion</a>
+
+                    </div>
+                </div>
 
             <?php } else { ?>
                 <h2>Inscription réussie</h2>
