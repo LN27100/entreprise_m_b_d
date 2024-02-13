@@ -11,14 +11,14 @@
   color: red; 
 }
 
-body > div.container > form > div:nth-child(11) {
+
+body > div.container > form > div:nth-child(3) > div {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-body > div.container > form > div:nth-child(11) > div {
   margin-bottom: 2rem;
 }
+
 
 h1 {
   font-family: 'Marhey', sans-serif;

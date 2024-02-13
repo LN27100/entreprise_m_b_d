@@ -32,7 +32,10 @@
                 <span class="helper-text" data-error="<?php echo isset($errors['enterprise_password']) ? $errors['enterprise_password'] : 'Champ obligatoire'; ?>"></span>
             </div>
 
-             <!-- reCaptcha -->
+            
+
+            <div class="input-field col s12 center-align">
+                 <!-- reCaptcha -->
              <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
                    
                    <?php
@@ -42,7 +45,6 @@
                     <?php
                     }
                     ?>
-            <div class="input-field col s12 center-align">
                 <button class="btn waves-effect custom-btn" type="submit" id="submitButton">Se connecter</button>
             </div>
 
