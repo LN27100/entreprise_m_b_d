@@ -21,12 +21,13 @@
         /* PAGES D'ERREUR */
 
         body>div.slider>a{
- 
             position: absolute;
             text-decoration: none;
             background-color: red;
             border-radius: 5px;
             padding: 1rem;
+            color: white;
+            margin: 1rem;
         }
 
     </style>
