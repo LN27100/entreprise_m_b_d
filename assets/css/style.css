@@ -6,6 +6,17 @@
 
 
 /* PAGE INSCRIPTION */
+
+
+body > div.container > form > div:nth-child(11) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body > div.container > form > div:nth-child(11) > div {
+  margin-bottom: 2rem;
+}
+
 h1 {
   font-family: 'Marhey', sans-serif;
   text-align: center;

@@ -200,7 +200,6 @@
                                 if (isset($errors['enterprise_password'])) {
 
                                     echo $errors['enterprise_password'];
-
                                 }
 
                                 ?>
@@ -271,16 +270,20 @@
 
                     </div>
 
-
- <!-- reCaptcha -->
- <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
-
-
-
+                    <!-- reCaptcha -->
+                    <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
+                   
+                   <?php
+                    if (isset($msg)) {
+                    ?>
+                        <p><?= $msg; ?></p>
+                    <?php
+                    }
+                    ?>
 
                     <div class="text-center">
 
-                        <button class="btn waves-effect custom-btn" type="submit" id="submitButton">S'enregistrer</button>
+                        <button class="btn waves-effect custom-btn" name="g-recaptcha-response" type="submit" id="submitButton">S'enregistrer</button>
 
                     </div>
 
@@ -318,7 +321,6 @@
 
 
     <script>
-
         document.addEventListener("DOMContentLoaded", function() {
 
             console.log("Le DOM est chargé. Le script fonctionne.");
@@ -531,7 +533,6 @@
             });
 
         });
-
     </script>
 
 </body>
