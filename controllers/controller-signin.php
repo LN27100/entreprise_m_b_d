@@ -28,6 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors["enterprise_password"] = "Champ obligatoire";
     }
 
+    if (isset($_POST["g-recaptcha-response"])) {
+        // print_r($_POST);
+        $secret='6LfsZnApAAAAAParnG-WEx0_sgVatsrBshd2mm7B';
+        $reponse = $_POST['g-recaptcha-response'];
+        $remoteip= $_SERVER ['REMOTE_ADDR'];
+
+        $url= "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$reponse&remoteip=$remoteip ";
+        
+        $reponseData = file_get_contents($url);
+        $dataRow = json_decode($reponseData, true);
+
+        // print_r($dataRow);
+
+            if($dataRow['success']==true) {
+                $msg = 'Recaptcha vérifié avec succès';
+                    } else {
+                 $msg = 'Recaptcha non valide';
+                        }
+            }
+
     // Si aucune erreur, procédez à la vérification de l'utilisateur
     if (empty($errors)) {
         // Vérifiez si l'email existe dans la base de données

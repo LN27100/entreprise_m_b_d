@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Connexion pro</title>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body class="#e0f7fa cyan lighten-5">
@@ -28,6 +31,17 @@
                 <i class="material-icons suffix cyan-text text-lighten-5" style="cursor:pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility()">remove_red_eye</i>
                 <span class="helper-text" data-error="<?php echo isset($errors['enterprise_password']) ? $errors['enterprise_password'] : 'Champ obligatoire'; ?>"></span>
             </div>
+
+             <!-- reCaptcha -->
+             <div class="g-recaptcha" data-sitekey="6LfsZnApAAAAAPL-ShedixAlNmTT5GKinSoTZ6in"></div>
+                   
+                   <?php
+                    if (isset($msg)) {
+                    ?>
+                        <p class="recaptchas"><?= $msg; ?></p>
+                    <?php
+                    }
+                    ?>
             <div class="input-field col s12 center-align">
                 <button class="btn waves-effect custom-btn" type="submit" id="submitButton">Se connecter</button>
             </div>

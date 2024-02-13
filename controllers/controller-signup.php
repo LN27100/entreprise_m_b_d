@@ -79,26 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["cgu"]) || $_POST["cgu"] !== "on") {
         $errors["cgu"] = "Veuillez accepter les conditions générales d'utilisation pour continuer.";
     }
-
-    if (isset($_POST["g-recaptcha-response"])) {
-        // print_r($_POST);
-        $secret='6LfsZnApAAAAAParnG-WEx0_sgVatsrBshd2mm7B';
-        $reponse = $_POST['g-recaptcha-response'];
-        $remoteip= $_SERVER ['REMOTE_ADDR'];
-
-        $url= "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$reponse&remoteip=$remoteip ";
-        
-        $reponseData = file_get_contents($url);
-        $dataRow = json_decode($reponseData, true);
-
-        // print_r($dataRow);
-
-            if($dataRow['success']==true) {
-                $msg = 'Recaptcha vérifié avec succès';
-                    } else {
-                 $msg = 'Recaptcha non valide';
-                        }
-            }
          
 
     // On s'assure qu'il n'y a pas d'erreur dans le formuaire
@@ -118,8 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Affichage du formulaire ou des erreurs
 include_once __DIR__ . '/../views/view-signup.php';
-
-
 
 ?>
 
