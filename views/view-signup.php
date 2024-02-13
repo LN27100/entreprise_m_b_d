@@ -276,7 +276,7 @@
                    <?php
                     if (isset($msg)) {
                     ?>
-                        <p><?= $msg; ?></p>
+                        <p class="recaptchas"><?= $msg; ?></p>
                     <?php
                     }
                     ?>

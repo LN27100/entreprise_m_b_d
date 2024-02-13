@@ -7,6 +7,9 @@
 
 /* PAGE INSCRIPTION */
 
+.recaptchas {
+  color: red; 
+}
 
 body > div.container > form > div:nth-child(11) {
   display: flex;
