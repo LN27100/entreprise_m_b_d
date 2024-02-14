@@ -144,7 +144,7 @@
                             <div class="col l6 m6 s12">
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title center-align">Stats annuels globales</span>
+                                        <span class="card-title center-align">Stats annuelles globales</span>
                                         <canvas id="lineChart" width="400" height="400"></canvas>
                                     </div>
                                 </div>
