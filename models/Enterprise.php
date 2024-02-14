@@ -420,4 +420,45 @@ class Enterprise
             die();
         }
     }
+
+    /**
+ * Méthode pour récupérer les données de trajets pour une entreprise donnée et une année spécifique
+ * @param int $enterprise_id L'identifiant de l'entreprise pour laquelle récupérer les données de trajets
+ * @param int $year L'année pour laquelle récupérer les données de trajets
+ * @return array Un tableau associatif contenant les données de trajets pour l'année spécifiée
+ *              Le tableau contient des paires de clés-valeurs où la clé est la date du trajet au format "jour/mois/année"
+ *              et la valeur est le nombre total de trajets effectués ce jour-là
+ */
+
+ public static function getRideDataForYear($enterprise_id, $year) {
+    try {
+        // Connexion à la base de données
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+        // Préparation de la requête SQL
+        $query = "SELECT MONTH(ride_date) AS month, COUNT(*) AS total_rides
+        FROM ride
+        NATURAL JOIN `enterprise`
+        WHERE enterprise_id = :enterprise_id
+        AND YEAR(ride_date) = :years
+        GROUP BY MONTH(ride_date)";
+
+        // Préparation de la requête
+        $stmt = $db->prepare($query);
+
+        // Liaison des valeurs des paramètres
+        $stmt->bindParam(':enterprise_id', $enterprise_id, PDO::PARAM_INT);
+        $stmt->bindParam(':years', $year, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        $stmt->execute();
+        $rideData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fermeture de la connexion à la base de données
+        $db = null;
+        return $rideData;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la récupération des données de trajets pour l'année spécifique : " . $e->getMessage();
+        return array();
+    }
+}
+
 }

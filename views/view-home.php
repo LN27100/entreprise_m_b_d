@@ -142,7 +142,7 @@
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Stats hebdomadaire globales</span>
-                                        <p class="cyan-text text-lighten-5">Stats à venir</p>
+                                        <canvas id="lineChart" width="400" height="400"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                         <span class="card-title center-align">5 derniers trajets</span>
                                         <div class="card-metric">
                                             <div class="table-container">
-                                                <table class="highlight ">
+                                                <table class="highlight cyan-text text-lighten-5">
                                                     <thead>
                                                         <tr>
                                                             <th>Date</th>
@@ -217,72 +217,129 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-    // Récupérer les données PHP dans une variable JavaScript
-var transportStats = <?php echo json_encode($statstransports); ?>;
+       // Appeler la méthode pour récupérer les données de trajets pour l'année 2024
+var rideDataForYear = <?php echo json_encode($rideDataForYear); ?>;
 
-// Initialiser les tableaux pour les données et les couleurs
-var data = [];
+// Tableau associatif pour mapper les numéros de mois aux noms des mois en français
+var mois = {
+    1: "Janvier",
+    2: "Février",
+    3: "Mars",
+    4: "Avril",
+    5: "Mai",
+    6: "Juin",
+    7: "Juillet",
+    8: "Août",
+    9: "Septembre",
+    10: "Octobre",
+    11: "Novembre",
+    12: "Décembre"
+};
+
+// Traitement des données pour extraire les mois et le nombre de trajets
 var labels = [];
-var backgroundColors = [];
-var borderColors = [];
-
-// Générer des couleurs aléatoires
-function generateRandomColor() {
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    return 'rgba(' + r + ',' + g + ',' + b + ')';
-}
-
-// Itérer à travers les données de transport
-transportStats.forEach(function(stat) {
-    labels.push(stat.transport_type);
-    data.push(stat.stats);
-    var randomColor = generateRandomColor();
-    backgroundColors.push(randomColor);
-    borderColors.push(randomColor.replace('0.2', '1'));
+var data = [];
+rideDataForYear.forEach(function(entry) {
+    labels.push(mois[entry.month]);
+    data.push(entry.total_rides);
 });
 
-// Générer le graphique Doughnut
-var ctx = document.getElementById('doughnutChart').getContext('2d');
-var doughnutChart = new Chart(ctx, {
-    type: 'doughnut',
+// Configuration du graphique avec les données traitées
+const config = {
+    type: 'line',
     data: {
         labels: labels,
         datasets: [{
-            label: 'Nombre de trajets',
+            label: 'Nombre de trajets par mois en 2024',
             data: data,
-            backgroundColor: backgroundColors,
-            borderColor: borderColors,
-            borderWidth: 1
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
         }]
     },
     options: {
-        plugins: {
-            legend: {
-                display: true,
-                labels: {
-                    color: '#E0F7FA', // Couleur des légendes
-                    generateLabels: function(chart) {
-                        var data = chart.data;
-                        if (data.labels.length && data.datasets.length) {
-                            return data.labels.map(function(label, i) {
-                                var ds = data.datasets[0];
-                                return {
-                                    text: label + ': ' + ds.data[i], // Ajouter le nom de transport et la valeur
-                                    fillStyle: ds.backgroundColor[i],
-                                    hidden: isNaN(ds.data[i]),
-                                    lineCap: 'round'
-                                };
-                            });
-                        }
-                        return [];
-                    }
-                }
+        scales: {
+            y: {
+                beginAtZero: true
             }
         }
     }
+};
+
+// Création du graphique une fois le DOM chargé
+document.addEventListener('DOMContentLoaded', function() {
+    // Création du graphique
+    var lineChart = new Chart(document.getElementById('lineChart'), config);
 });
+
+
+
+        // Récupérer les données PHP dans une variable JavaScript
+        var transportStats = <?php echo json_encode($statstransports); ?>;
+
+        // Initialiser les tableaux pour les données et les couleurs
+        var data = [];
+        var labels = [];
+        var backgroundColors = [];
+        var borderColors = [];
+
+        // Générer des couleurs aléatoires
+        function generateRandomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return 'rgba(' + r + ',' + g + ',' + b + ')';
+        }
+
+        // Itérer à travers les données de transport
+        transportStats.forEach(function(stat) {
+            labels.push(stat.transport_type);
+            data.push(stat.stats);
+            var randomColor = generateRandomColor();
+            backgroundColors.push(randomColor);
+            borderColors.push(randomColor.replace('0.2', '1'));
+        });
+
+        // Générer le graphique Doughnut
+        var ctx = document.getElementById('doughnutChart').getContext('2d');
+        var doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre de trajets',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#E0F7FA', // Couleur des légendes
+                            generateLabels: function(chart) {
+                                var data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        var ds = data.datasets[0];
+                                        return {
+                                            text: label + ': ' + ds.data[i], // Ajouter le nom de transport et la valeur
+                                            fillStyle: ds.backgroundColor[i],
+                                            hidden: isNaN(ds.data[i]),
+                                            lineCap: 'round'
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
 
         document.addEventListener("DOMContentLoaded", function() {
