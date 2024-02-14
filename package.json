@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "chartjs-plugin-datalabels": "^2.2.0",
     "materialize-css": "^1.0.0-rc.2"
   }
 }

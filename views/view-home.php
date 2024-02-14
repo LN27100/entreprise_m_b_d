@@ -13,8 +13,9 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-
+    <!-- api charts js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 </head>
 
@@ -195,16 +196,16 @@
                         <div class="card-content cyan-text text-lighten-5">
                             <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
-                            <?php foreach ($lastfiveusers as $user) : ?>
-    <div class="user-profile">
-        <?php if (!empty($user['user_photo'])) : ?>
-            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
-        <?php else : ?>
-            <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
-        <?php endif; ?>
-        <p><?= $user['user_pseudo'] ?></p>
-    </div>
-<?php endforeach; ?>
+                                <?php foreach ($lastfiveusers as $user) : ?>
+                                    <div class="user-profile">
+                                        <?php if (!empty($user['user_photo'])) : ?>
+                                            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
+                                        <?php else : ?>
+                                            <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
+                                        <?php endif; ?>
+                                        <p><?= $user['user_pseudo'] ?></p>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -216,58 +217,73 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        // Récupérer les données PHP dans une variable JavaScript
-        var transportStats = <?php echo json_encode($statstransports); ?>;
+    // Récupérer les données PHP dans une variable JavaScript
+var transportStats = <?php echo json_encode($statstransports); ?>;
 
-        // Initialiser les tableaux pour les étiquettes, les données et les couleurs
-        var labels = [];
-        var data = [];
-        var backgroundColors = [];
-        var borderColors = [];
+// Initialiser les tableaux pour les données et les couleurs
+var data = [];
+var labels = [];
+var backgroundColors = [];
+var borderColors = [];
 
-        // Générer des couleurs aléatoires
-        function generateRandomColor() {
-            var r = Math.floor(Math.random() * 256);
-            var g = Math.floor(Math.random() * 256);
-            var b = Math.floor(Math.random() * 256);
-            return 'rgba(' + r + ',' + g + ',' + b + ')';
-        }
+// Générer des couleurs aléatoires
+function generateRandomColor() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return 'rgba(' + r + ',' + g + ',' + b + ')';
+}
 
-        // Itérer à travers les données de transport
-        transportStats.forEach(function(stat) {
-            labels.push(stat.transport_type);
-            data.push(stat.stats);
-            var randomColor = generateRandomColor();
-            backgroundColors.push(randomColor);
-            borderColors.push(randomColor.replace('0.2', '1'));
-        });
+// Itérer à travers les données de transport
+transportStats.forEach(function(stat) {
+    labels.push(stat.transport_type);
+    data.push(stat.stats);
+    var randomColor = generateRandomColor();
+    backgroundColors.push(randomColor);
+    borderColors.push(randomColor.replace('0.2', '1'));
+});
 
-        // Générer le graphique Doughnut
-        var ctx = document.getElementById('doughnutChart').getContext('2d');
-        var doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Nombre de trajets',
-                    data: data,
-                    backgroundColor: backgroundColors,
-                    borderColor: borderColors,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#E0F7FA'
+// Générer le graphique Doughnut
+var ctx = document.getElementById('doughnutChart').getContext('2d');
+var doughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Nombre de trajets',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: '#E0F7FA', // Couleur des légendes
+                    generateLabels: function(chart) {
+                        var data = chart.data;
+                        if (data.labels.length && data.datasets.length) {
+                            return data.labels.map(function(label, i) {
+                                var ds = data.datasets[0];
+                                return {
+                                    text: label + ': ' + ds.data[i], // Ajouter le nom de transport et la valeur
+                                    fillStyle: ds.backgroundColor[i],
+                                    hidden: isNaN(ds.data[i]),
+                                    lineCap: 'round'
+                                };
+                            });
+                        }
+                        return [];
                     }
                 }
             }
         }
-     
+    }
+});
 
-        });
 
         document.addEventListener("DOMContentLoaded", function() {
             const navbarToggle = document.getElementById("navbar-toggle");
