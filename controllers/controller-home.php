@@ -158,7 +158,6 @@ $lastfiveusers = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterpris
 $lastfivejourneys = Enterprise::getlastfivejourneys($_SESSION['enterprise']['enterprise_id']);
 $statstransports = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
 $rideDataForYear = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], 2024);
-var_dump($rideDataForYear);
 
 
 // Inclure la vue home uniquement si l'utilisateur est connecté
