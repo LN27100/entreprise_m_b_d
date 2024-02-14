@@ -398,15 +398,10 @@ body > main > div > div > div.col.s12.m8 > div > div > div > div > div > p {
 }
 
 .profile-image {
-  width: 150px;
-  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  max-width: 6rem;
-  max-height: 6rem;
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
+  width: 6rem;
+  height: 6rem;
   border: solid 2px #9499c9;
 }
 

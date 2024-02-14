@@ -173,7 +173,7 @@
                                                     <tbody>
                                                         <?php foreach ($lastfivejourneys as $trajet) : ?>
                                                             <tr>
-                                                                <td><?= $trajet['ride_date'] ?></td>
+                                                                <td><?= $trajet['date_fr'] ?></td>
                                                                 <td><?= $trajet['user_pseudo'] ?></td>
                                                                 <td><?= $trajet['transport_type'] ?></td>
                                                                 <td><?= $trajet['ride_distance'] ?> kms</td>
@@ -195,12 +195,16 @@
                         <div class="card-content cyan-text text-lighten-5">
                             <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
-                                <?php foreach ($lastfiveusers as $user) : ?>
-                                    <div class="user-profile">
-                                        <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" alt="User Photo">
-                                        <p><?= $user['user_pseudo'] ?></p>
-                                    </div>
-                                <?php endforeach; ?>
+                            <?php foreach ($lastfiveusers as $user) : ?>
+    <div class="user-profile">
+        <?php if (!empty($user['user_photo'])) : ?>
+            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
+        <?php else : ?>
+            <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
+        <?php endif; ?>
+        <p><?= $user['user_pseudo'] ?></p>
+    </div>
+<?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -261,6 +265,7 @@
                 }
             }
         }
+     
 
         });
 

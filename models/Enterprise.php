@@ -359,7 +359,7 @@ class Enterprise
         try {
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-            $sql = "SELECT ride.`ride_date`, ride.`ride_distance`, userprofil.`user_pseudo` , transport.`transport_type`
+            $sql = "SELECT DATE_FORMAT(ride.ride_date, '%d/%m/%Y') AS date_fr, ride.`ride_distance`, userprofil.`user_pseudo` , transport.`transport_type`
         FROM `ride`
         JOIN `userprofil`  ON ride.`user_id` = userprofil.`user_id`
         JOIN `transport` ON ride.`transport_id` = transport.`transport_id`
