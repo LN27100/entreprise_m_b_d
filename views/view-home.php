@@ -223,6 +223,18 @@
         // Définir la langue de Moment.js en français
         moment.locale('fr');
 
+        // Appeler la méthode pour récupérer les données de trajets pour l'année 2024
+        var rideDataForYear = <?php echo json_encode($rideDataForYear); ?>;
+
+        // Créer un tableau pour stocker les nombres de trajets par mois
+        var ridesByMonth = Array(12).fill(0);
+
+        // Calculer le nombre de trajets pour chaque mois
+        rideDataForYear.forEach(function(entry) {
+            // Les données de trajets devraient être associées au bon mois ici
+            ridesByMonth[entry.month - 1] = entry.total_rides;
+        });
+
         // Créer un tableau pour stocker les noms des mois en français
         var months = [];
 
@@ -231,46 +243,14 @@
             months.push(moment().month(i).format("MMMM"));
         }
 
-        // Appeler la méthode pour récupérer les données de trajets pour l'année 2024
-        var rideDataForYear = <?php echo json_encode($rideDataForYear); ?>;
-
-        // Tableau associatif pour mapper les numéros de mois aux noms des mois en français
-        var mois = {
-            1: "Janvier",
-            2: "Février",
-            3: "Mars",
-            4: "Avril",
-            5: "Mai",
-            6: "Juin",
-            7: "Juillet",
-            8: "Août",
-            9: "Septembre",
-            10: "Octobre",
-            11: "Novembre",
-            12: "Décembre"
-        };
-
-        // Traitement des données pour extraire les mois et le nombre de trajets
-        var labels = [];
-        var data = [];
-        rideDataForYear.forEach(function(entry) {
-            labels.push(mois[entry.month]);
-            data.push(entry.total_rides);
-        });
-
-        // Trier les mois dans l'ordre chronologique
-        labels.sort(function(a, b) {
-            return Object.keys(mois).indexOf(a) - Object.keys(mois).indexOf(b);
-        });
-
-        // Configuration du graphique avec les données traitées
+        // Configuration du graphique
         const config = {
             type: 'line',
             data: {
                 labels: months,
                 datasets: [{
                     label: 'Nombre de trajets par mois en 2024',
-                    data: data,
+                    data: ridesByMonth, // Utilisation des nombres de trajets par mois
                     fill: false,
                     borderColor: 'rgb(148, 0, 211)',
                     tension: 0.1
@@ -290,7 +270,6 @@
             // Création du graphique
             var lineChart = new Chart(document.getElementById('lineChart'), config);
         });
-
 
 
         // Récupérer les données PHP des stats transports dans une variable JavaScript
