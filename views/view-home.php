@@ -175,7 +175,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php foreach ($lastfivejourneys as $trajet) : ?>
+                                                        <?php foreach ($lastfivejourneysJson as $trajet) : ?>
                                                             <tr>
                                                                 <td><?= $trajet['date_fr'] ?></td>
                                                                 <td><?= $trajet['user_pseudo'] ?></td>
