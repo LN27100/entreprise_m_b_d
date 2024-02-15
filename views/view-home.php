@@ -160,59 +160,67 @@
                             </div>
 
                             <div class="col l12 m6 s12">
-                                <div class="card #78909c blue-grey lighten-1">
-                                    <div class="card-content cyan-text text-lighten-5">
-                                        <span class="card-title center-align">5 derniers trajets</span>
-                                        <div class="card-metric">
-                                            <div class="table-container">
-                                                <table class="highlight cyan-text text-lighten-5">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Date</th>
-                                                            <th>Pseudo</th>
-                                                            <th>Transport</th>
-                                                            <th>Kilomètres</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php foreach ($lastfivejourneys ['data'] as $trajet) : ?>
-                                                            <tr>
-                                                                <td><?= $trajet['date_fr'] ?></td>
-                                                                <td><?= $trajet['user_pseudo'] ?></td>
-                                                                <td><?= $trajet['transport_type'] ?></td>
-                                                                <td><?= $trajet['ride_distance'] ?> kms</td>
-                                                            </tr>
-                                                        <?php endforeach; ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card #78909c blue-grey lighten-1">
+        <div class="card-content cyan-text text-lighten-5">
+            <span class="card-title center-align">5 derniers trajets</span>
+            <div class="card-metric">
+                <div class="table-container">
+                    <table class="highlight cyan-text text-lighten-5">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Pseudo</th>
+                                <th>Transport</th>
+                                <th>Kilomètres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($lastfivejourneys['status']) && $lastfivejourneys['status'] === 'success') : ?>
+                                <?php foreach ($lastfivejourneys['last_five_journeys'] as $trajet) : ?>
+                                    <tr>
+                                        <td><?= isset($trajet['date_fr']) ? $trajet['date_fr'] : 'Date non disponible' ?></td>
+                                        <td><?= isset($trajet['user_pseudo']) ? $trajet['user_pseudo'] : 'Pseudo non disponible' ?></td>
+                                        <td><?= isset($trajet['transport_type']) ? $trajet['transport_type'] : 'Type de transport non disponible' ?></td>
+                                        <td><?= isset($trajet['ride_distance']) ? $trajet['ride_distance'] . ' kms' : 'Kilomètres non disponibles' ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="4">Aucun trajet trouvé.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                 <div class="col l4">
-                    <div class="card #78909c blue-grey lighten-1">
-                        <div class="card-content cyan-text text-lighten-5">
-                            <span class="card-title center-align">5 derniers utilisateurs</span>
-                            <div class="card-metric">
-                            <?php foreach ($lastfiveusers['data'] as $user) : ?>
-                                    <div class="user-profile">
-                                        <?php if (!empty($user['user_photo'])) : ?>
-                                            <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
-                                        <?php else : ?>
-                                            <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
-                                        <?php endif; ?>
-                                        <p><?= $user['user_pseudo'] ?></p>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+    <div class="card #78909c blue-grey lighten-1">
+        <div class="card-content cyan-text text-lighten-5">
+            <span class="card-title center-align">5 derniers utilisateurs</span>
+            <div class="card-metric">
+                <?php if (!empty($lastfiveusers['status']) && $lastfiveusers['status'] === 'success') : ?>
+                    <?php foreach ($lastfiveusers['last_five_users'] as $user) : ?>
+                        <div class="user-profile">
+                            <?php if (!empty($user['user_photo'])) : ?>
+                                <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
+                            <?php else : ?>
+                                <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
+                            <?php endif; ?>
+                            <p><?= isset($user['user_pseudo']) ? $user['user_pseudo'] : 'Utilisateur sans nom' ?></p>
                         </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p>Aucun utilisateur trouvé.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
 
             </div>
         </div>
