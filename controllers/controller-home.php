@@ -68,6 +68,7 @@ if (isset($_FILES['profile_image'])) {
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadFile)) {
             $_SESSION['enterprise']['enterprise_photo'] = $uploadFile;
             Enterprise::updateProfileImage($_SESSION['enterprise']['enterprise_id'], $uploadFile);
+
             header("Location: ../controllers/controller-home.php");
         } else {
             $uploadDir = '../assets/img/avatarDefault.jpg';
@@ -151,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
     }
 }
 
+
 $allUtilisateurs = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $actifUtilisateurs = Enterprise::getActifUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $allTrajets = Enterprise::getAllTrajets($_SESSION['enterprise']['enterprise_id']);
@@ -159,6 +161,27 @@ $lastfivejourneys = Enterprise::getlastfivejourneys($_SESSION['enterprise']['ent
 $statstransports = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
 $currentYear = date('Y');
 $rideDataForYear = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
+$allUtilisateursJson = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enterprise_id']);
+$allUtilisateurs = json_decode($allUtilisateursJson, true);
+
+// $actifUtilisateursJson = Enterprise::getActifUtilisateurs($_SESSION['enterprise']['enterprise_id']);
+// $actifUtilisateurs = json_decode($actifUtilisateursJson, true);
+
+// $allTrajetsJson = Enterprise::getAllTrajets($_SESSION['enterprise']['enterprise_id']);
+// $allTrajets = json_decode($allTrajetsJson, true);
+
+// $lastfiveusersJson = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterprise_id']);
+// $lastfiveusers = json_decode($lastfiveusersJson, true);
+
+// $lastfivejourneysJson = Enterprise::getlastfivejourneys($_SESSION['enterprise']['enterprise_id']);
+// $lastfivejourneys = json_decode($lastfivejourneysJson, true);
+
+// $statstransportsJson = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
+// $statstransports = json_decode($statstransportsJson, true);
+
+// $currentYear = date('Y');
+// $rideDataForYearJson = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
+// $rideDataForYear = json_decode($rideDataForYearJson, true);
 
 
 
