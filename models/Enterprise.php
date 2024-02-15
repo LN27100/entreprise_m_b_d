@@ -164,9 +164,16 @@ class Enterprise
     }
 
 
-    /**
-     * * Méthode pour modifier le profil entreprise
-     */
+   /**
+ * Méthode pour mettre à jour le profil de l'entreprise dans la base de données.
+ * 
+ * @param int $enterprise_id L'identifiant de l'entreprise à mettre à jour
+ * @param string $new_name Le nouveau nom de l'entreprise
+ * @param string $new_email Le nouveau email de l'entreprise
+ * @param string $new_adress La nouvelle adresse de l'entreprise
+ * @param string $new_zipcode Le nouveau code postal de l'entreprise
+ * @param string $new_city La nouvelle ville de l'entreprise
+ */
     public static function updateProfil(int $enterprise_id, string $new_name, string $new_email, string $new_adress, string $new_zipcode, string $new_city)
     {
         try {
@@ -229,6 +236,12 @@ class Enterprise
 
 
 
+    /**
+ * Méthode pour récupérer le nombre total d'utilisateurs enregistrés dans une entreprise spécifiée.
+ * 
+ * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les utilisateurs
+ * @return int Le nombre total d'utilisateurs
+ */
     public static function getAllUtilisateurs(int $entreprise_id): int
     {
         try {
@@ -259,6 +272,13 @@ class Enterprise
         }
     }
 
+
+    /**
+ * Méthode pour récupérer le nombre d'utilisateurs actifs dans une entreprise spécifiée.
+ * 
+ * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les utilisateurs
+ * @return int Le nombre d'utilisateurs actifs
+ */
     public static function getActifUtilisateurs(int $entreprise_id): int
     {
         try {
@@ -291,6 +311,13 @@ class Enterprise
         }
     }
 
+
+    /**
+ * Méthode pour récupérer le nombre total de trajets effectués par les utilisateurs d'une entreprise spécifiée.
+ * 
+ * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les trajets
+ * @return int Le nombre total de trajets effectués
+ */
     public static function getAllTrajets(int $entreprise_id): int
     {
         try {
@@ -323,6 +350,13 @@ class Enterprise
         }
     }
 
+
+    /**
+ * Méthode pour récupérer les informations des cinq derniers utilisateurs ajoutés à une entreprise spécifiée.
+ * 
+ * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les utilisateurs
+ * @return array Un tableau contenant les informations des utilisateurs (photo et pseudo)
+ */
     public static function getlastfiveusers(int $entreprise_id): array
     {
         try {
@@ -354,6 +388,13 @@ class Enterprise
         }
     }
 
+
+    /**
+ * Méthode pour récupérer les détails des cinq derniers trajets effectués par des utilisateurs de l'entreprise spécifiée.
+ * 
+ * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les trajets
+ * @return array Un tableau contenant les détails des trajets (date, distance, pseudo de l'utilisateur, type de transport)
+ */
     public static function getlastfivejourneys(int $entreprise_id): array
     {
         try {
