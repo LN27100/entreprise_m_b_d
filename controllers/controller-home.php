@@ -160,11 +160,7 @@ $statstransports = Enterprise::getTransportStats($_SESSION['enterprise']['enterp
 $currentYear = date('Y');
 $rideDataForYear = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
 
-// var_dump(Enterprise::newGetAllEntreprise());
 
-// $jsonData = Enterprise::newGetAllEntreprise();
-// // Afficher le JSON
-// echo $jsonData;
 
 // Inclure la vue home uniquement si l'utilisateur est connecté
 include_once '../views/view-home.php';
