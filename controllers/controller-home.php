@@ -108,21 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['save_modification']))
     }
 }
 
-// Supprimer le profil de l'entreprise
+// Supprimer le profil entreprise
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
     // Appelle la méthode pour supprimer le profil
-    $delete_result = Enterprise::deleteEnterprise($_SESSION['enterprise']['enterprise_id']);
-
-    if ($delete_result) {
-        // Supprime la session et redirige vers la page de connexion
-        session_unset();
-        session_destroy();
-        header("Location: ../controllers/controller-signin.php");
+    $delete_result = Enterprise::deleteEnterprise($enterprise_id);
+    if ($delete_result === true) {
+        // Suppression réussie, redirigez vers la page d'accueil avec un message de succès
+        header("Location: ../index.php?message=Redirection+reussie");
         exit();
     } else {
-        echo "Erreur lors de la suppression du profil.";
+        echo "Erreur lors de la suppression du profil : " . $delete_result;
+        exit();
     }
 }
+
+// Récupérer l'ID de l'entreprise à partir de la session
+$enterprise_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : 0;
+
 
 $allUtilisateursJson = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enterprise_id']);
 $allUtilisateurs = json_decode($allUtilisateursJson, true);
@@ -139,12 +141,9 @@ $allTrajets = json_decode($allTrajetsJson, true);
 $lastfiveusersJson = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterprise_id']);
 $lastfiveusers = json_decode($lastfiveusersJson, true);
 
-$statstransportsJson = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
-$statstransports = json_decode($statstransportsJson, true);
-
+$statstransports = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
 $currentYear = date('Y');
-$rideDataForYearJson = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
-$rideDataForYear = json_decode($rideDataForYearJson, true);
+$rideDataForYear = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
 
 // Inclure la vue pour afficher la page d'accueil
 include_once '../views/view-home.php';
