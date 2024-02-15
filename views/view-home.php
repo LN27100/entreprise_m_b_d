@@ -116,7 +116,7 @@
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Total des utilisateurs</span>
-                                        <p class="cyan-text text-lighten-5"><?= $allUtilisateurs ?> utilisateur(s)</p>
+                                        <p class="cyan-text text-lighten-5"><?= isset($allUtilisateurs['data']) ? count($allUtilisateurs['data']) : 0 ?> utilisateur(s)</p>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Utilisateurs actifs</span>
-                                        <p class="cyan-text text-lighten-5"><?= $actifUtilisateurs ?> utilisateur(s)</p>
+                                        <p class="cyan-text text-lighten-5"><?= isset($allUtilisateurs['data']) ? count($allUtilisateurs['data']) : 0 ?> utilisateur(s)</p>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                 <div class="card #78909c blue-grey lighten-1">
                                     <div class="card-content cyan-text text-lighten-5">
                                         <span class="card-title center-align">Total des trajets</span>
-                                        <p class="cyan-text text-lighten-5"><?= $allTrajets ?> trajet(s)</p>
+                                        <p class="cyan-text text-lighten-5"><?= isset($allTrajets['data']) ? count($allTrajets['data']) : 0 ?> trajet(s)</p>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php foreach ($lastfivejourneysJson as $trajet) : ?>
+                                                        <?php foreach ($lastfivejourneys ['data'] as $trajet) : ?>
                                                             <tr>
                                                                 <td><?= $trajet['date_fr'] ?></td>
                                                                 <td><?= $trajet['user_pseudo'] ?></td>
@@ -199,7 +199,7 @@
                         <div class="card-content cyan-text text-lighten-5">
                             <span class="card-title center-align">5 derniers utilisateurs</span>
                             <div class="card-metric">
-                                <?php foreach ($lastfiveusers as $user) : ?>
+                            <?php foreach ($lastfiveusers['data'] as $user) : ?>
                                     <div class="user-profile">
                                         <?php if (!empty($user['user_photo'])) : ?>
                                             <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">

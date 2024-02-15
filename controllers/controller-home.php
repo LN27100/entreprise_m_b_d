@@ -139,7 +139,6 @@ $allTrajets = json_decode($allTrajetsJson, true);
 $lastfiveusersJson = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterprise_id']);
 $lastfiveusers = json_decode($lastfiveusersJson, true);
 
-
 $statstransportsJson = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
 $statstransports = json_decode($statstransportsJson, true);
 
@@ -149,3 +148,4 @@ $rideDataForYear = json_decode($rideDataForYearJson, true);
 
 // Inclure la vue pour afficher la page d'accueil
 include_once '../views/view-home.php';
+?>
