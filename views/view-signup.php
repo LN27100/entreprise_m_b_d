@@ -256,7 +256,7 @@
                     <div class="text-center">
                     <p class="textBold blue-grey-text darken-3">Déjà inscrit?</p>
                         </div>
-                        <a href="../controllers/controller-signin.php" class="textBold green-text"">Connexion</a>
+                        <a href="../controllers/controller-signin.php" class="textBold green-text">Connexion</a>
 
                     </div>
                 </div>

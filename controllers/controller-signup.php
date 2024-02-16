@@ -33,18 +33,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["enterprise_siret"])) {
         $errors["enterprise_siret"] = "Champ obligatoire";
     } elseif (!is_numeric($_POST["enterprise_siret"])) {
-            $errors["enterprise_siret"] = "Le siret ne peut contenir que des chiffres";
-        } elseif (strlen($_POST["enterprise_siret"]) < 14) {
+        $errors["enterprise_siret"] = "Le siret ne peut contenir que des chiffres";
+    } elseif (strlen($_POST["enterprise_siret"]) < 14) {
         $errors["enterprise_siret"] = "Le siret doit contenir 14 chiffres";
-    } 
+    }
 
     // Contrôle de l'email
     if (empty($_POST["enterprise_email"])) {
         $errors["enterprise_email"] = "Champ obligatoire";
     } elseif (!filter_var($_POST["enterprise_email"], FILTER_VALIDATE_EMAIL)) {
         $errors["enterprise_email"] = "Le format de l'adresse email n'est pas valide";
-    } elseif (Enterprise::checkMailExists($_POST["enterprise_email"])) {
-        $errors["enterprise_email"] = 'mail déjà utilisé';
+    } else {
+        $response = Enterprise::checkMailExists($_POST["enterprise_email"]);
+        $responseData = json_decode($response, true);
+        if ($responseData['status'] === 'error') {
+            $errors["enterprise_email"] = $responseData['message'];
+        } elseif ($responseData['exists']) {
+            $errors["enterprise_email"] = 'Mail déjà utilisé';
+        }
     }
 
     // Contrôle de l'adresse
@@ -55,12 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Contrôle du code postal
     if (empty($_POST["enterprise_zipcode"])) {
         $errors["enterprise_zipcode"] = "Champ obligatoire";
-    } 
+    }
 
     // Contrôle de la ville
     if (empty($_POST["enterprise_city"])) {
         $errors["enterprise_city"] = "Champ obligatoire";
-    } 
+    }
 
     // Contrôle du mot de passe
     if (empty($_POST["enterprise_password"])) {
@@ -79,14 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["cgu"]) || $_POST["cgu"] !== "on") {
         $errors["cgu"] = "Veuillez accepter les conditions générales d'utilisation pour continuer.";
     }
-         
+
 
     // On s'assure qu'il n'y a pas d'erreur dans le formuaire
     if (empty($errors)) {
 
         Enterprise::create($nom, $email, $siret, $mot_de_passe, $adresse, $code_postal, $ville);
         $showform = false;
-
     }
 
     // Donne toutes les propriétés du serveur
