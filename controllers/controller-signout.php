@@ -1,6 +1,6 @@
 <?php
 require_once '../config.php';
-require_once __DIR__ . '/../models/Enterprise.php';
+require_once __DIR__ . '/../models/Enterprisejson.php';
 
 session_start();
 

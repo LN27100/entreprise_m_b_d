@@ -2,7 +2,7 @@
 
 //lier le fichier config
 require_once '../config.php';
-require_once '../models/Enterprise.php';
+require_once '../models/Enterprisejson.php';
 
 
 // permet d'afficher le formulaire

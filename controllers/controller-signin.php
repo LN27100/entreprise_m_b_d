@@ -1,6 +1,6 @@
 <?php
 require_once '../config.php';
-require_once '../models/Enterprise.php';
+require_once '../models/Enterprisejson.php';
 
 
         // empêche l'accès à la page home si l'utilisateur n'est pas connecté et vérifie si la session n'est pas déjà active
@@ -46,33 +46,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } 
             }
 
-    // Si aucune erreur, procédez à la vérification de l'utilisateur
-    if (empty($errors)) {
-        // Vérifiez si l'email existe dans la base de données
-        if (!Enterprise::checkMailExists($email)) {
-            $errors['enterprise_email'] = 'Utilisateur Inconnu';
-        } else {
-            // Récupérez les informations de l'utilisateur
-            $entrepriseInfos = Enterprise::getInfos($email);
+   // Récupérez les informations de l'utilisateur
+$entrepriseInfos = json_decode(Enterprise::getInfos($email), true);
 
-            // Comparaison du mot de passe
-            if (password_verify($_POST["enterprise_password"], $entrepriseInfos['enterprise_password'])) {
-                // Mot de passe correct
+// Vérifiez si les informations ont été correctement récupérées
+if ($entrepriseInfos['status'] === 'success') {
+    // Comparaison du mot de passe
+    if (password_verify($_POST["enterprise_password"], $entrepriseInfos['data']['enterprise_password'])) {
+        // Mot de passe correct
 
-                // Stockez les infos dans la variable de session
-                $_SESSION['enterprise'] = $entrepriseInfos;
+        // Stockez les infos dans la variable de session
+        $_SESSION['enterprise'] = $entrepriseInfos['data'];
 
-                // Redirigez vers la page d'accueil
-                header("Location: ../controllers/controller-home.php");
-                exit();
-            } else {
-                $errors['enterprise_password'] = 'Mauvais mot de passe';
-            }
-        }
+        // Redirigez vers la page d'accueil
+        header("Location: ../controllers/controller-home.php");
+        exit();
+    } else {
+        $errors['enterprise_password'] = 'Mauvais mot de passe';
     }
+} else {
+    // Gestion des erreurs
+    $errors['enterprise_email'] = 'Erreur lors de la récupération des informations de l\'utilisateur';
 }
-
-
+}
 // Inclure la vue du formulaire de connexion
 include_once '../views/view-signin.php';
 
