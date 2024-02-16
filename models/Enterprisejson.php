@@ -472,6 +472,8 @@ class Enterprise
             die();
         }
     }
+
+    
     /**
      * Méthode pour récupérer les données de trajets pour une entreprise donnée et une année spécifique
      * @param int $enterprise_id L'identifiant de l'entreprise pour laquelle récupérer les données de trajets
