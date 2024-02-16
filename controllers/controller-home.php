@@ -1,52 +1,43 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 require_once '../config.php';
 require_once '../models/Enterprisejson.php';
 
+// Vérification de la session d'entreprise
 if (!isset($_SESSION['enterprise'])) {
-    // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
     header("Location: ../controllers/controller-signin.php");
     exit();
 }
 
-// Récupère le nom de l'entreprise
-$nom = isset($_SESSION['enterprise']['enterprise_name']) ? $_SESSION['enterprise']['enterprise_name'] : "Nom d'entreprise non défini";
+// Récupération des données de l'entreprise depuis la session
+$enterprise = $_SESSION['enterprise'];
 
-// Récupère l'image de profil de l'entreprise
-$img = isset($_SESSION['enterprise']['enterprise_photo']) && !empty($_SESSION['enterprise']['enterprise_photo']) ? $_SESSION['enterprise']['enterprise_photo'] : "../assets/img/avatarDefault.jpg";
-
-// Récupère les informations de l'entreprise
-$siret = isset($_SESSION['enterprise']['enterprise_siret']) ? $_SESSION['enterprise']['enterprise_siret'] : "Siret non défini";
-$email = isset($_SESSION['enterprise']['enterprise_email']) ? $_SESSION['enterprise']['enterprise_email'] : "Email non défini";
-$adresse = isset($_SESSION['enterprise']['enterprise_adress']) ? $_SESSION['enterprise']['enterprise_adress'] : "Adresse non définie";
-$code_postal = isset($_SESSION['enterprise']['enterprise_zipcode']) ? $_SESSION['enterprise']['enterprise_zipcode'] : "Code postal non défini";
-$ville = isset($_SESSION['enterprise']['enterprise_city']) ? $_SESSION['enterprise']['enterprise_city'] : "Ville non définie";
+// Définition des valeurs par défaut si les données ne sont pas définies
+$nom = $enterprise['enterprise_name'] ?? "Nom d'entreprise non défini";
+$img = $enterprise['enterprise_photo'] ?? "../assets/img/avatarDefault.jpg";
+$siret = $enterprise['enterprise_siret'] ?? "Siret non défini";
+$email = $enterprise['enterprise_email'] ?? "Email non défini";
+$adresse = $enterprise['enterprise_adress'] ?? "Adresse non définie";
+$code_postal = $enterprise['enterprise_zipcode'] ?? "Code postal non défini";
+$ville = $enterprise['enterprise_city'] ?? "Ville non définie";
 
 // Gestion du formulaire de mise à jour de l'image de profil
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES['profile_image'])) {
     try {
-        // Dossier de sauvegarde des images
         $uploadDir = '../assets/uploads/';
 
-        // Vérification du dossier de sauvegarde des images
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
         $file_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-        // Construire un nom de fichier unique en combinant "profile_", l'ID de l'entreprise et l'extension du fichier
-        $new_file_name = "profile_" . $_SESSION['enterprise']['enterprise_id'] . "." . $file_extension;
-
-        // Construire le chemin complet du fichier en concaténant le dossier de sauvegarde avec le nouveau nom de fichier
+        $new_file_name = "profile_" . $enterprise['enterprise_id'] . "." . $file_extension;
         $uploadFile = $uploadDir . $new_file_name;
 
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadFile)) {
-            $_SESSION['enterprise']['enterprise_photo'] = $uploadFile;
-            Enterprise::updateProfileImage($_SESSION['enterprise']['enterprise_id'], $uploadFile);
-
+            $enterprise['enterprise_photo'] = $uploadFile;
+            Enterprise::updateProfileImage($enterprise['enterprise_id'], $uploadFile);
             header("Location: ../controllers/controller-home.php");
             exit();
         } else {
@@ -59,12 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES['profile_image'])) {
 
 // Gestion du formulaire de mise à jour des informations de l'entreprise
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['save_modification'])) {
-    $enterprise_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : 0;
-    $new_name = isset($_POST['enterprise_name']) ? $_POST['enterprise_name'] : "";
-    $new_email = isset($_POST['enterprise_email']) ? $_POST['enterprise_email'] : "";
-    $new_adress = isset($_POST['enterprise_adress']) ? $_POST['enterprise_adress'] : "";
-    $new_zipcode = isset($_POST['enterprise_zipcode']) ? $_POST['enterprise_zipcode'] : "";
-    $new_city = isset($_POST['enterprise_city']) ? $_POST['enterprise_city'] : "";
+    $enterprise_id = $enterprise['enterprise_id'];
+    $new_name = $_POST['enterprise_name'] ?? "";
+    $new_email = $_POST['enterprise_email'] ?? "";
+    $new_adress = $_POST['enterprise_adress'] ?? "";
+    $new_zipcode = $_POST['enterprise_zipcode'] ?? "";
+    $new_city = $_POST['enterprise_city'] ?? "";
 
     // Validation des données du formulaire
     $errors = array();
@@ -95,11 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['save_modification']))
     if (empty($errors)) {
         try {
             Enterprise::updateProfil($enterprise_id, $new_name, $new_email, $new_adress, $new_zipcode, $new_city);
-            $_SESSION['enterprise']['enterprise_name'] = $new_name;
-            $_SESSION['enterprise']['enterprise_email'] = $new_email;
-            $_SESSION['enterprise']['enterprise_adress'] = $new_adress;
-            $_SESSION['enterprise']['enterprise_zipcode'] = $new_zipcode;
-            $_SESSION['enterprise']['enterprise_city'] = $new_city;
+            $enterprise['enterprise_name'] = $new_name;
+            $enterprise['enterprise_email'] = $new_email;
+            $enterprise['enterprise_adress'] = $new_adress;
+            $enterprise['enterprise_zipcode'] = $new_zipcode;
+            $enterprise['enterprise_city'] = $new_city;
+            $_SESSION['enterprise'] = $enterprise;
         } catch (PDOException $e) {
             echo "Erreur lors de la mise à jour du profil : " . $e->getMessage();
         }
@@ -110,10 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['save_modification']))
 
 // Supprimer le profil entreprise
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
-    // Appelle la méthode pour supprimer le profil
     $delete_result = Enterprise::deleteEnterprise($enterprise_id);
     if ($delete_result === true) {
-        // Suppression réussie, redirigez vers la page d'accueil avec un message de succès
         header("Location: ../index.php?message=Redirection+reussie");
         exit();
     } else {
@@ -123,27 +113,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
 }
 
 // Récupérer l'ID de l'entreprise à partir de la session
-$enterprise_id = isset($_SESSION['enterprise']['enterprise_id']) ? $_SESSION['enterprise']['enterprise_id'] : 0;
+$enterprise_id = $enterprise['enterprise_id'];
 
+$allUser = json_decode(Enterprise::getAllUtilisateurs($enterprise_id), true);
+$lastfivejourneys = json_decode(Enterprise::getlastfivejourneys($enterprise_id), true);
+$actifUsers = json_decode(Enterprise::getActifUtilisateurs($enterprise_id), true);
+$allRide = json_decode(Enterprise::getAllTrajets($enterprise_id), true);
+$lastfiveusers = json_decode(Enterprise::getlastfiveusers($enterprise_id), true);
 
-$allUtilisateursJson = Enterprise::getAllUtilisateurs($_SESSION['enterprise']['enterprise_id']);
-$allUtilisateurs = json_decode($allUtilisateursJson, true);
-
-$lastfivejourneysJson = Enterprise::getlastfivejourneys($_SESSION['enterprise']['enterprise_id']);
-$lastfivejourneys = json_decode($lastfivejourneysJson, true);
-
-$actifUtilisateursJson = Enterprise::getActifUtilisateurs($_SESSION['enterprise']['enterprise_id']);
-$actifUtilisateurs = json_decode($actifUtilisateursJson, true);
-
-$allTrajetsJson = Enterprise::getAllTrajets($_SESSION['enterprise']['enterprise_id']);
-$allTrajets = json_decode($allTrajetsJson, true);
-
-$lastfiveusersJson = Enterprise::getlastfiveusers($_SESSION['enterprise']['enterprise_id']);
-$lastfiveusers = json_decode($lastfiveusersJson, true);
-
-$statstransports = Enterprise::getTransportStats($_SESSION['enterprise']['enterprise_id']);
+$statstransports = Enterprise::getTransportStats($enterprise_id);
 $currentYear = date('Y');
-$rideDataForYear = Enterprise::getRideDataForYear($_SESSION['enterprise']['enterprise_id'], $currentYear);
+$rideDataForYear = Enterprise::getRideDataForYear($enterprise_id, $currentYear);
+
+// Récupérer le nombre total d'utilisateurs
+$allUsers = $allUser['total_utilisateurs'] ?? 0;
+
+// Récupérer le nombre d'utilisateurs actifs
+$allActifsUsers = $actifUsers['data']['total_active_users'] ?? 0;
+
+// Récupérer le nombre total de trajets
+$allRides = $allRide['data']['total_trajets'] ?? 0;
+
 
 // Inclure la vue pour afficher la page d'accueil
 include_once '../views/view-home.php';

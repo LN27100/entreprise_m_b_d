@@ -213,41 +213,40 @@ class Enterprise
  * @param int $entreprise_id L'identifiant de l'entreprise
  * @return string JSON contenant le nombre total d'utilisateurs
  */
-     public static function getAllUtilisateurs(int $entreprise_id): string
-     {
-         try {
-             // Connexion à la base de données
-             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
-     
-             // Requête SQL pour compter le nombre d'utilisateurs
-             $sql = "SELECT count(`user_pseudo`) as 'Total utilisateurs'  FROM `userprofil` where `enterprise_id` = :id_entreprise;";
-     
-             // Préparation de la requête
-             $query = $db->prepare($sql);
-     
-             // Liaison des valeurs des paramètres
-             $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
-     
-             // Exécution de la requête
-             $query->execute();
-     
-             // Récupération du résultat
-             $result = $query->fetch(PDO::FETCH_ASSOC);
-     
-             // Retourne un JSON avec le statut succès et les données récupérées
-             return json_encode([
-                 'status' => 'success',
-                 'total_users' => $result['Total utilisateurs']
-             ]);
-         } catch (PDOException $e) {
-             // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
-             return json_encode([
-                 'status' => 'error',
-                 'message' => 'Erreur : ' . $e->getMessage()
-             ]);
-         }
-     }
+public static function getAllUtilisateurs(int $entreprise_id): string
+{
+    try {
+        // Connexion à la base de données
+        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
+        // Requête SQL pour compter le nombre d'utilisateurs
+        $sql = "SELECT COUNT(*) AS total_utilisateurs FROM `userprofil` WHERE `enterprise_id` = :entreprise_id";
+
+        // Préparation de la requête
+        $query = $db->prepare($sql);
+
+        // Liaison des valeurs des paramètres
+        $query->bindValue(':entreprise_id', $entreprise_id, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        $query->execute();
+
+        // Récupération du résultat
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Retourne un JSON avec le statut succès et le nombre total d'utilisateurs
+        return json_encode([
+            'status' => 'success',
+            'total_utilisateurs' => $result['total_utilisateurs']
+        ]);
+    } catch (PDOException $e) {
+        // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
+        return json_encode([
+            'status' => 'error',
+            'message' => 'Erreur : ' . $e->getMessage()
+        ]);
+    }
+}
 
      /**
  * Méthode pour récupérer le nombre d'utilisateurs actifs d'une entreprise
@@ -255,14 +254,14 @@ class Enterprise
  * @param int $entreprise_id L'identifiant de l'entreprise
  * @return string JSON contenant le nombre d'utilisateurs actifs
  */
-    public static function getActifUtilisateurs(int $entreprise_id): string
+public static function getActifUtilisateurs(int $entreprise_id): string
 {
     try {
         // Connexion à la base de données
         $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
         // Requête SQL pour compter le nombre d'utilisateurs actifs
-        $sql = "SELECT DISTINCT userprofil.*
+        $sql = "SELECT COUNT(DISTINCT userprofil.user_id) AS total_active_users
                 FROM `userprofil`
                 JOIN `ride` ON userprofil.`user_id` = ride.`user_id`
                 WHERE userprofil.`enterprise_id` = :id_entreprise;";
@@ -277,12 +276,12 @@ class Enterprise
         $query->execute();
 
         // Récupération du nombre d'utilisateurs actifs
-        $count = $query->rowCount();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
 
         // Retourne un JSON avec le statut succès et le nombre d'utilisateurs actifs
         return json_encode([
             'status' => 'success',
-            'active_users' => $count
+            'data' => $result
         ]);
     } catch (PDOException $e) {
         // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
@@ -292,6 +291,7 @@ class Enterprise
         ]);
     }
 }
+
 
 
 
@@ -302,42 +302,39 @@ class Enterprise
  * @return string JSON contenant le nombre total de trajets
  */
 public static function getAllTrajets(int $entreprise_id): string
-{
-    try {
-        // Connexion à la base de données
-        $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
-
-        // Requête SQL pour compter le nombre total de trajets
-        $sql = "SELECT count('ride_id') AS 'Total des trajets' FROM `ride` 
-                JOIN `userprofil` ON ride.`user_id` = userprofil.`user_id`
-                WHERE `enterprise_id` = :id_entreprise;";
-
-        // Préparation de la requête
-        $query = $db->prepare($sql);
-
-        // Liaison des valeurs des paramètres
-        $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
-
-        // Exécution de la requête
-        $query->execute();
-
-        // Récupération du résultat
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-
-        // Retourne un JSON avec le statut succès et le nombre total de trajets
-        return json_encode([
-            'status' => 'success',
-            'total_trips' => $result['Total des trajets']
-        ]);
-    } catch (PDOException $e) {
-        // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
-        return json_encode([
-            'status' => 'error',
-            'message' => 'Erreur : ' . $e->getMessage()
-        ]);
+    {
+        try {
+            // Connexion à la base de données
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+    
+            // Requête SQL pour compter le nombre total de trajets
+            $sql = "SELECT COUNT(*) AS total_trajets FROM `ride` WHERE `enterprise_id` = :entreprise_id";
+    
+            // Préparation de la requête
+            $query = $db->prepare($sql);
+    
+            // Liaison des valeurs des paramètres
+            $query->bindValue(':entreprise_id', $entreprise_id, PDO::PARAM_INT);
+    
+            // Exécution de la requête
+            $query->execute();
+    
+            // Récupération du résultat
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+    
+            // Retourne un JSON avec le statut succès et le nombre total de trajets
+            return json_encode([
+                'status' => 'success',
+                'total_trajets' => $result['total_trajets']
+            ]);
+        } catch (PDOException $e) {
+            // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
+            return json_encode([
+                'status' => 'error',
+                'message' => 'Erreur : ' . $e->getMessage()
+            ]);
+        }
     }
-}
-
 
 
 /**
