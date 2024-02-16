@@ -130,7 +130,7 @@ $allUsers = $allUser['total_utilisateurs'] ?? 0;
 
 // Récupérer le nombre d'utilisateurs actifs
 $allActifsUsers = $actifUsers['data']['total_active_users'] ?? 0;
-var_dump($allRide);
+
 // Récupérer le nombre total de trajets
 $allRides = $allRide ['total_trajets'] ?? 0;
 

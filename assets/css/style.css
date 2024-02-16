@@ -260,12 +260,23 @@ background-color: #1a237e;
 
 /*  PAGE ACCUEIL */
 
-/* Assure que la barre latérale est toujours affichée et empêche au framework Materialize de la cacher */
-/* .sidenav {
-  display: block !important; 
-  transform: none !important;
-  transition: none !important;
-} */
+.row .col.m4 {
+  width: 33.3333333333%;
+  margin-top: 7.1rem;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+.dashboard-container {
+  margin-top: 37rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; 
+  max-width: 1200px; 
+}
 
 .row {
   margin-left: 0;
