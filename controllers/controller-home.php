@@ -92,13 +92,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['save_modification']))
             $enterprise['enterprise_zipcode'] = $new_zipcode;
             $enterprise['enterprise_city'] = $new_city;
             $_SESSION['enterprise'] = $enterprise;
+            header("Location: ../controllers/controller-home.php");
+            exit();
         } catch (PDOException $e) {
             echo "Erreur lors de la mise à jour du profil : " . $e->getMessage();
         }
-        header("Location: ../controllers/controller-home.php");
-        exit();
     }
 }
+
+// Récupérer l'ID de l'entreprise à partir de la session
+$enterprise_id = $enterprise['enterprise_id'];
 
 // Supprimer le profil entreprise
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
@@ -111,9 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_profile'])) {
         exit();
     }
 }
-
-// Récupérer l'ID de l'entreprise à partir de la session
-$enterprise_id = $enterprise['enterprise_id'];
 
 $allUser = json_decode(Enterprise::getAllUtilisateurs($enterprise_id), true);
 $lastfivejourneys = json_decode(Enterprise::getlastfivejourneys($enterprise_id), true);
