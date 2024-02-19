@@ -106,36 +106,54 @@
                         <div class="col s12 push-s2">
                             <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
                         </div>
-                    
 
-                <div class="col s12 m4">
-                    <div class="card #78909c blue-grey lighten-1">
-                        <div class="card-content cyan-text text-lighten-5">
-                            <span class="card-title center-align">Tous les utilisateurs</span>
-                            <div class="card-metric">
-                                <?php if (!empty($allPersonns['status']) && $allPersonns['status'] === 'success') : ?>
-                                    <?php foreach ($allPersonns['all_users'] as $user) : ?>
-                                        <div class="user-profile">
-                                            <p><?= isset($user['user_pseudo']) ? $user['user_pseudo'] : 'Utilisateur sans nom' ?></p>
-                                            <p><?= isset($user['user_email']) ? $user['user_email'] : 'Utilisateur sans mail' ?></p>
 
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php else : ?>
-                                    <p>Aucun utilisateur trouvé.</p>
-                                <?php endif; ?>
+                        <div class="col s12">
+                            <div class="card #78909c blue-grey lighten-1">
+                                <div class="card-content cyan-text text-lighten-5">
+                                    <span class="card-title center-align">Tous les utilisateurs</span>
+                                    <div class="card-metric">
+                                        <?php if (!empty($allPersonns['status']) && $allPersonns['status'] === 'success') : ?>
+                                            <?php foreach ($allPersonns['all_users'] as $user) : ?>
+                                                <div class="user-profile">
+                                                    <?php if (!empty($user['user_photo'])) : ?>
+                                                        <img src="http://metro_boulot_dodo.test/assets/uploads/<?= $user['user_photo'] ?>" class="profile-image" alt="User Photo">
+                                                    <?php else : ?>
+                                                        <img src="../assets/img/avatarDefault.jpg" class="profile-image" alt="Default Avatar">
+                                                    <?php endif; ?>
+                                                    <p><?= isset($user['user_pseudo']) ? $user['user_pseudo'] : 'Utilisateur sans nom' ?> /
+                                                        <?= isset($user['user_email']) ? $user['user_email'] : 'Utilisateur sans mail' ?></p>
+
+                                                    <!-- Switch -->
+                                                    <div class="switch">
+                                                        <label>
+                                                            Off
+                                                            <input type="checkbox">
+                                                            <span class="lever"></span>
+                                                            On
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <p>Aucun utilisateur trouvé.</p>
+                                        <?php endif; ?>
+
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-    
         document.addEventListener("DOMContentLoaded", function() {
             const navbarToggle = document.getElementById("navbar-toggle");
             const navbarNav = document.getElementById("navbar-nav");

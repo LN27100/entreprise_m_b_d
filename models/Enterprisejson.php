@@ -513,10 +513,10 @@ class Enterprise
     }
 
      /**
-     * Méthode pour récupérer les cinq derniers utilisateurs d'une entreprise
+     * Méthode pour récupérer tous les utilisateurs d'une entreprise
      * 
      * @param int $entreprise_id L'identifiant de l'entreprise
-     * @return string JSON contenant les cinq derniers utilisateurs
+     * @return string JSON contenant tous les utilisateurs
      */
     public static function getAllusers(int $entreprise_id): string
     {
@@ -524,8 +524,8 @@ class Enterprise
             // Connexion à la base de données
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
-            // Requête SQL pour récupérer les cinq derniers utilisateurs
-            $sql = "SELECT `user_pseudo`, `user_email` FROM `userprofil` 
+            // Requête SQL pour récupérer tous les utilisateurs
+            $sql = "SELECT `user_photo`, `user_pseudo`, `user_email` FROM `userprofil` 
                 WHERE `enterprise_id` = :id_entreprise
                 ORDER BY `user_id`";
 
