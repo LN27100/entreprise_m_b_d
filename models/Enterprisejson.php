@@ -91,6 +91,7 @@ class Enterprise
         }
     }
 
+    
     /**
      * Méthode pour récupérer les informations d'une entreprise basées sur son adresse email
      * 
@@ -155,6 +156,8 @@ class Enterprise
             die();
         }
     }
+
+
     /**
      * * Méthode pour modifier le profil entreprise
      */
@@ -183,6 +186,8 @@ class Enterprise
             throw new Exception('Une erreur s\'est produite lors de la mise à jour du profil.');
         }
     }
+
+
     /**
      * Méthode pour supprimer le profil entreprise
      * @param int $entreprise_id est l'id de l'entreprise
@@ -206,6 +211,7 @@ class Enterprise
             return 'Erreur : ' . $e->getMessage();
         }
     }
+
 
     /**
      * Méthode pour récupérer le nombre total d'utilisateurs d'une entreprise
@@ -434,12 +440,7 @@ class Enterprise
 
 
 
-    /**
-     * Méthode pour récupérer les statistiques des moyens de transport pour une entreprise donnée
-     * 
-     * @param int $entreprise_id L'identifiant de l'entreprise
-     * @return string JSON contenant les statistiques des moyens de transport
-     */
+    
     /**
      * Méthode pour récupérer les statistiques des moyens de transport pour une entreprise donnée
      * @param int $entreprise_id L'identifiant de l'entreprise pour laquelle récupérer les statistiques
@@ -508,6 +509,49 @@ class Enterprise
         } catch (PDOException $e) {
             echo "Erreur lors de la récupération des données de trajets pour l'année spécifique : " . $e->getMessage();
             return array();
+        }
+    }
+
+     /**
+     * Méthode pour récupérer les cinq derniers utilisateurs d'une entreprise
+     * 
+     * @param int $entreprise_id L'identifiant de l'entreprise
+     * @return string JSON contenant les cinq derniers utilisateurs
+     */
+    public static function getAllusers(int $entreprise_id): string
+    {
+        try {
+            // Connexion à la base de données
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // Requête SQL pour récupérer les cinq derniers utilisateurs
+            $sql = "SELECT `user_pseudo`, `user_email` FROM `userprofil` 
+                WHERE `enterprise_id` = :id_entreprise
+                ORDER BY `user_id`";
+
+            // Préparation de la requête
+            $query = $db->prepare($sql);
+
+            // Liaison des valeurs des paramètres
+            $query->bindValue(':id_entreprise', $entreprise_id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            $query->execute();
+
+            // Récupération du résultat
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourne le résultat encodé en JSON
+            return json_encode([
+                'status' => 'success',
+                'all_users' => $result
+            ]);
+        } catch (PDOException $e) {
+            // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
+            return json_encode([
+                'status' => 'error',
+                'message' => 'Erreur : ' . $e->getMessage()
+            ]);
         }
     }
 }

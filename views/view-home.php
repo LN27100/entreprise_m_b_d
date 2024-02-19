@@ -25,6 +25,8 @@
             <div class="nav-wrapper">
                 <a href="../controllers/controller-signout.php" class="right buttonHome2 hoverable">Déconnexion</a>
                 <a href="../controllers/controller-home.php" class="logo-container indigo-text"><?= $nom ?></a>
+                <a href="../controllers/controller-allUsers.php" class="right buttonHome2 hoverable">Utilisateurs</a>
+
             </div>
         </nav>
         <ul id="sidenav-left" class="sidenav sidenav-fixed #e0f7fa cyan lighten-5">
