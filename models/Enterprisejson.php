@@ -440,6 +440,7 @@ class Enterprise
 
 
 
+
     
     /**
      * Méthode pour récupérer les statistiques des moyens de transport pour une entreprise donnée
@@ -554,4 +555,86 @@ class Enterprise
             ]);
         }
     }
+
+
+     /**
+     * Méthode pour modifier le status des utilisateurs en validé
+     * 
+     * @param int $entreprise_id L'identifiant de l'entreprise
+     * @return string JSON contenant les status des utilisateurs validés
+     */
+    public static function getvalidateUser(int $entreprise_id): string
+    {
+        try {
+            // Connexion à la base de données
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // Requête SQL pour récupérer le statut
+            $sql = "UPDATE userprofil SET user_validate = '1' WHERE user_id = :user_id
+            AND enterprise_id = :enterprise_id";
+
+            // Préparation de la requête
+            $query = $db->prepare($sql);
+            $query->bindValue(':enteriprse_id', $entreprise_id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            $query->execute();
+
+            // Récupération du résultat
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourne un JSON avec le statut succès et les utilisateurs validés
+            return json_encode([
+                'status' => 'success',
+                'user_validation' => $result
+            ]);
+        } catch (PDOException $e) {
+            // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
+            return json_encode([
+                'status' => 'error',
+                'message' => 'Erreur : ' . $e->getMessage()
+            ]);
+        }
+    }
+
+     /**
+     * Méthode pour modifier le status des utilisateurs en suspendu
+     * 
+     * @param int $entreprise_id L'identifiant de l'entreprise
+     * @return string JSON contenant les status des utilisateurs suspendus
+     */
+    public static function getinvalidateUser(int $entreprise_id): string
+    {
+        try {
+            // Connexion à la base de données
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // Requête SQL pour récupérer le statut
+            $sql = "UPDATE userprofil SET user_validate = '0' WHERE user_id = :user_id
+            AND enterprise_id = :enterprise_id";
+
+            // Préparation de la requête
+            $query = $db->prepare($sql);
+            $query->bindValue(':enteriprse_id', $entreprise_id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            $query->execute();
+
+            // Récupération du résultat
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourne un JSON avec le statut succès et les utilisateurs validés
+            return json_encode([
+                'status' => 'success',
+                'user_invalidated' => $result
+            ]);
+        } catch (PDOException $e) {
+            // En cas d'erreur PDO, retourne un JSON avec le statut erreur et le message d'erreur
+            return json_encode([
+                'status' => 'error',
+                'message' => 'Erreur : ' . $e->getMessage()
+            ]);
+        }
+    }
+
 }

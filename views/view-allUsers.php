@@ -111,8 +111,8 @@
                         <div class="col s12">
                             <div class="card #78909c blue-grey lighten-1">
                                 <div class="card-content cyan-text text-lighten-5">
-                                    <span class="card-title center-align">Tous les utilisateurs</span>
-                                    <div class="card-metric">
+                                    <span class="Allusers card-title center-align">Tous les utilisateurs</span>
+                                    <div class="card-metric  ">
                                         <?php if (!empty($allPersonns['status']) && $allPersonns['status'] === 'success') : ?>
                                             <?php foreach ($allPersonns['all_users'] as $user) : ?>
                                                 <div class="user-profile">
@@ -126,12 +126,12 @@
 
                                                     <!-- Switch -->
                                                     <div class="switch">
-                                                        <label>
-                                                            Off
-                                                            <input type="checkbox">
-                                                            <span class="lever"></span>
-                                                            On
-                                                        </label>
+                                                            <label class="switches">
+                                                                Suspendre
+                                                                <input type="checkbox">
+                                                                <span class="lever"></span>
+                                                                Valider
+                                                            </label>
                                                     </div>
 
                                                 </div>
