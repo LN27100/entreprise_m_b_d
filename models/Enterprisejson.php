@@ -563,7 +563,7 @@ class Enterprise
      * @param int $entreprise_id L'identifiant de l'entreprise
      * @return string JSON contenant les status des utilisateurs validés
      */
-    public static function getvalidateUser(int $entreprise_id): string
+    public static function getvalidateUser(int $user_id): string
     {
         try {
             // Connexion à la base de données
@@ -575,7 +575,7 @@ class Enterprise
 
             // Préparation de la requête
             $query = $db->prepare($sql);
-            $query->bindValue(':enteriprse_id', $entreprise_id, PDO::PARAM_INT);
+            $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
             // Exécution de la requête
             $query->execute();
@@ -603,7 +603,7 @@ class Enterprise
      * @param int $entreprise_id L'identifiant de l'entreprise
      * @return string JSON contenant les status des utilisateurs suspendus
      */
-    public static function getinvalidateUser(int $entreprise_id): string
+    public static function getinvalidateUser(int $user_id): string
     {
         try {
             // Connexion à la base de données
@@ -615,7 +615,7 @@ class Enterprise
 
             // Préparation de la requête
             $query = $db->prepare($sql);
-            $query->bindValue(':enteriprse_id', $entreprise_id, PDO::PARAM_INT);
+            $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
             // Exécution de la requête
             $query->execute();
