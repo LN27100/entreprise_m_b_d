@@ -483,10 +483,25 @@ body > main > div > div > div.col.s12.m8 > div > div > div > div > div > p {
 }
 
 
+
 /* PAGE ALL USERS */
+
+body > main > div {
+  padding-left: 25rem;
+}
+
+.card {
+  width: 45rem;
+}
+
+
 
 .Allusers {
   font-size: 2rem !important;
+}
+
+.switch {
+margin-left: auto;
 }
 
 .switches {
