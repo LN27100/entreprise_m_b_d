@@ -334,8 +334,10 @@ body>main>div>div>div.col.l4>div {
   height: 2rem;
   align-items: center;
   padding: 1.2rem 1.2rem;
+  font-family: 'Exo', sans-serif;
   text-align: center;
 }
+
 .buttonHome2:hover {
   background-color: #9499c9;
 }
@@ -487,13 +489,32 @@ body > main > div > div > div.col.s12.m8 > div > div > div > div > div > p {
 /* PAGE ALL USERS */
 
 body > main > div {
-  padding-left: 25rem;
+  text-align: center;
 }
 
-.card {
-  width: 45rem;
+.buttonallUser {
+  background-color: #1a237e;
+  display: flex;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  width: 8rem;
+  height: 2rem;
+  align-items: center;
+  padding: 1.2rem 1.2rem 1.2rem 2.4rem;
+  font-family: 'Exo', sans-serif;
+  text-align: center;
 }
 
+.buttonallUser:hover {
+  background-color: #9499c9;
+}
+
+
+body > main > div > div > div > div > div:nth-child(1) > h2 {
+  font-family: 'Marhey', sans-serif;
+  font-size: 3rem !important;
+}
 
 
 .Allusers {

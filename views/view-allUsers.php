@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+
 </head>
 
 <body class="has-fixed-sidenav #01579b light-blue darken-4">
@@ -25,7 +26,7 @@
             <div class="nav-wrapper">
                 <a href="../controllers/controller-signout.php" class="right buttonHome2 hoverable">Déconnexion</a>
                 <a href="../controllers/controller-home.php" class="logo-container indigo-text"><?= $nom ?></a>
-                <a href="../controllers/controller-allUsers.php" class="right buttonHome2 hoverable">Utilisateurs</a>
+                <a href="../controllers/controller-home.php" class="right buttonallUser hoverable">Retour</a>
 
             </div>
         </nav>
@@ -103,7 +104,7 @@
             <div class="row">
                 <div class="col s12 m8">
                     <div class="masonry row">
-                        <div class="col s12 push-s2">
+                        <div class="col s12">
                             <h2 class="blue-grey-text darken-3">Dashboard <?= $nom ?></h2>
                         </div>
 
@@ -127,25 +128,22 @@
                                                     <!-- Switch -->
                                                     <div class="switch">
                                                             <label class="switches">
-                                                                Suspendre
+                                                                Suspendu
                                                                 <input type="checkbox">
                                                                 <span class="lever"></span>
-                                                                Valider
+                                                                Validé
                                                             </label>
                                                     </div>
-
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php else : ?>
                                             <p>Aucun utilisateur trouvé.</p>
                                         <?php endif; ?>
-
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
