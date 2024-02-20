@@ -134,16 +134,6 @@
                                                             <span class="lever"></span>
                                                             Validé
                                                         </label>
-
-                                                        <a href="../controllers/controller-ajax.php?validate=<?= $user['user_id'] ?>">
-                                                            <button type="submit">Valider</button>
-                                                        </a>
-
-
-                                                        <a href="../controllers/controller-ajax.php?invalidate=<?= $user['user_id'] ?>">
-                                                            <button type="submit">Suspendre</button>
-                                                        </a>
-
                                                     </div>
 
 
@@ -171,8 +161,15 @@
             // e.target.type permet de cibler la checkbox
             if(e.target.type== 'checkbox'){
                 // true false s'affiche dans la console au click de la checkbox
-                console.log(e.target.checked);
-                console.log(e.target.dataset.userId);
+                // console.log(e.target.checked);
+                // récupération de l'id utilisateur (user-id...le dataSet récupère avec la majuscule userId)
+                // console.log(e.target.dataset.userId);
+                if(e.target.checked==false) {
+                    fetch(`controller-ajax.php?invalidate=${e.target.dataset.userId}`);
+                } else {
+                    fetch(`controller-ajax.php?validate=${e.target.dataset.userId}`);
+
+                }
             }
         })
 

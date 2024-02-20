@@ -8,10 +8,8 @@ require_once '../models/Enterprisejson.php';
 
 if (isset($_GET['validate'])) {
     Enterprise::getvalidateUser($_GET['validate']);
-header("Location: controller-allUsers.php");
 }
 
 if (isset($_GET['invalidate'])) {
     Enterprise::getinvalidateUser($_GET['invalidate']);
-header("Location: controller-allUsers.php");
 }
