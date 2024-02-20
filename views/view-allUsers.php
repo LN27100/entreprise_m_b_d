@@ -127,12 +127,12 @@
 
                                                     <!-- Switch -->
                                                     <div class="switch">
-                                                            <label class="switches">
-                                                                Suspendu
-                                                                <input type="checkbox">
-                                                                <span class="lever"></span>
-                                                                Validé
-                                                            </label>
+                                                        <label class="switches">
+                                                            Suspendu
+                                                            <input type="checkbox" name="user_validation" <?= $user['user_validate'] == 1 ? 'checked' : '' ?>>
+                                                            <span class="lever"></span>
+                                                            Validé
+                                                        </label>
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>

@@ -526,7 +526,7 @@ class Enterprise
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer tous les utilisateurs
-            $sql = "SELECT `user_photo`, `user_pseudo`, `user_email` FROM `userprofil` 
+            $sql = "SELECT * FROM `userprofil` 
                 WHERE `enterprise_id` = :id_entreprise
                 ORDER BY `user_id`";
 
@@ -570,8 +570,7 @@ class Enterprise
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer le statut
-            $sql = "UPDATE userprofil SET user_validate = '1' WHERE user_id = :user_id
-            AND enterprise_id = :enterprise_id";
+            $sql = "UPDATE userprofil SET user_validate = '1' WHERE user_id = :user_id";
 
             // Préparation de la requête
             $query = $db->prepare($sql);
@@ -610,8 +609,7 @@ class Enterprise
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer le statut
-            $sql = "UPDATE userprofil SET user_validate = '0' WHERE user_id = :user_id
-            AND enterprise_id = :enterprise_id";
+            $sql = "UPDATE userprofil SET user_validate = '0' WHERE user_id = :user_id";
 
             // Préparation de la requête
             $query = $db->prepare($sql);
