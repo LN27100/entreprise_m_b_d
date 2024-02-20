@@ -129,7 +129,8 @@
                                                     <div class="switch">
                                                         <label class="switches">
                                                             Suspendu
-                                                            <input type="checkbox" name="user_validation" <?= $user['user_validate'] == 1 ? 'checked' : '' ?>>
+                                                            <input type="checkbox" name="user_validation" data-user-id="<?= $user['user_id'] ?>" 
+                                                            <?= $user['user_validate'] == 1 ? 'checked' : '' ?>>
                                                             <span class="lever"></span>
                                                             Validé
                                                         </label>
@@ -138,7 +139,7 @@
                                                             <button type="submit">Valider</button>
                                                         </a>
 
-                                                      
+
                                                         <a href="../controllers/controller-ajax.php?invalidate=<?= $user['user_id'] ?>">
                                                             <button type="submit">Suspendre</button>
                                                         </a>
@@ -165,6 +166,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+
+        document.addEventListener('click', e => {
+            // e.target.type permet de cibler la checkbox
+            if(e.target.type== 'checkbox'){
+                // true false s'affiche dans la console au click de la checkbox
+                console.log(e.target.checked);
+                console.log(e.target.dataset.userId);
+            }
+        })
+
+
+
+
         document.addEventListener("DOMContentLoaded", function() {
             const navbarToggle = document.getElementById("navbar-toggle");
             const navbarNav = document.getElementById("navbar-nav");
@@ -173,6 +187,7 @@
                     navbarNav.classList.toggle("active");
                 });
             }
+
             document.getElementById('editDescriptionBtn').addEventListener('click', function() {
                 // Masquer la div avec la classe profile-info
                 document.querySelector('.profile-info').style.display = 'none';
