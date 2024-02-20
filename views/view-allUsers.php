@@ -165,6 +165,7 @@
                 // récupération de l'id utilisateur (user-id...le dataSet récupère avec la majuscule userId)
                 // console.log(e.target.dataset.userId);
                 if(e.target.checked==false) {
+                    // le fetch sert à récupération de l'id utilisateur dans l'url
                     fetch(`controller-ajax.php?invalidate=${e.target.dataset.userId}`);
                 } else {
                     fetch(`controller-ajax.php?validate=${e.target.dataset.userId}`);
