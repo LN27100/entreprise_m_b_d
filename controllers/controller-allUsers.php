@@ -132,18 +132,12 @@ $allUsers = $allUser['total_utilisateurs'] ?? 0;
 $allActifsUsers = $actifUsers['data']['total_active_users'] ?? 0;
 
 // Récupérer le nombre total de trajets
-$allRides = $allRide ['total_trajets'] ?? 0;
+$allRides = $allRide['total_trajets'] ?? 0;
+
 
 // Récupérer tous les utilisateurs pour la validation ou suspension de leur compte.
 $allPersonns = json_decode(Enterprise::getAllusers($enterprise_id), true);
 
-// Valider les utilisateurs
-$validateUser = json_decode(Enterprise::getvalidateUser($enterprise_id), true);
-
-// Susprendre les utilisateurs
-$invalidateUser = json_decode(Enterprise::getinvalidateUser($enterprise_id), true);
-
 
 // Inclure la vue pour afficher la page d'accueil
 include_once '../views/view-allUsers.php';
-?>

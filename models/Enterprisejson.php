@@ -563,6 +563,8 @@ class Enterprise
      * @param int $entreprise_id L'identifiant de l'entreprise
      * @return string JSON contenant les status des utilisateurs validés
      */
+
+    //  typer un paramètre, une méthode ou une vaiable aide au débuggage
     public static function getvalidateUser(int $user_id): string
     {
         try {
@@ -570,10 +572,13 @@ class Enterprise
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer le statut
-            $sql = "UPDATE userprofil SET user_validate = '1' WHERE user_id = :user_id";
+            // les `backticks`permettent de dire que l'on utilisent une table ou colonne.
+            // le :user_id est un marqueur nominatif
+            $sql = "UPDATE `userprofil` SET `user_validate` = '1' WHERE user_id = :user_id";
 
             // Préparation de la requête
             $query = $db->prepare($sql);
+            // le bindValue permet de sécuriser la valeur et de ne pas mettre autre chose
             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
             // Exécution de la requête
@@ -595,6 +600,7 @@ class Enterprise
             ]);
         }
     }
+    
 
      /**
      * Méthode pour modifier le status des utilisateurs en suspendu
@@ -609,7 +615,7 @@ class Enterprise
             $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
 
             // Requête SQL pour récupérer le statut
-            $sql = "UPDATE userprofil SET user_validate = '0' WHERE user_id = :user_id";
+            $sql = "UPDATE `userprofil` SET `user_validate` = '0' WHERE user_id = :user_id";
 
             // Préparation de la requête
             $query = $db->prepare($sql);

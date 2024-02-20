@@ -133,7 +133,20 @@
                                                             <span class="lever"></span>
                                                             Validé
                                                         </label>
+
+                                                        <a href="../controllers/controller-ajax.php?validate=<?= $user['user_id'] ?>">
+                                                            <button type="submit">Valider</button>
+                                                        </a>
+
+                                                      
+                                                        <a href="../controllers/controller-ajax.php?invalidate=<?= $user['user_id'] ?>">
+                                                            <button type="submit">Suspendre</button>
+                                                        </a>
+
                                                     </div>
+
+
+
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php else : ?>
