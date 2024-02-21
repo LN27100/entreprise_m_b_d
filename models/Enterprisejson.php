@@ -641,4 +641,44 @@ class Enterprise
         }
     }
 
+
+    /**
+     * Methode permettant de récupérer les infos d'un utilisateur avec son id comme paramètre
+     * 
+     * @param int $id Adresse mail de l'utilisateur
+     * 
+     * @return array Tableau associatif contenant les infos de l'utilisateur
+     */
+    public static function getInfosUsers(int $user_id): array
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $db = new PDO(DBNAME, DBUSER, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "SELECT userprofil.*
+                FROM `userprofil` 
+                INNER JOIN `enterprise` ON userprofil.enterprise_id = enterprise.enterprise_id
+                WHERE `user_id` = :user_id";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $db->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+
+            // on execute la requête
+            $query->execute();
+
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            // on retourne le résultat
+            return $result ?? [];
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
+
 }
