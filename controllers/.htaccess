@@ -1,0 +1,3 @@
+<Files "controller-ajax.php">
+    Deny from all
+</Files>
